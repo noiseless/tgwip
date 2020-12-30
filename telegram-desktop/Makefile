@@ -4,7 +4,7 @@ PKGNAME =	telegram-desktop-${V}
 V =		2.5.2
 REVISION =	1
 COMMENT =	telegram desktop messaging app
-DISTNAME =	${_PRJ}-${V}-full
+DISTNAME =	${PRJ}-${V}-full
 CATEGORIES =	tgwip net
 
 ACC =	telegramdesktop
