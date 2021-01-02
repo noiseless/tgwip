@@ -34,7 +34,7 @@ BUILD_DEPENDS +=	tgwip/libusrsctp audio/pulseaudio tgwip/microsoft-gsl
 BUILD_DEPENDS +=	tgwip/range-v3 tgwip/tl-expected devel/yasm
 
 LIB_DEPENDS += 	audio/opus graphics/ffmpeg audio/openal textproc/hunspell
-LIB_DEPENDS += 	sysutils/xxhash
+LIB_DEPENDS += 	sysutils/xxhash x11/dbusmenu-qt
 
 WANTLIB +=	${COMPILER_LIBCXX} GL Qt5Core Qt5Gui Qt5Network Qt5Widgets
 WANTLIB +=	X11 atk-1.0 c cairo cairo-gobject crypto gdk-3 gdk_pixbuf-2.0
