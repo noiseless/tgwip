@@ -2,7 +2,7 @@
 
 PKGNAME =	telegram-desktop-${V}
 V =		2.5.5
-#REVISION =	1
+REVISION =	1
 COMMENT =	telegram desktop messaging app
 DISTNAME =	${PRJ}-${V}-full
 CATEGORIES =	tgwip net
@@ -10,9 +10,9 @@ CATEGORIES =	tgwip net
 ACC =	telegramdesktop
 PRJ =	tdesktop
 
-TGOWT_COMMIT =	d91d618889cc743aafd809151449012de62e5327
-VPX_COMMIT =	3a38edea2cd114d53914cab017cab2e43a600031
-YUV_COMMIT =	1d3f901aa016d42b5bc0148be2ef6c0fd56f3b81
+TGOWT_COMMIT =	ace538a7dfe0fe5fc735f258ba49e7420a5d10b0
+VPX_COMMIT =	ecbb0e0e2a9b0500db432922b436d1f59ae9b011
+YUV_COMMIT =	93b1b332cd60b56ab90aea14182755e379c28a80
 
 MASTER_SITES0 =	https://github.com/${ACC}/${PRJ}/releases/download/v${V}/
 MASTER_SITES1 =	https://github.com/desktop-app/tg_owt/archive/
@@ -51,6 +51,7 @@ TDESKTOP_DIR =	${WRKDIR}/${DISTNAME}
 TGOWT_DIR =	${TDESKTOP_DIR}/tg_owt
 
 CXXFLAGS +=	-DNDEBUG
+USRSCTP_LDF =	`pkg-config --libs usrsctp` -pthread
 
 # # We're allowed to used the API ID of the Snap package
 CONFIGURE_ARGS +=	-DCMAKE_BUILD_TYPE=Release \
@@ -65,6 +66,7 @@ CONFIGURE_ARGS +=	-DCMAKE_BUILD_TYPE=Release \
 			-DDESKTOP_APP_USE_PACKAGED=ON \
 			-DDESKTOP_APP_USE_GLIBC_WRAPS=OFF \
 			-DDESKTOP_APP_USE_PACKAGED_FONTS=OFF \
+			-DCMAKE_EXE_LINKER_FLAGS="${LDFLAGS} ${USRSCTP_LDF}" \
 			-DDESKTOP_APP_WEBRTC_LOCATION=${TGOWT_DIR}/src/
 
 VPX_TMP_PATH = 	${WRKDIR}/libvpx-${VPX_COMMIT}
@@ -92,7 +94,7 @@ pre-configure:
 		CXXFLAGS="${CXXFLAGS} -DOPENSSL_IS_LIBRESSL -fPIC -DNDEBUG" \
 		${CONFIGURE_ENV} \
 		${LOCALBASE}/bin/cmake -G Ninja \
-		${CONFIGURE_ARGS} \
+		-DBUILD_SHARED_LIBS=OFF \
 		${TGOWT_DIR}
 
 	@cd ${TGOWT_DIR}/out/Release && \
