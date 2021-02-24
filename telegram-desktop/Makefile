@@ -1,7 +1,7 @@
 # $OpenBSD: Makefile,v 1.4 2020/08/20 20:50:02 noiseless Exp $
 
 PKGNAME =	telegram-desktop-${V}
-V =		2.5.9
+V =		2.6.0
 REVISION =	0
 COMMENT =	telegram desktop messaging app
 DISTNAME =	${PRJ}-${V}-full
@@ -11,8 +11,8 @@ ACC =	telegramdesktop
 PRJ =	tdesktop
 
 TGOWT_COMMIT =	a19877363082da634a3c851a4698376504d2eaee
-VPX_COMMIT =	24bd0733efad6ee63eda3c49ecb730e316eb2483
-YUV_COMMIT =	d7687742995c4cb004fbbc5cffc7c9e0d22ec7e5
+VPX_COMMIT =	02392eecccde436a76aca6c86a6fdf643e98eb38
+YUV_COMMIT =	08815a29766a78398a8e2b9ed095280e9d0a73c2
 
 MASTER_SITES0 =	https://github.com/${ACC}/${PRJ}/releases/download/v${V}/
 MASTER_SITES1 =	https://github.com/desktop-app/tg_owt/archive/
