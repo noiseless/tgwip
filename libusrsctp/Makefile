@@ -1,7 +1,7 @@
 # $OpenBSD: Makefile,v 1.4 2020/08/20 20:50:02 noiseless Exp $
 
 PKGNAME =	libusrsctp-${V}
-V =		0.9.4.0
+V =		0.9.5.0
 #REVISION =	1
 COMMENT =	portable SCTP userland stack
 DISTNAME =	${GH_TAGNAME}
@@ -19,7 +19,7 @@ PERMIT_PACKAGE =	Yes
 
 CONFIGURE_ARGS =	-DBUILD_SHARED_LIBS=ON
 CFLAGS+=	-Wno-error
-SHARED_LIBS += 	usrsctp		1.0
+SHARED_LIBS += 	usrsctp		2.0
 
 MODULES =	devel/cmake
 
