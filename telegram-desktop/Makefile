@@ -2,17 +2,18 @@
 
 PKGNAME =	telegram-desktop-${V}
 V =		2.6.1
-REVISION =	0
+REVISION =	1
 COMMENT =	telegram desktop messaging app
 DISTNAME =	${PRJ}-${V}-full
 CATEGORIES =	tgwip local net
 
+USRSCTP_V =	0.9.5.0
 ACC =	telegramdesktop
 PRJ =	tdesktop
 
 TGOWT_COMMIT =	a19877363082da634a3c851a4698376504d2eaee
-VPX_COMMIT =	02392eecccde436a76aca6c86a6fdf643e98eb38
-YUV_COMMIT =	08815a29766a78398a8e2b9ed095280e9d0a73c2
+VPX_COMMIT =	ebefb90b75f07ea5ab06d6b2a5ea5355c843d266
+YUV_COMMIT =	a8c181050c202854ae32433164e6bd5d1e7c4368
 
 MASTER_SITES0 =	https://github.com/${ACC}/${PRJ}/releases/download/v${V}/
 MASTER_SITES1 =	https://github.com/desktop-app/tg_owt/archive/
@@ -24,31 +25,44 @@ DISTFILES =	${DISTNAME}${EXTRACT_SUFX}:0 \
 		${VPX_COMMIT}${EXTRACT_SUFX}:2 \
 		libyuv-${YUV_COMMIT}${EXTRACT_SUFX}:3
 
+TDESKTOP_DIR =	${WRKDIR}/${DISTNAME}
+TGOWT_DIR =	${TDESKTOP_DIR}/tg_owt
+VPX_PATH =	${TGOWT_DIR}/src/third_party/libvpx/source/libvpx/
+YUV_PATH = 	${TGOWT_DIR}/src/third_party/libyuv
+LIBEVENT_DIR = 	${TGOWT_DIR}/src/base/third_party/libevent/openbsd/
+
+DEPS_MAPS = ${TGOWT_COMMIT}~${TGOWT_DIR} \
+	${VPX_COMMIT}~${VPX_PATH} \
+	libyuv-${YUV_COMMIT}~${YUV_PATH}
+
+.for DMAP in ${DEPS_MAPS}
+EXTRACT_CASES +=	${DMAP:C/~.+$//g}${EXTRACT_SUFX}) pax -zrs \
+			',^.*${DMAP:C/~.+$//g},${WRKDIR}${DMAP:C/^.+~//g},' \
+			-f ${FULLDISTDIR}/$$archive;;
+.endfor
+
 HOMEPAGE =	https://desktop.telegram.org/
 #MAINTAINER =	S
 
 # GPLv3
 PERMIT_PACKAGE =	Yes
 
-BUILD_DEPENDS +=	tgwip/libusrsctp audio/pulseaudio tgwip/microsoft-gsl
+BUILD_DEPENDS +=	audio/pulseaudio tgwip/microsoft-gsl
 BUILD_DEPENDS +=	tgwip/range-v3 tgwip/tl-expected devel/yasm
 
 LIB_DEPENDS += 	audio/opus graphics/ffmpeg audio/openal textproc/hunspell
-LIB_DEPENDS += 	sysutils/xxhash x11/dbusmenu-qt
+LIB_DEPENDS += 	sysutils/xxhash tgwip/libusrsctp>=${USRSCTP_V} x11/dbusmenu-qt
 
 WANTLIB +=	${COMPILER_LIBCXX} GL Qt5Core Qt5Gui Qt5Network Qt5Widgets
 WANTLIB +=	X11 atk-1.0 c cairo cairo-gobject crypto gdk-3 gdk_pixbuf-2.0
 WANTLIB +=	gio-2.0 glib-2.0 gobject-2.0 gtk-3 harfbuzz intl jpeg
 WANTLIB +=	lz4 lzma m pango-1.0 pangocairo-1.0 ssl xcb xcb-screensaver
 WANTLIB +=	xkbcommon z opus avcodec avformat avutil swresample swscale
-WANTLIB +=	openal hunspell-1.7 xxhash Qt5DBus dbusmenu-qt5
+WANTLIB +=	openal hunspell-1.7 xxhash usrsctp Qt5DBus dbusmenu-qt5
 
 RUN_DEPENDS +=	x11/gtk+3,-guic devel/desktop-file-utils x11/qt5/qtimageformats
 
 MODULES =	devel/cmake x11/qt5
-
-TDESKTOP_DIR =	${WRKDIR}/${DISTNAME}
-TGOWT_DIR =	${TDESKTOP_DIR}/tg_owt
 
 CXXFLAGS +=	-DNDEBUG
 USRSCTP_LDF =	`pkg-config --libs usrsctp` -pthread
@@ -69,29 +83,15 @@ CONFIGURE_ARGS +=	-DCMAKE_BUILD_TYPE=Release \
 			-DCMAKE_EXE_LINKER_FLAGS="${LDFLAGS} ${USRSCTP_LDF}" \
 			-DDESKTOP_APP_WEBRTC_LOCATION=${TGOWT_DIR}/src/
 
-VPX_TMP_PATH = 	${WRKDIR}/libvpx-${VPX_COMMIT}
-YUV_TMP_PATH = 	${WRKDIR}/libyuv-${YUV_COMMIT}
-VPX_PATH =	${TGOWT_DIR}/src/third_party/libvpx/source/libvpx/
-YUV_PATH = 	${TGOWT_DIR}/src/third_party/libyuv
-LIBEVENT_DIR = 	${TGOWT_DIR}/src/base/third_party/libevent/openbsd/
-
-pre-patch:
-	@mv ${WRKDIR}/tg_owt-${TGOWT_COMMIT} ${TGOWT_DIR}
-	@rm -fr ${VPX_PATH}
-	@rm -fr ${YUV_PATH}
-	@mv ${VPX_TMP_PATH} ${VPX_PATH}
-	@mv ${YUV_TMP_PATH} ${YUV_PATH}
-
 pre-configure:
 	@mkdir ${LIBEVENT_DIR}
-	@cp ${FILESDIR}/config.h ${LIBEVENT_DIR}
-	@cp ${FILESDIR}/event-config.h ${LIBEVENT_DIR}
+	@cp ${FILESDIR}/{config,event-config}.h ${LIBEVENT_DIR}
 	@mkdir -p ${TGOWT_DIR}/out/Release
 	@cd ${TGOWT_DIR}/out/Release && \
 		${SETENV} CC="${CC}" \
 		CXX="${CXX}" \
 		CFLAGS="${CFLAGS} -fPIC" \
-		CXXFLAGS="${CXXFLAGS} -DOPENSSL_IS_LIBRESSL -fPIC -DNDEBUG" \
+		CXXFLAGS="${CXXFLAGS} -fPIC -DNDEBUG" \
 		${CONFIGURE_ENV} \
 		${LOCALBASE}/bin/cmake -G Ninja \
 		-DBUILD_SHARED_LIBS=OFF \
