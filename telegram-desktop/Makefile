@@ -1,7 +1,7 @@
 # $OpenBSD: Makefile,v 1.4 2020/08/20 20:50:02 noiseless Exp $
 
 PKGNAME =	telegram-desktop-${V}
-V =		2.6.5
+V =		2.6.6
 REVISION =	0
 COMMENT =	telegram desktop messaging app
 DISTNAME =	${PRJ}-${V}-full
