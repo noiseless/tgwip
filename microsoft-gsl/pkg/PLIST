@@ -13,3 +13,4 @@ include/gsl/string_span
 share/cmake/
 share/cmake/Microsoft.GSL/
 share/cmake/Microsoft.GSL/Microsoft.GSLConfig.cmake
+share/cmake/Microsoft.GSL/Microsoft.GSLConfigVersion.cmake
