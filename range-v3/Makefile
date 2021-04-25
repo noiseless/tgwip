@@ -1,10 +1,10 @@
 # $OpenBSD: Makefile,v 1.4 2020/08/20 20:50:02 noiseless Exp $
 
 PKGNAME =	range-v3-${V}
-V =		0.10.0
+V =		0.11.0
 COMMENT =	experimental range library for C++11/14/17
 DISTNAME =	${GH_TAGNAME}
-CATEGORIES =	tgwip devel
+CATEGORIES =	tgwip local devel
 
 GH_ACCOUNT =	ericniebler
 GH_PROJECT =	range-v3
