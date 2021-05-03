@@ -1,0 +1,11 @@
+--- cmake/external/minizip/CMakeLists.txt.orig	Sun May  2 06:05:37 2021
++++ cmake/external/minizip/CMakeLists.txt	Sun May  2 06:06:07 2021
+@@ -34,7 +34,7 @@
+             ${minizip_loc}/unzip.h
+         )
+ 
+-        target_include_directories(external_minizip_bundled SYSTEM
++        target_include_directories(external_minizip_bundled
+         PUBLIC
+             ${minizip_loc}
+         )
