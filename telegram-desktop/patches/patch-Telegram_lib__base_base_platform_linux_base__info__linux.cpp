@@ -1,9 +1,9 @@
---- Telegram/lib_base/base/platform/linux/base_info_linux.cpp.orig	Mon Nov  2 13:34:16 2020
-+++ Telegram/lib_base/base/platform/linux/base_info_linux.cpp	Tue Dec 22 06:43:55 2020
-@@ -13,9 +13,11 @@
+--- Telegram/lib_base/base/platform/linux/base_info_linux.cpp.orig	Tue Aug 17 15:17:10 2021
++++ Telegram/lib_base/base/platform/linux/base_info_linux.cpp	Sun Aug 29 05:20:29 2021
+@@ -16,9 +16,11 @@
+ #include <QtCore/QDate>
  #include <QtGui/QGuiApplication>
  
- // this file is used on both Linux & BSD
 +#if !defined(__OpenBSD__)
  #ifdef Q_OS_LINUX
  #include <gnu/libc-version.h>
@@ -12,24 +12,24 @@
  
  namespace Platform {
  namespace {
-@@ -43,11 +45,15 @@
+@@ -46,12 +48,16 @@
  	static const auto result = [&] {
  		QStringList resultList{};
  
 +#if !defined(__OpenBSD__)
+ // this file is used on both Linux & BSD
  #ifdef Q_OS_LINUX
  		resultList << "Linux";
  #else // Q_OS_LINUX
  		resultList << QSysInfo::kernelType();
--#endif // !Q_OS_LINUX
-+#endif // Q_OS_LINUX
+ #endif // !Q_OS_LINUX
 +#else // !OpenBSD
 +		resultList << "OpenBSD";
 +#endif // !OpenBSD
  
- 		const auto desktopEnvironment = GetDesktopEnvironment();
- 		if (!desktopEnvironment.isEmpty()) {
-@@ -123,14 +129,17 @@
+ 		if (const auto desktopEnvironment = GetDesktopEnvironment();
+ 			!desktopEnvironment.isEmpty()) {
+@@ -109,14 +115,17 @@
  }
  
  QString GetLibcName() {
@@ -37,7 +37,7 @@
  #ifdef Q_OS_LINUX
  	return "glibc";
  #endif // Q_OS_LINUX
-+#endif // !OpenBSD 
++#endif // !OpenBSD
  
  	return QString();
  }
@@ -47,7 +47,7 @@
  #ifdef Q_OS_LINUX
  	static const auto result = [&] {
  		const auto version = QString::fromLatin1(gnu_get_libc_version());
-@@ -138,6 +147,7 @@
+@@ -124,6 +133,7 @@
  	}();
  	return result;
  #endif // Q_OS_LINUX

@@ -5,7 +5,7 @@ V =		0.9.5.0
 #REVISION =	1
 COMMENT =	portable SCTP userland stack
 DISTNAME =	${GH_TAGNAME}
-CATEGORIES =	tgwip net
+CATEGORIES =	tgwip local net
 
 GH_ACCOUNT =	sctplab
 GH_PROJECT =	usrsctp

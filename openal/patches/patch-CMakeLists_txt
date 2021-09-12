@@ -1,0 +1,14 @@
+$OpenBSD: patch-CMakeLists_txt,v 1.10 2021/07/25 17:33:48 sthen Exp $
+
+Index: CMakeLists.txt
+--- CMakeLists.txt.orig
++++ CMakeLists.txt
+@@ -1398,7 +1398,7 @@ endif()
+ 
+ if(ALSOFT_INSTALL_CONFIG)
+     install(FILES alsoftrc.sample
+-        DESTINATION ${CMAKE_INSTALL_DATADIR}/openal)
++        DESTINATION ${CMAKE_INSTALL_DATADIR}/examples/openal)
+     message(STATUS "Installing sample configuration")
+ endif()
+ 

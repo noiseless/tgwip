@@ -5,7 +5,7 @@ V =		1.0.0
 
 COMMENT =	c++11/14/17 std::expected with functional-style extensions
 DISTNAME =	${GH_TAGNAME}
-CATEGORIES =	tgwip devel
+CATEGORIES =	tgwip local devel
 
 GH_ACCOUNT =	TartanLlama
 GH_PROJECT =	expected

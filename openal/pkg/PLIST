@@ -1,0 +1,31 @@
+@comment $OpenBSD: PLIST,v 1.12 2021/07/25 17:33:48 sthen Exp $
+@bin bin/makemhr
+@bin bin/openal-info
+include/AL/
+include/AL/al.h
+include/AL/alc.h
+include/AL/alext.h
+include/AL/efx-creative.h
+include/AL/efx-presets.h
+include/AL/efx.h
+lib/cmake/
+lib/cmake/OpenAL/
+lib/cmake/OpenAL/OpenALConfig-openbsd.cmake
+lib/cmake/OpenAL/OpenALConfig.cmake
+@lib lib/libopenal.so.${LIBopenal_VERSION}
+lib/pkgconfig/openal.pc
+share/examples/openal/
+@sample ${SYSCONFDIR}/openal/
+share/examples/openal/alsoftrc.sample
+@sample ${SYSCONFDIR}/openal/alsoft.conf
+share/openal/
+share/openal/hrtf/
+share/openal/hrtf/Default HRTF.mhr
+share/openal/presets/
+share/openal/presets/3D7.1.ambdec
+share/openal/presets/hexagon.ambdec
+share/openal/presets/itu5.1-nocenter.ambdec
+share/openal/presets/itu5.1.ambdec
+share/openal/presets/presets.txt
+share/openal/presets/rectangle.ambdec
+share/openal/presets/square.ambdec

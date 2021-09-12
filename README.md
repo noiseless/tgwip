@@ -1,4 +1,4 @@
 # tgwip
 telegram-desktop openbsd port WIP
 
-works (tested): all chat-related functionality, v4l video camera. untested: sound in "calls" (via pulseaudio).
+Audio/video calls currently work only over ipv4. Calls over ipv6 are not possible now, I plan to fix this in the near future.

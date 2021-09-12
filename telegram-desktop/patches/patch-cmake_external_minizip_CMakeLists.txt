@@ -1,6 +1,7 @@
---- cmake/external/minizip/CMakeLists.txt.orig	Sun May  2 06:05:37 2021
-+++ cmake/external/minizip/CMakeLists.txt	Sun May  2 06:06:07 2021
-@@ -34,7 +34,7 @@
+Index: cmake/external/minizip/CMakeLists.txt
+--- cmake/external/minizip/CMakeLists.txt.orig
++++ cmake/external/minizip/CMakeLists.txt
+@@ -34,7 +34,7 @@ if (NOT MINIZIP_FOUND)
              ${minizip_loc}/unzip.h
          )
  
