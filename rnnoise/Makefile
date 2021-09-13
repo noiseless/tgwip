@@ -6,7 +6,7 @@ V =		20210122
 REVISION =	0
 COMMENT =	recurrent neural network for audio noise reduction
 DISTNAME =	${GH_TAGNAME}
-CATEGORIES =	audio local
+CATEGORIES =	audio local tgwip
 
 EXTRACT_CASES=	*.tar.gz) pax -zrs ',^rnnoise-${GH_TAGNAME}/,${WRKDIR}/${PKGNAME}/,' \
 				-f ${FULLDISTDIR}/$$archive;;
