@@ -32,7 +32,7 @@ HOMEPAGE =	https://github.com/desktop-app/tg_owt
 PERMIT_PACKAGE =	Yes
 
 BUILD_DEPENDS +=	local/range-v3 local/tl-expected devel/yasm
-BUILD_DEPENDS +=	local/microsoft-gsl
+BUILD_DEPENDS +=	local/microsoft-gsl local/abseil
 
 BUILD_DEPENDS += 	audio/opus graphics/ffmpeg devel/protobuf
 BUILD_DEPENDS += 	multimedia/libvpx local/libusrsctp>=${USRSCTP_V}
