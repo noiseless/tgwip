@@ -7,7 +7,7 @@ EPOCH =		0
 DISTNAME =	openal-soft-$V
 PKGNAME =	openal-$V
 REVISION =	2
-CATEGORIES =	audio tgwip
+CATEGORIES =	audio tgwip local
 
 SHARED_LIBS =	openal	4.1
 
