@@ -1,8 +1,8 @@
 # $OpenBSD$
 
 PKGNAME =	telegram-desktop-${V}
-V =		3.0.3
-REVISION =	1
+V =		3.0.4
+REVISION =	0
 TGOWT_V =	2021.06.27
 USRSCTP_V =	0.9.5.0
 COMMENT =	telegram desktop messaging app
