@@ -1,6 +1,7 @@
---- cmake/options_linux.cmake.orig	Sun Aug 29 04:55:30 2021
-+++ cmake/options_linux.cmake	Sun Aug 29 04:56:17 2021
-@@ -40,11 +40,6 @@
+Index: cmake/options_linux.cmake
+--- cmake/options_linux.cmake.orig
++++ cmake/options_linux.cmake
+@@ -45,11 +45,6 @@ if (DESKTOP_APP_SPECIAL_TARGET)
      target_link_options(common_options INTERFACE $<IF:$<CONFIG:Debug>,,-g -flto -fuse-linker-plugin>)
  endif()
  
@@ -12,10 +13,10 @@
  if (DESKTOP_APP_USE_ALLOCATION_TRACER)
      target_link_options(common_options
      INTERFACE
-@@ -89,18 +84,5 @@
-     INTERFACE
+@@ -96,18 +91,5 @@ if (NOT DESKTOP_APP_USE_PACKAGED)
          -pthread
          -rdynamic
+         -fwhole-program
 -    )
 -endif()
 -

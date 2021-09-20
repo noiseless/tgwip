@@ -1,6 +1,7 @@
---- cmake/external/webrtc/CMakeLists.txt.orig	Tue Aug 24 20:11:49 2021
-+++ cmake/external/webrtc/CMakeLists.txt	Sun Aug 29 05:49:32 2021
-@@ -62,8 +62,6 @@
+Index: cmake/external/webrtc/CMakeLists.txt
+--- cmake/external/webrtc/CMakeLists.txt.orig
++++ cmake/external/webrtc/CMakeLists.txt
+@@ -62,8 +62,6 @@ else()
      target_include_directories(external_webrtc SYSTEM
      INTERFACE
          ${webrtc_loc}

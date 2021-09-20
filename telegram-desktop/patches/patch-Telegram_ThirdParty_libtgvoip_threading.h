@@ -6,7 +6,7 @@ Index: Telegram/ThirdParty/libtgvoip/threading.h
  #include <functional>
  
 -#if defined(_POSIX_THREADS) || defined(_POSIX_VERSION) || defined(__unix__) || defined(__unix) || (defined(__APPLE__) && defined(__MACH__))
-+#if defined(_POSIX_THREADS) || defined(_POSIX_VERSION) || defined(__unix__) || defined(__unix) || (defined(__APPLE__) && defined(__MACH__)) || defined(__OpenBSD__)
++#if defined(_POSIX_THREADS) || defined(_POSIX_VERSION) || defined(__unix__) || defined(__unix) || (defined(__APPLE__) && defined(__MACH__)) || !defined(__OpenBSD__)
  
  #include <pthread.h>
  #include <semaphore.h>
@@ -17,17 +17,15 @@ Index: Telegram/ThirdParty/libtgvoip/threading.h
 +#ifdef __OpenBSD__
 +#include <pthread_np.h>
 +#endif
- 
- namespace tgvoip{
- 	class Mutex{
-@@ -92,7 +95,9 @@ namespace tgvoip{
- 		static void* ActualEntryPoint(void* arg){
- 			Thread* self=reinterpret_cast<Thread*>(arg);
+ #ifdef __FreeBSD__
+ #include <pthread_np.h>
+ #endif
+@@ -97,6 +100,8 @@ namespace tgvoip{
  			if(self->name){
--#if !defined(__APPLE__) && !defined(__gnu_hurd__)
-+#if defined(__OpenBSD__)
-+				pthread_set_name_np(self->thread, self->name);
-+#elif !defined(__APPLE__) && !defined(__gnu_hurd__)
+ #if defined(__linux__) || defined(__FreeBSD__)
  				pthread_setname_np(self->thread, self->name);
- #elif !defined(__gnu_hurd__)
++#elif defined(__OpenBSD__)
++				pthread_set_name_np(self->thread, self->name);
+ #elif defined(__APPLE__)
  				pthread_setname_np(self->name);
+ 				if(self->maxPriority){

@@ -1,6 +1,7 @@
---- cmake/external/CMakeLists.txt.orig	Thu Jul  8 04:22:37 2021
-+++ cmake/external/CMakeLists.txt	Thu Jul  8 04:22:54 2021
-@@ -37,9 +37,6 @@
+Index: cmake/external/CMakeLists.txt
+--- cmake/external/CMakeLists.txt.orig
++++ cmake/external/CMakeLists.txt
+@@ -37,9 +37,6 @@ if (add_hunspell_library)
  	add_checked_subdirectory(hunspell)
  endif()
  add_checked_subdirectory(iconv)

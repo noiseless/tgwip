@@ -1,13 +1,10 @@
-$OpenBSD$
-
---- Telegram/ThirdParty/libtgvoip/audio/AudioOutput.cpp.orig	2021-06-04 10:04:42 UTC
-+++ Telegram/ThirdParty/libtgvoip/audio/AudioOutput.cpp
-@@ -29,7 +29,7 @@
- #include "../os/windows/AudioOutputWave.h"
+--- Telegram/ThirdParty/libtgvoip/audio/AudioOutput.cpp.orig	Sun Sep 19 23:07:09 2021
++++ Telegram/ThirdParty/libtgvoip/audio/AudioOutput.cpp	Sun Sep 19 23:11:37 2021
+@@ -37,6 +37,7 @@
+ #include "../os/linux/AudioOutputPulse.h"
+ #include "../os/linux/AudioPulse.h"
  #endif
- #include "../os/windows/AudioOutputWASAPI.h"
--#elif defined(__linux__) || defined(__FreeBSD_kernel__) || defined(__gnu_hurd__)
-+#elif defined(__linux__) || defined(__FreeBSD_kernel__) || defined(__gnu_hurd__) || defined(__OpenBSD__)
- #ifndef WITHOUT_ALSA
- #include "../os/linux/AudioOutputALSA.h"
++#elif defined(__OpenBSD__)
+ #else
+ #error "Unsupported operating system"
  #endif

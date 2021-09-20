@@ -1,7 +1,7 @@
 # $OpenBSD: Makefile,v 1.4 2020/08/20 20:50:02 noiseless Exp $
 
 PKGNAME =	libtg_owt-${V}
-V =		2021.06.27
+V =		2021.09.14
 REVISION =	1
 COMMENT =	open webrtc toolkit with telegram patches
 DISTNAME =	${TGOWT_COMMIT}
@@ -9,7 +9,7 @@ CATEGORIES =	tgwip local net
 
 USRSCTP_V =	0.9.5.0
 
-TGOWT_COMMIT =	91d836dc84a16584c6ac52b36c04c0de504d9c34
+TGOWT_COMMIT =	575fb17d2853c43329e45f6693370f5e41668055
 YUV_COMMIT =	d19f69d9df7a54eae9cfae0b650921f675d9f01a
 
 MASTER_SITES0 =	https://github.com/desktop-app/tg_owt/archive/

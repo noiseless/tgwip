@@ -1,5 +1,6 @@
---- Telegram/lib_base/base/platform/linux/base_info_linux.cpp.orig	Tue Aug 17 15:17:10 2021
-+++ Telegram/lib_base/base/platform/linux/base_info_linux.cpp	Sun Aug 29 05:20:29 2021
+Index: Telegram/lib_base/base/platform/linux/base_info_linux.cpp
+--- Telegram/lib_base/base/platform/linux/base_info_linux.cpp.orig
++++ Telegram/lib_base/base/platform/linux/base_info_linux.cpp
 @@ -16,9 +16,11 @@
  #include <QtCore/QDate>
  #include <QtGui/QGuiApplication>
@@ -12,7 +13,7 @@
  
  namespace Platform {
  namespace {
-@@ -46,12 +48,16 @@
+@@ -46,12 +48,16 @@ QString SystemVersionPretty() {
  	static const auto result = [&] {
  		QStringList resultList{};
  
@@ -29,7 +30,7 @@
  
  		if (const auto desktopEnvironment = GetDesktopEnvironment();
  			!desktopEnvironment.isEmpty()) {
-@@ -109,14 +115,17 @@
+@@ -113,14 +119,17 @@ QString AutoUpdateKey() {
  }
  
  QString GetLibcName() {
@@ -47,7 +48,7 @@
  #ifdef Q_OS_LINUX
  	static const auto result = [&] {
  		const auto version = QString::fromLatin1(gnu_get_libc_version());
-@@ -124,6 +133,7 @@
+@@ -128,6 +137,7 @@ QString GetLibcVersion() {
  	}();
  	return result;
  #endif // Q_OS_LINUX

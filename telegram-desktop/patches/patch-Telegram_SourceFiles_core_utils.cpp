@@ -1,6 +1,7 @@
---- Telegram/SourceFiles/core/utils.cpp.orig	Fri Jul 16 05:39:02 2021
-+++ Telegram/SourceFiles/core/utils.cpp	Fri Jul 16 05:40:57 2021
-@@ -101,6 +101,7 @@
+Index: Telegram/SourceFiles/core/utils.cpp
+--- Telegram/SourceFiles/core/utils.cpp.orig
++++ Telegram/SourceFiles/core/utils.cpp
+@@ -101,6 +101,7 @@ namespace ThirdParty {
  		if (!sslSupported) {
  			LOG(("Error: current Qt build doesn't support SSL requests."));
  		}
@@ -8,7 +9,7 @@
  		if (!CRYPTO_get_locking_callback()) {
  			// Qt didn't initialize OpenSSL, so we will.
  			auto numLocks = CRYPTO_num_locks();
-@@ -118,6 +119,7 @@
+@@ -118,6 +119,7 @@ namespace ThirdParty {
  		} else if (!CRYPTO_get_dynlock_lock_callback()) {
  			LOG(("MTP Error: dynlock_create callback is set without dynlock_lock callback!"));
  		}

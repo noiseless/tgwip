@@ -1,11 +1,12 @@
---- Telegram/ThirdParty/libtgvoip/VoIPController.cpp.orig	2020-02-12 13:11:18 UTC
+Index: Telegram/ThirdParty/libtgvoip/VoIPController.cpp
+--- Telegram/ThirdParty/libtgvoip/VoIPController.cpp.orig
 +++ Telegram/ThirdParty/libtgvoip/VoIPController.cpp
 @@ -3005,7 +3005,7 @@ static void initMachTimestart() {
  #endif
  
  double VoIPController::GetCurrentTime(){
--#if defined(__linux__)
-+#if defined(__linux__) || defined(__OpenBSD__)
+-#if defined(__linux__) || defined(__FreeBSD__)
++#if defined(__linux__) || defined(__FreeBSD__) || defined(__OpenBSD__)
  	struct timespec ts;
  	clock_gettime(CLOCK_MONOTONIC, &ts);
  	return ts.tv_sec+(double)ts.tv_nsec/1000000000.0;

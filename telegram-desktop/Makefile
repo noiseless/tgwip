@@ -1,16 +1,16 @@
 # $OpenBSD$
 
 PKGNAME =	telegram-desktop-${V}
-V =		3.0.4
+V =		3.1.0
 REVISION =	0
-TGOWT_V =	2021.06.27
+TGOWT_V =	2021.09.14
 USRSCTP_V =	0.9.5.0
 COMMENT =	telegram desktop messaging app
 DISTNAME =	${PRJ}-${V}-full
 CATEGORIES =	tgwip local net
 
-ACC =	telegramdesktop
-PRJ =	tdesktop
+ACC =		telegramdesktop
+PRJ =		tdesktop
 
 MASTER_SITES=	https://github.com/${ACC}/${PRJ}/releases/download/v${V}/
 
@@ -24,10 +24,10 @@ PERMIT_PACKAGE =	Yes
 BUILD_DEPENDS +=	local/range-v3 local/tl-expected devel/yasm
 BUILD_DEPENDS +=	local/microsoft-gsl local/libtg_owt=${TGOWT_V}
 
-LIB_DEPENDS += 	audio/opus graphics/ffmpeg audio/openal textproc/hunspell
-LIB_DEPENDS += 	sysutils/xxhash devel/glib2mm local/libusrsctp>=${USRSCTP_V}
-LIB_DEPENDS += 	local/rnnoise local/abseil devel/libevent2 x11/qt5/qtsvg
-LIB_DEPENDS += 	x11/dbusmenu-qt
+LIB_DEPENDS +=	audio/opus graphics/ffmpeg audio/openal textproc/hunspell
+LIB_DEPENDS +=	sysutils/xxhash devel/glib2mm local/libusrsctp>=${USRSCTP_V}
+LIB_DEPENDS +=	local/rnnoise local/abseil devel/libevent2 x11/qt5/qtsvg
+LIB_DEPENDS +=	x11/dbusmenu-qt
 
 WANTLIB +=	c ${COMPILER_LIBCXX} Qt5Core Qt5Gui Qt5Network Qt5Widgets Qt5Svg
 WANTLIB +=	X11 crypto lz4 lzma m ssl xcb xcb-screensaver gio-2.0 glib-2.0
@@ -58,7 +58,6 @@ CONFIGURE_ARGS +=	-DCMAKE_BUILD_TYPE=Release \
 			-Ddisable_autoupdate=1 \
 			-DDESKTOP_APP_DISABLE_DBUS_INTEGRATION=OFF \
 			-DDESKTOP_APP_DISABLE_WAYLAND_INTEGRATION=ON \
-			-DDESKTOP_APP_DISABLE_GTK_INTEGRATION=ON \
 			-DDESKTOP_APP_DISABLE_WEBKITGTK=ON \
 			-DDESKTOP_APP_DISABLE_CRASH_REPORTS=ON \
 			-DDESKTOP_APP_USE_PACKAGED=ON \
