@@ -1,7 +1,14 @@
-Index: cmake/options_linux.cmake
---- cmake/options_linux.cmake.orig
-+++ cmake/options_linux.cmake
-@@ -45,11 +45,6 @@ if (DESKTOP_APP_SPECIAL_TARGET)
+--- cmake/options_linux.cmake.orig	Tue Sep 28 21:07:46 2021
++++ cmake/options_linux.cmake	Thu Sep 30 00:20:51 2021
+@@ -7,7 +7,6 @@
+ target_compile_options(common_options
+ INTERFACE
+     -fstack-protector-all
+-    -fstack-clash-protection
+     -fPIC
+     $<IF:$<CONFIG:Debug>,,-fno-strict-aliasing>
+     -pipe
+@@ -52,11 +51,6 @@
      target_link_options(common_options INTERFACE $<IF:$<CONFIG:Debug>,,-g -flto -fuse-linker-plugin>)
  endif()
  
@@ -13,10 +20,10 @@ Index: cmake/options_linux.cmake
  if (DESKTOP_APP_USE_ALLOCATION_TRACER)
      target_link_options(common_options
      INTERFACE
-@@ -96,18 +91,5 @@ if (NOT DESKTOP_APP_USE_PACKAGED)
-         -pthread
-         -rdynamic
-         -fwhole-program
+@@ -106,18 +100,5 @@
+         -Wl,-z,relro
+         -Wl,-z,now
+         -pie
 -    )
 -endif()
 -
