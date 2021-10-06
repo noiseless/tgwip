@@ -1,7 +1,7 @@
-# $OpenBSD: Makefile,v 1.4 2020/08/20 20:50:02 noiseless Exp $
+# $OpenBSD$
 
 PKGNAME =	${GH_ACCOUNT}-${V}
-V =		20210324.1
+V =		20210324.2
 #REVISION =	1
 COMMENT =	abseil common libraries (c++)
 DISTNAME =	${GH_TAGNAME}
