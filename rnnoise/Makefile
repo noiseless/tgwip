@@ -1,4 +1,4 @@
-# $OpenBSD: Makefile,v 1.4 2020/08/20 20:50:02 noiseless Exp $
+# $OpenBSD$
 
 PKGNAME =	${_NAME}-${V}
 _NAME =		rnnoise
@@ -17,17 +17,14 @@ GH_ACCOUNT =	xiph
 GH_PROJECT =	rnnoise
 GH_TAGNAME =	1cbdbcf1283499bbb2230a6b0f126eb9b236defd
 
-HOMEPAGE =	https://github.com/buggins/coolreader
-#MAINTAINER =	S
-
 # BSD2CLAUSE
 PERMIT_PACKAGE =	Yes
 
-WANTLIB += 	m
+WANTLIB += 		m
 
-SHARED_LIBS =	rnnoise		0.0
+SHARED_LIBS =		rnnoise		0.0
 
-USE_GMAKE =	Yes
+USE_GMAKE =		Yes
 CONFIGURE_STYLE =	autoreconf
 AUTOCONF_VERSION =	2.69
 AUTOMAKE_VERSION =	1.15
