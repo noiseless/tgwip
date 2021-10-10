@@ -1,7 +1,7 @@
 # $OpenBSD$
 
 PKGNAME =	telegram-desktop-${V}
-V =		3.1.5
+V =		3.1.9
 REVISION =	0
 TGOWT_V =	2021.09.14
 USRSCTP_V =	0.9.5.0

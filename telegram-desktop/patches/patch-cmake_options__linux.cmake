@@ -1,5 +1,5 @@
---- cmake/options_linux.cmake.orig	Tue Sep 28 21:07:46 2021
-+++ cmake/options_linux.cmake	Thu Sep 30 00:20:51 2021
+--- cmake/options_linux.cmake.orig	Fri Oct  8 09:31:21 2021
++++ cmake/options_linux.cmake	Sun Oct 10 01:37:31 2021
 @@ -7,7 +7,6 @@
  target_compile_options(common_options
  INTERFACE
@@ -20,10 +20,11 @@
  if (DESKTOP_APP_USE_ALLOCATION_TRACER)
      target_link_options(common_options
      INTERFACE
-@@ -106,18 +100,5 @@
+@@ -104,19 +98,6 @@
+         -rdynamic
+         -fwhole-program
          -Wl,-z,relro
-         -Wl,-z,now
-         -pie
+-        # -pie # https://gitlab.gnome.org/GNOME/nautilus/-/issues/1601
 -    )
 -endif()
 -
@@ -37,5 +38,6 @@
 -    target_link_libraries(common_options
 -    INTERFACE
 -        ${ATOMIC_LIBRARY}
++        -pie
      )
  endif()
