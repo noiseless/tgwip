@@ -1,10 +1,10 @@
---- src/rtc_base/ip_address.cc.orig	2020-08-30 09:41:57 UTC
-+++ src/rtc_base/ip_address.cc
-@@ -15,6 +15,7 @@
+--- src/rtc_base/ip_address.cc.orig	Thu Oct 21 09:15:41 2021
++++ src/rtc_base/ip_address.cc	Sat Oct 30 00:58:12 2021
+@@ -13,6 +13,7 @@
+ #include <sys/socket.h>
+ #ifdef OPENBSD
  #include <netinet/in_systm.h>
- #endif
- #ifndef __native_client__
 +#include <sys/types.h>
- #include <netinet/ip.h>
  #endif
  #include <netdb.h>
+ #endif

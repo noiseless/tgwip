@@ -1,42 +1,34 @@
-Index: src/rtc_base/platform_thread_types.cc
---- src/rtc_base/platform_thread_types.cc.orig
-+++ src/rtc_base/platform_thread_types.cc
-@@ -11,7 +11,6 @@
- #include "rtc_base/platform_thread_types.h"
- 
- #if defined(WEBRTC_LINUX)
--#include <sys/prctl.h>
- #include <sys/syscall.h>
+--- src/rtc_base/platform_thread_types.cc.orig	Thu Oct 21 09:15:41 2021
++++ src/rtc_base/platform_thread_types.cc	Sat Oct 30 01:34:53 2021
+@@ -25,6 +25,11 @@
+                                                   PCWSTR lpThreadDescription);
  #endif
  
-@@ -38,7 +37,11 @@ PlatformThreadId CurrentThreadId() {
- #elif defined(WEBRTC_FUCHSIA)
-   return zx_thread_self();
- #elif defined(WEBRTC_LINUX)
 +#if defined(__OpenBSD__)
-+  return reinterpret_cast<uint64_t>(pthread_self());;
-+#else
-   return syscall(__NR_gettid);
++#include <pthread.h>
++#include <pthread_np.h>
 +#endif
- #elif defined(__EMSCRIPTEN__)
-   return static_cast<PlatformThreadId>(pthread_self());
- #else
-@@ -67,6 +70,7 @@ bool IsThreadRefEqual(const PlatformThreadRef& a, cons
- }
- 
- void SetCurrentThreadName(const char* name) {
-+#if !defined(__OpenBSD__)
++
+ #if defined(WEBRTC_FREEBSD)
+ #include <sys/thr.h>
+ #include <pthread_np.h>
+@@ -36,7 +41,9 @@
  #if defined(WEBRTC_WIN)
-   // The SetThreadDescription API works even if no debugger is attached.
-   // The names set with this API also show up in ETW traces. Very handy.
-@@ -106,9 +110,8 @@ void SetCurrentThreadName(const char* name) {
+   return GetCurrentThreadId();
+ #elif defined(WEBRTC_POSIX)
+-#if defined(WEBRTC_MAC) || defined(WEBRTC_IOS)
++#if defined(__OpenBSD__)
++  return reinterpret_cast<uint64_t>(pthread_self());
++#elif defined(WEBRTC_MAC) || defined(WEBRTC_IOS)
+   return pthread_mach_thread_np(pthread_self());
+ #elif defined(WEBRTC_ANDROID)
+   return gettid();
+@@ -114,6 +121,8 @@
+   } __except (EXCEPTION_EXECUTE_HANDLER) {  // NOLINT
    }
  #pragma warning(pop)
++#elif defined(__OpenBSD__)
++  pthread_set_name_np(pthread_self(), name);
  #elif defined(WEBRTC_LINUX) || defined(WEBRTC_ANDROID)
--  prctl(PR_SET_NAME, reinterpret_cast<unsigned long>(name));  // NOLINT
--#elif defined(WEBRTC_MAC) || defined(WEBRTC_IOS)
-   pthread_setname_np(name);
-+#endif
- #endif
- }
- 
+   prctl(PR_SET_NAME, reinterpret_cast<unsigned long>(name));  // NOLINT
+ #elif defined(WEBRTC_FREEBSD)
