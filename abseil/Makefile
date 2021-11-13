@@ -1,8 +1,8 @@
 # $OpenBSD$
 
 PKGNAME =	${GH_ACCOUNT}-${V}
-V =		20210324.2
-#REVISION =	1
+V =		20211102.0
+REVISION =	0
 COMMENT =	abseil common libraries (c++)
 DISTNAME =	${GH_TAGNAME}
 CATEGORIES =	tgwip local devel
@@ -12,7 +12,6 @@ GH_PROJECT =	${GH_ACCOUNT}-cpp
 GH_TAGNAME =	${V}
 
 HOMEPAGE =	https://abseil.io/
-#MAINTAINER =	S
 
 # APACHE20
 PERMIT_PACKAGE =	Yes
@@ -24,6 +23,10 @@ SHARED_LIBS +=	absl_base					0.0 # 2103.0.1
 SHARED_LIBS +=	absl_city					0.0 # 2103.0.1
 SHARED_LIBS +=	absl_civil_time					0.0 # 2103.0.1
 SHARED_LIBS +=	absl_cord					0.0 # 2103.0.1
+SHARED_LIBS +=	absl_cord_internal				0.0 # 2103.0.1
+SHARED_LIBS +=	absl_cordz_functions				0.0 # 2103.0.1
+SHARED_LIBS +=	absl_cordz_handle				0.0 # 2103.0.1
+SHARED_LIBS +=	absl_cordz_info					0.0 # 2103.0.1
 SHARED_LIBS +=	absl_debugging_internal				0.0 # 2103.0.1
 SHARED_LIBS +=	absl_demangle_internal				0.0 # 2103.0.1
 SHARED_LIBS +=	absl_examine_stack				0.0 # 2103.0.1
@@ -48,6 +51,7 @@ SHARED_LIBS +=	absl_int128					0.0 # 2103.0.1
 SHARED_LIBS +=	absl_leak_check					0.0 # 2103.0.1
 SHARED_LIBS +=	absl_leak_check_disable				0.0 # 2103.0.1
 SHARED_LIBS +=	absl_log_severity				0.0 # 2103.0.1
+SHARED_LIBS +=	absl_low_level_hash				0.0 # 2103.0.1
 SHARED_LIBS +=	absl_malloc_internal				0.0 # 2103.0.1
 SHARED_LIBS +=	absl_periodic_sampler				0.0 # 2103.0.1
 SHARED_LIBS +=	absl_random_distributions			0.0 # 2103.0.1
