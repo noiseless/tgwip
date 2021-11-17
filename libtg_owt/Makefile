@@ -2,7 +2,7 @@
 
 PKGNAME =	libtg_owt-${V}
 V =		2021.10.12
-REVISION =	0
+REVISION =	2
 COMMENT =	open webrtc toolkit with telegram patches
 DISTNAME =	${TGOWT_COMMIT}
 CATEGORIES =	tgwip local net
