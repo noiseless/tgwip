@@ -1,4 +1,0 @@
-@comment $OpenBSD: PLIST,v$
-include/usrsctp.h
-@lib lib/libusrsctp.so.${LIBusrsctp_VERSION}
-lib/pkgconfig/usrsctp.pc
