@@ -2,7 +2,7 @@
 
 PKGNAME =	telegram-desktop-${V}
 V =		3.3.0
-REVISION =	0
+REVISION =	1
 TGOWT_V =	2021.12.07
 USRSCTP_V =	0.9.5.0
 COMMENT =	telegram desktop messaging app
@@ -26,7 +26,7 @@ BUILD_DEPENDS +=	local/microsoft-gsl local/libtg_owt=${TGOWT_V}
 
 LIB_DEPENDS +=	audio/opus graphics/ffmpeg audio/openal textproc/hunspell
 LIB_DEPENDS +=	sysutils/xxhash devel/glib2mm local/libusrsctp>=${USRSCTP_V}
-LIB_DEPENDS +=	local/rnnoise local/abseil devel/libevent2 x11/qt5/qtsvg
+LIB_DEPENDS +=	audio/rnnoise local/abseil devel/libevent2 x11/qt5/qtsvg
 LIB_DEPENDS +=	x11/dbusmenu-qt
 
 WANTLIB +=	c ${COMPILER_LIBCXX} Qt5Core Qt5Gui Qt5Network Qt5Widgets Qt5Svg
