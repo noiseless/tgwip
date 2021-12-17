@@ -2,7 +2,7 @@
 
 PKGNAME =	telegram-desktop-${V}
 V =		3.3.0
-REVISION =	3
+REVISION =	4
 TGOWT_V =	2021.12.07
 USRSCTP_V =	0.9.5.0
 COMMENT =	telegram desktop messaging app
@@ -21,7 +21,7 @@ HOMEPAGE =	https://desktop.telegram.org/
 # GPLv3
 PERMIT_PACKAGE =	Yes
 
-BUILD_DEPENDS +=	local/range-v3 local/tl-expected devel/yasm
+BUILD_DEPENDS +=	devel/range-v3 local/tl-expected devel/yasm
 BUILD_DEPENDS +=	devel/microsoft-gsl
 
 LIB_DEPENDS +=	audio/opus graphics/ffmpeg audio/openal textproc/hunspell
