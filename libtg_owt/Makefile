@@ -31,7 +31,7 @@ HOMEPAGE =	https://github.com/desktop-app/tg_owt
 # GPLv3
 PERMIT_PACKAGE =	Yes
 
-BUILD_DEPENDS +=	devel/range-v3 local/tl-expected devel/yasm
+BUILD_DEPENDS +=	devel/range-v3 devel/yasm
 BUILD_DEPENDS +=	devel/microsoft-gsl local/abseil
 
 LIB_DEPENDS +=		audio/opus graphics/ffmpeg devel/protobuf
