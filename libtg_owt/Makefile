@@ -2,7 +2,7 @@
 
 PKGNAME =	libtg_owt-${V}
 V =		2021.12.07
-REVISION =	2
+REVISION =	3
 COMMENT =	open webrtc toolkit with telegram patches
 DISTNAME =	${TGOWT_COMMIT}
 CATEGORIES =	tgwip local net
@@ -32,7 +32,7 @@ HOMEPAGE =	https://github.com/desktop-app/tg_owt
 PERMIT_PACKAGE =	Yes
 
 BUILD_DEPENDS +=	local/range-v3 local/tl-expected devel/yasm
-BUILD_DEPENDS +=	local/microsoft-gsl local/abseil
+BUILD_DEPENDS +=	devel/microsoft-gsl local/abseil
 
 LIB_DEPENDS +=		audio/opus graphics/ffmpeg devel/protobuf
 LIB_DEPENDS +=		multimedia/libvpx net/usrsctp>=${USRSCTP_V}
