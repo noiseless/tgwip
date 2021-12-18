@@ -1,0 +1,11 @@
+@comment $OpenBSD: PLIST,v$
+include/wels/
+include/wels/codec_api.h
+include/wels/codec_app_def.h
+include/wels/codec_def.h
+include/wels/codec_ver.h
+@static-lib lib/libopenh264.a
+@so lib/libopenh264.so
+@bin lib/libopenh264.so.2.1.1
+lib/libopenh264.so.6
+lib/pkgconfig/openh264.pc

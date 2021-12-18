@@ -1,0 +1,16 @@
+$OpenBSD$
+
+Force gmp plugin to link dynamically against libopenh264
+
+Index: Makefile
+--- Makefile.orig
++++ Makefile
+@@ -266,7 +266,7 @@ endif
+ echo-plugin-name:
+ 	@echo $(MODULE)
+ 
+-$(LIBPREFIX)$(MODULE_NAME).$(SHAREDLIBSUFFIXFULLVER): $(MODULE_OBJS) $(ENCODER_OBJS) $(DECODER_OBJS) $(PROCESSING_OBJS) $(COMMON_OBJS)
++$(LIBPREFIX)$(MODULE_NAME).$(SHAREDLIBSUFFIXFULLVER): $(MODULE_OBJS) $(LIBPREFIX)$(PROJECT_NAME).$(SHAREDLIBSUFFIX)
+ 	$(QUIET)rm -f $@
+ 	$(QUIET_CXX)$(CXX) $(SHARED) $(CXX_LINK_O) $+ $(LDFLAGS) $(SHLDFLAGS) $(MODULE_LDFLAGS)
+ ifeq (True, $(PROCESS_FILES))
