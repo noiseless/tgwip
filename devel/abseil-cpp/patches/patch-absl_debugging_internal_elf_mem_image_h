@@ -1,35 +1,24 @@
 $OpenBSD$
 
+Disabling ABSL_HAVE_ELF_MEM_IMAGE.
+
+This will cause the files
+
+absl/debugging/internal/self_mem_image.(h|cc)
+and
+absl/debugging/internal/vdso_support.(h|cc)
+
+are excluded from the build. Since OpenBSD has no vdso, this is OK.
+
 Index: absl/debugging/internal/elf_mem_image.h
 --- absl/debugging/internal/elf_mem_image.h.orig
 +++ absl/debugging/internal/elf_mem_image.h
-@@ -39,9 +39,29 @@
- #ifdef ABSL_HAVE_ELF_MEM_IMAGE
- 
- #include <link.h>  // for ElfW
-+#include <libelf.h>
- 
- #if defined(__FreeBSD__) && !defined(ElfW)
- #define ElfW(x) __ElfN(x)
-+#endif
-+
-+#if defined(__OpenBSD__)
-+typedef Elf64_Half Elf64_Versym;
-+#define DT_VERSYM	0x6ffffff0
-+#define	DT_VERDEF	0x6ffffffc	/* Address of version definition
-+					   table */
-+#define	DT_VERDEFNUM	0x6ffffffd	/* Number of version definitions */
-+typedef struct
-+{
-+  uint64_t a_type;		/* Entry type */
-+  union
-+    {
-+      uint64_t a_val;		/* Integer value */
-+      /* We use to have pointer elements added here.  We cannot do that,
-+	 though, since it does not work when using 32-bit definitions
-+	 on 64-bit platforms and vice versa.  */
-+    } a_un;
-+} Elf64_auxv_t;
+@@ -31,7 +31,7 @@
+ #error ABSL_HAVE_ELF_MEM_IMAGE cannot be directly set
  #endif
  
- namespace absl {
+-#if defined(__ELF__) && !defined(__native_client__) && !defined(__asmjs__) && \
++#if defined(__ELF__) && !defined(__OpenBSD__) && !defined(__native_client__) && !defined(__asmjs__) && \
+     !defined(__wasm__)
+ #define ABSL_HAVE_ELF_MEM_IMAGE 1
+ #endif

@@ -1,6 +1,7 @@
 # $OpenBSD$
 
 COMMENT =	abseil common libraries (c++)
+REVISION =	0
 CATEGORIES =	devel
 
 GH_ACCOUNT =	abseil
