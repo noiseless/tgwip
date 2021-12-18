@@ -1,17 +1,16 @@
 # $OpenBSD$
 
-COMMENT =	abseil common libraries (c++)
-REVISION =	1
-CATEGORIES =	devel
+COMMENT =		abseil common libraries (c++)
+CATEGORIES =		devel
 
-GH_ACCOUNT =	abseil
-GH_PROJECT =	${GH_ACCOUNT}-cpp
-GH_TAGNAME =	20211102.0
+GH_ACCOUNT =		abseil
+GH_PROJECT =		${GH_ACCOUNT}-cpp
+GH_TAGNAME =		20211102.0
 
-HOMEPAGE =	https://abseil.io/
+HOMEPAGE =		https://abseil.io/
 
-MAINTAINER =	Andrew Krasavin <noiseless-ak@yandex.ru>, \
-		Klemens Nanni <kn@openbsd.org>
+MAINTAINER =		Andrew Krasavin <noiseless-ak@yandex.ru>, \
+			Klemens Nanni <kn@openbsd.org>
 
 # Apache 2.0
 PERMIT_PACKAGE =	Yes
@@ -85,7 +84,7 @@ SHARED_LIBS +=	absl_wyhash					0.0 # 2103.0.1
 
 # C++17
 COMPILER =		base-clang ports-gcc
-COMPILER_LANGS=		c++
+COMPILER_LANGS =	c++
 WANTLIB =		${COMPILER_LIBCXX} m
 MODULES =		devel/cmake
 
@@ -100,6 +99,7 @@ CONFIGURE_ARGS +=	-DCMAKE_CXX_STANDARD=17
 # to ensure that our project builds correctly.
 CONFIGURE_ARGS +=	-DABSL_PROPAGATE_CXX_STD:BOOL=ON
 
+# XXX needs newest devel/gtest, needs lsan disabling, fails to link
 NO_TEST =		Yes
 
 .include <bsd.port.mk>
