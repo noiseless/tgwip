@@ -21,6 +21,9 @@ MAINTAINER =		Andrew Krasavin <noiseless-ak@yandex.ru>, \
 # GPLv3
 PERMIT_PACKAGE =	Yes
 
+# C++17 set below
+COMPILER =		base-clang ports-gcc
+
 BUILD_DEPENDS =		devel/microsoft-gsl \
 			devel/range-v3 \
 			devel/tl-expected
