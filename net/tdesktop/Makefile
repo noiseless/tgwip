@@ -3,23 +3,20 @@
 # See https://github.com/telegramdesktop/tdesktop/issues/3167#issuecomment-658308298
 NOT_FOR_ARCHS =	${BE_ARCHS}
 
-PKGNAME =	telegram-desktop-${V}
-V =		3.3.0
-REVISION =	5
-TGOWT_V =	2021.12.12
-USRSCTP_V =	0.9.5.0
-COMMENT =	telegram desktop messaging app
-DISTNAME =	${PRJ}-${V}-full
-CATEGORIES =	net
+COMMENT =		Official Telegram Desktop messenger
+V =			3.3.0
+DISTNAME =		tdesktop-${V}-full
+PKGNAME =		tdesktop-${V}
+CATEGORIES =		net
 
-ACC =		telegramdesktop
-PRJ =		tdesktop
+HOMEPAGE =		https://desktop.telegram.org
+MASTER_SITES =		https://github.com/telegramdesktop/tdesktop/releases/download/v${V}/
 
-MASTER_SITES=	https://github.com/${ACC}/${PRJ}/releases/download/v${V}/
+# ${WRKSRC}/Telegram/ThirdParty/hunspell/tests/suggestiontest/Makefile.orig
+PATCHORIG =		.pat.orig
 
-TDESKTOP_DIR =	${WRKDIR}/${DISTNAME}
-
-HOMEPAGE =	https://desktop.telegram.org/
+MAINTAINER =		Andrew Krasavin <noiseless-ak@yandex.ru>, \
+			Klemens Nanni <kn@openbsd.org>
 
 # GPLv3
 PERMIT_PACKAGE =	Yes
@@ -28,9 +25,9 @@ BUILD_DEPENDS +=	devel/range-v3 devel/tl-expected devel/yasm
 BUILD_DEPENDS +=	devel/microsoft-gsl
 
 LIB_DEPENDS +=	audio/opus graphics/ffmpeg audio/openal textproc/hunspell
-LIB_DEPENDS +=	sysutils/xxhash devel/glib2mm net/usrsctp>=${USRSCTP_V}
+LIB_DEPENDS +=	sysutils/xxhash devel/glib2mm net/usrsctp>=0.9.5.0
 LIB_DEPENDS +=	audio/rnnoise devel/abseil-cpp devel/libevent2 x11/qt5/qtsvg
-LIB_DEPENDS +=	devel/tg_owt=${TGOWT_V} x11/dbusmenu-qt
+LIB_DEPENDS +=	devel/tg_owt=0.0.0.20211212 x11/dbusmenu-qt
 
 WANTLIB +=	${COMPILER_LIBCXX} Qt5Core Qt5Gui Qt5Network Qt5Svg
 WANTLIB +=	Qt5Widgets X11 absl_base absl_int128 absl_log_severity
