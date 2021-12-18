@@ -1,19 +1,18 @@
 # $OpenBSD$
 
-PKGNAME =	${GH_ACCOUNT}-${V}
-V =		20211102.0
-REVISION =	0
 COMMENT =	abseil common libraries (c++)
-DISTNAME =	${GH_TAGNAME}
-CATEGORIES =	tgwip local devel
+CATEGORIES =	devel tgwip
 
 GH_ACCOUNT =	abseil
 GH_PROJECT =	${GH_ACCOUNT}-cpp
-GH_TAGNAME =	${V}
+GH_TAGNAME =	20211102.0
 
 HOMEPAGE =	https://abseil.io/
 
-# APACHE20
+MAINTAINER =	Andrew Krasavin <noiseless-ak@yandex.ru>, \
+		Klemens Nanni <kn@openbsd.org>
+
+# Apache 2.0
 PERMIT_PACKAGE =	Yes
 
 SHARED_LIBS +=	absl_bad_any_cast_impl				0.0 # 2103.0.1
@@ -83,12 +82,21 @@ SHARED_LIBS +=	absl_time					0.0 # 2103.0.1
 SHARED_LIBS +=	absl_time_zone					0.0 # 2103.0.1
 SHARED_LIBS +=	absl_wyhash					0.0 # 2103.0.1
 
-WANTLIB +=	${COMPILER_LIBCXX} m
-MODULES =	devel/cmake
+# C++17
+COMPILER =		base-clang ports-gcc
+COMPILER_LANGS=		c++
+WANTLIB =		${COMPILER_LIBCXX} m
+MODULES =		devel/cmake
 
-CONFIGURE_ENV =		LDFLAGS="-L${LOCALBASE}/lib"
+CONFIGURE_ARGS +=	-DBUILD_SHARED_LIBS:BOOL=ON
 
-CONFIGURE_ARGS =	-DBUILD_SHARED_LIBS:BOOL=ON \
-			-DCMAKE_CXX_STANDARD=17
+# Force the same highest C++ standard because of ABI differences.
+# https://github.com/abseil/abseil-cpp/issues/819
+CONFIGURE_ARGS +=	-DCMAKE_CXX_STANDARD=17
+
+# A future Abseil release will default ABSL_PROPAGATE_CXX_STD=ON
+# for CMake >= 3.8. Abseil developers recommend enabling this option
+# to ensure that our project builds correctly.
+CONFIGURE_ARGS +=	-DABSL_PROPAGATE_CXX_STD:BOOL=ON
 
 .include <bsd.port.mk>

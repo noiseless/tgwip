@@ -1,0 +1,35 @@
+$OpenBSD$
+
+Index: absl/debugging/internal/elf_mem_image.h
+--- absl/debugging/internal/elf_mem_image.h.orig
++++ absl/debugging/internal/elf_mem_image.h
+@@ -39,9 +39,29 @@
+ #ifdef ABSL_HAVE_ELF_MEM_IMAGE
+ 
+ #include <link.h>  // for ElfW
++#include <libelf.h>
+ 
+ #if defined(__FreeBSD__) && !defined(ElfW)
+ #define ElfW(x) __ElfN(x)
++#endif
++
++#if defined(__OpenBSD__)
++typedef Elf64_Half Elf64_Versym;
++#define DT_VERSYM	0x6ffffff0
++#define	DT_VERDEF	0x6ffffffc	/* Address of version definition
++					   table */
++#define	DT_VERDEFNUM	0x6ffffffd	/* Number of version definitions */
++typedef struct
++{
++  uint64_t a_type;		/* Entry type */
++  union
++    {
++      uint64_t a_val;		/* Integer value */
++      /* We use to have pointer elements added here.  We cannot do that,
++	 though, since it does not work when using 32-bit definitions
++	 on 64-bit platforms and vice versa.  */
++    } a_un;
++} Elf64_auxv_t;
+ #endif
+ 
+ namespace absl {
