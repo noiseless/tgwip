@@ -1,3 +1,7 @@
+$ OpenBSD: $
+
+Proper version proposed at https://github.com/telegramdesktop/libtgvoip/pull/37
+
 Index: Telegram/ThirdParty/libtgvoip/threading.h
 --- Telegram/ThirdParty/libtgvoip/threading.h.orig
 +++ Telegram/ThirdParty/libtgvoip/threading.h
