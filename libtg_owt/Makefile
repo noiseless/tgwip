@@ -41,22 +41,6 @@ MAINTAINER =		Andrew Krasavin <noiseless-ak@yandex.ru>, \
 # BSD 3-clause
 PERMIT_PACKAGE =	Yes
 
-BUILD_DEPENDS =		devel/yasm
-
-LIB_DEPENDS =		audio/opus \
-			devel/abseil-cpp \
-			devel/gettext,-runtime \
-			devel/glib2 \
-			devel/protobuf \
-			graphics/ffmpeg \
-			graphics/jpeg \
-			multimedia/libvpx>=1.10.0 \
-			net/usrsctp>=0.9.5.0
-
-MODULES =		devel/cmake \
-			lang/python
-MODPY_RUNDEP =		No
-
 WANTLIB += ${COMPILER_LIBCXX} X11 Xcomposite Xdamage Xext Xfixes
 WANTLIB += Xrandr Xrender Xtst absl_bad_optional_access absl_bad_variant_access
 WANTLIB += absl_base absl_city absl_civil_time absl_cord absl_cord_internal
@@ -75,6 +59,22 @@ WANTLIB += absl_symbolize absl_synchronization absl_throw_delegate
 WANTLIB += absl_time absl_time_zone avcodec avformat avutil crypto
 WANTLIB += gio-2.0 glib-2.0 gobject-2.0 intl jpeg m opus protobuf
 WANTLIB += ssl swresample swscale usrsctp vpx
+
+BUILD_DEPENDS =		devel/yasm
+
+LIB_DEPENDS =		audio/opus \
+			devel/abseil-cpp \
+			devel/gettext,-runtime \
+			devel/glib2 \
+			devel/protobuf \
+			graphics/ffmpeg \
+			graphics/jpeg \
+			multimedia/libvpx>=1.10.0 \
+			net/usrsctp>=0.9.5.0
+
+MODULES =		devel/cmake \
+			lang/python
+MODPY_RUNDEP =		No
 
 # indicate an official package build and imply -DBUILD_SHARED_LIBS=ON;
 # shared builds are not officially supported as per
