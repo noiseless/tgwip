@@ -60,6 +60,9 @@ WANTLIB += absl_time absl_time_zone avcodec avformat avutil crypto
 WANTLIB += gio-2.0 glib-2.0 gobject-2.0 intl jpeg m openh264 opus protobuf
 WANTLIB += ssl swresample swscale usrsctp vpx
 
+# XXX port-lib-depends-check is unhappy, although libtg_owt.so.0.0 correctly
+# links against libopenh264.so.0.0
+
 # C++17 set below, some components use -std=gnu++20
 COMPILER =		base-clang ports-gcc
 
