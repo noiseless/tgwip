@@ -21,13 +21,33 @@ MAINTAINER =		Andrew Krasavin <noiseless-ak@yandex.ru>, \
 # GPLv3
 PERMIT_PACKAGE =	Yes
 
-BUILD_DEPENDS +=	devel/range-v3 devel/tl-expected devel/yasm
-BUILD_DEPENDS +=	devel/microsoft-gsl
+BUILD_DEPENDS =		devel/microsoft-gsl \
+			devel/range-v3 \
+			devel/tl-expected
 
-LIB_DEPENDS +=	audio/opus graphics/ffmpeg audio/openal textproc/hunspell
-LIB_DEPENDS +=	sysutils/xxhash devel/glib2mm net/usrsctp>=0.9.5.0
-LIB_DEPENDS +=	audio/rnnoise devel/abseil-cpp devel/libevent2 x11/qt5/qtsvg
-LIB_DEPENDS +=	devel/tg_owt=0.0.0.20211212 x11/dbusmenu-qt
+LIB_DEPENDS =		audio/rnnoise \
+			audio/openal \
+			audio/opus \
+			devel/abseil-cpp \
+			devel/glib2mm \
+			devel/libevent2 \
+			graphics/ffmpeg \
+			graphics/jpeg \
+			net/tg_owt \
+			net/usrsctp>=0.9.5.0 \
+			sysutils/xxhash \
+			textproc/hunspell \
+			x11/dbusmenu-qt \
+			x11/qt5/qtsvg
+
+RUN_DEPENDS =		devel/desktop-file-utils \
+			x11/gtk+3,-guic \
+			x11/qt5/qtimageformats
+
+MODULES =		devel/cmake \
+			lang/python \
+			x11/qt5
+MODPY_RUNDEP =		No
 
 WANTLIB +=	${COMPILER_LIBCXX} Qt5Core Qt5Gui Qt5Network Qt5Svg
 WANTLIB +=	Qt5Widgets X11 absl_base absl_int128 absl_log_severity
@@ -37,10 +57,6 @@ WANTLIB +=	avutil c crypto event_core event_extra hunspell-1.7
 WANTLIB +=	lz4 m openal opus rnnoise swresample swscale tg_owt
 WANTLIB +=	usrsctp vpx xcb xcb-keysyms xcb-record xcb-screensaver
 WANTLIB +=	xxhash z Qt5DBus dbusmenu-qt5
-
-RUN_DEPENDS +=	devel/desktop-file-utils x11/qt5/qtimageformats
-
-MODULES =	devel/cmake x11/qt5
 
 CXXFLAGS +=	-DNDEBUG
 EXTRA_LDFL =	`pkg-config --libs vpx usrsctp absl_strings libevent x11` -pthread
