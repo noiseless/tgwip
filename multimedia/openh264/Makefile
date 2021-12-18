@@ -39,7 +39,6 @@ MAKE_FLAGS +=		CFLAGS_OPT='${CFLAGS}' \
 			CFLAGS_DEBUG='${DEBUG}'
 
 MAKE_FLAGS +=		CXX=${CXX} \
-			CCASFLAGS='$$(CFLAGS) ${ASFLAGS}' \
 			PREFIX=${PREFIX}
 
 .include <bsd.port.mk>
