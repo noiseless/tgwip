@@ -645,6 +645,7 @@ include/tg_owt/media/base/turn_utils.h
 include/tg_owt/media/base/video_adapter.h
 include/tg_owt/media/base/video_broadcaster.h
 include/tg_owt/media/base/video_common.h
+include/tg_owt/third_party/libyuv/libyuv-742791f13a8ca9e8a297c323699aff8af30a360b/
 include/tg_owt/media/base/video_source_base.h
 include/tg_owt/media/base/vp9_profile.h
 include/tg_owt/media/engine/
@@ -3139,6 +3140,8 @@ include/tg_owt/third_party/libyuv/tools_libyuv/autoroller/unittests/
 include/tg_owt/third_party/libyuv/tools_libyuv/autoroller/unittests/testdata/
 include/tg_owt/third_party/libyuv/tools_libyuv/msan/
 include/tg_owt/third_party/libyuv/tools_libyuv/ubsan/
+include/tg_owt/third_party/libyuv/tools_libyuv/valgrind/
+include/tg_owt/third_party/libyuv/tools_libyuv/valgrind/memcheck/
 include/tg_owt/third_party/libyuv/unit_test/
 include/tg_owt/third_party/libyuv/unit_test/testdata/
 include/tg_owt/third_party/libyuv/unit_test/unit_test.h
@@ -3604,6 +3607,6 @@ include/tg_owt/video/video_stream_encoder.h
 lib/cmake/
 lib/cmake/tg_owt/
 lib/cmake/tg_owt/tg_owtConfig.cmake
-lib/cmake/tg_owt/tg_owtTargets-relwithdebinfo.cmake
+lib/cmake/tg_owt/tg_owtTargets${MODCMAKE_BUILD_SUFFIX}.cmake
 lib/cmake/tg_owt/tg_owtTargets.cmake
-@static-lib lib/libtg_owt.a
+@lib lib/libtg_owt.so.${LIBtg_owt_VERSION}
