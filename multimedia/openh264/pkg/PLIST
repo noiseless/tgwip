@@ -6,6 +6,6 @@ include/wels/codec_def.h
 include/wels/codec_ver.h
 @static-lib lib/libopenh264.a
 @so lib/libopenh264.so
-@bin lib/libopenh264.so.2.1.1
-lib/libopenh264.so.6
+lib/libopenh264.so.0
+@lib lib/libopenh264.so.${LIBopenh264_VERSION}
 lib/pkgconfig/openh264.pc
