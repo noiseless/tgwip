@@ -60,6 +60,9 @@ WANTLIB += absl_time absl_time_zone avcodec avformat avutil crypto
 WANTLIB += gio-2.0 glib-2.0 gobject-2.0 intl jpeg m opus protobuf
 WANTLIB += ssl swresample swscale usrsctp vpx
 
+# C++17 set below, some components use -std=gnu++20
+COMPILER =		base-clang ports-gcc
+
 BUILD_DEPENDS =		devel/yasm
 
 LIB_DEPENDS =		audio/opus \
