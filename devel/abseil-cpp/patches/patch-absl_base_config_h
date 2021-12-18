@@ -1,6 +1,6 @@
 $OpenBSD$
 
-Adding OpenBSD to the list of platforms that have mmap(2) and
+Add OpenBSD to the list of platforms that have mmap(2) and
 pthread_(get|set)schedparam(3).
 
 Index: absl/base/config.h

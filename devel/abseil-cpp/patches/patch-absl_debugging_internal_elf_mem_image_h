@@ -1,14 +1,11 @@
 $OpenBSD$
 
-Disabling ABSL_HAVE_ELF_MEM_IMAGE.
+Disable ABSL_HAVE_ELF_MEM_IMAGE.
 
-This will cause the files
-
-absl/debugging/internal/self_mem_image.(h|cc)
-and
-absl/debugging/internal/vdso_support.(h|cc)
-
-are excluded from the build. Since OpenBSD has no vdso, this is OK.
+This will exclude the files
+    absl/debugging/internal/self_mem_image.(h|cc)
+    absl/debugging/internal/vdso_support.(h|cc)
+from the build. Since OpenBSD has no Linux vdso(7), this is OK.
 
 Index: absl/debugging/internal/elf_mem_image.h
 --- absl/debugging/internal/elf_mem_image.h.orig
