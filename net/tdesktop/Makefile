@@ -64,15 +64,6 @@ CONFIGURE_ARGS +=	-DLIBTGVOIP_DISABLE_ALSA=ON \
 CONFIGURE_ARGS +=	-DDESKTOP_APP_DISABLE_WAYLAND_INTEGRATION=ON \
 			-DDESKTOP_APP_DISABLE_DBUS_INTEGRATION=ON
 
-WANTLIB +=	${COMPILER_LIBCXX} Qt5Core Qt5Gui Qt5Network Qt5Svg
-WANTLIB +=	Qt5Widgets X11 absl_base absl_int128 absl_log_severity
-WANTLIB +=	absl_raw_logging_internal absl_spinlock_wait absl_strings
-WANTLIB +=	absl_strings_internal absl_throw_delegate avcodec avformat
-WANTLIB +=	avutil c crypto event_core event_extra hunspell-1.7
-WANTLIB +=	lz4 m openal opus rnnoise swresample swscale tg_owt
-WANTLIB +=	usrsctp vpx xcb xcb-keysyms xcb-record xcb-screensaver
-WANTLIB +=	xxhash z Qt5DBus dbusmenu-qt5
-
 CXXFLAGS +=	-DNDEBUG
 EXTRA_LDFL =	`pkg-config --libs vpx usrsctp absl_strings libevent x11` -pthread
 
