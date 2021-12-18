@@ -31,6 +31,7 @@ BUILD_DEPENDS =		devel/microsoft-gsl \
 LIB_DEPENDS =		audio/rnnoise \
 			audio/openal \
 			audio/opus \
+			archivers/minizip \
 			devel/abseil-cpp \
 			devel/glib2mm \
 			devel/libevent2 \
