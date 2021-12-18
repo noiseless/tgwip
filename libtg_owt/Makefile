@@ -76,14 +76,20 @@ WANTLIB += absl_time absl_time_zone avcodec avformat avutil crypto
 WANTLIB += gio-2.0 glib-2.0 gobject-2.0 intl jpeg m opus protobuf
 WANTLIB += ssl swresample swscale usrsctp vpx
 
-# shared builds is not officially supported:
+# indicate an official package build and imply -DBUILD_SHARED_LIBS=ON;
+# shared builds are not officially supported as per
 # https://github.com/telegramdesktop/tdesktop/issues/10257#issuecomment-769698680
-CONFIGURE_ARGS +=	-DCMAKE_BUILD_TYPE=RelWithDebInfo \
-			-DBUILD_SHARED_LIBS:BOOL=ON \
-			-DCMAKE_POSITION_INDEPENDENT_CODE:BOOL=ON \
+# but OpenBSD ports can do better
+CONFIGURE_ARGS +=	-DTG_OWT_PACKAGED_BUILD=ON
+
+# aovid unported ALSA und unneeded PulseAudio, net/tdesktop works wit OpenAL
+CONFIGURE_ARGS +=	-DTG_OWT_BUILD_AUDIO_BACKENDS=OFF
+
+# do not use unported pipewire for desktop capture (or anything else)
+CONFIGURE_ARGS +=	-DTG_OWT_USE_PIPEWIRE=OFF
+
+CONFIGURE_ARGS +=	-DCMAKE_POSITION_INDEPENDENT_CODE:BOOL=ON \
 			-DCMAKE_CXX_FLAGS="-DNDEBUG" \
-			-DCMAKE_CXX_STANDARD=17 \
-			-DTG_OWT_USE_PIPEWIRE=OFF \
-			-DTG_OWT_BUILD_AUDIO_BACKENDS=OFF
+			-DCMAKE_CXX_STANDARD=17
 
 .include <bsd.port.mk>
