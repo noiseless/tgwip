@@ -1,6 +1,7 @@
---- src/rtc_base/platform_thread_types.cc.orig	Thu Oct 21 09:15:41 2021
-+++ src/rtc_base/platform_thread_types.cc	Sat Oct 30 01:34:53 2021
-@@ -25,6 +25,11 @@
+Index: src/rtc_base/platform_thread_types.cc
+--- src/rtc_base/platform_thread_types.cc.orig
++++ src/rtc_base/platform_thread_types.cc
+@@ -25,6 +25,11 @@ typedef HRESULT(WINAPI* RTC_SetThreadDescription)(HAND
                                                    PCWSTR lpThreadDescription);
  #endif
  
@@ -12,7 +13,7 @@
  #if defined(WEBRTC_FREEBSD)
  #include <sys/thr.h>
  #include <pthread_np.h>
-@@ -36,7 +41,9 @@
+@@ -36,7 +41,9 @@ PlatformThreadId CurrentThreadId() {
  #if defined(WEBRTC_WIN)
    return GetCurrentThreadId();
  #elif defined(WEBRTC_POSIX)
@@ -23,7 +24,7 @@
    return pthread_mach_thread_np(pthread_self());
  #elif defined(WEBRTC_ANDROID)
    return gettid();
-@@ -114,6 +121,8 @@
+@@ -114,6 +121,8 @@ void SetCurrentThreadName(const char* name) {
    } __except (EXCEPTION_EXECUTE_HANDLER) {  // NOLINT
    }
  #pragma warning(pop)

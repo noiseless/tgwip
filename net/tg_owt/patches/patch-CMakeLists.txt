@@ -1,32 +1,35 @@
+$ OpenBSD: $
+
+- ignore bundled abseil-cpp, openh264, usrsctp, vpx to prefer our ports
+- disable unused and unported linux specific pipewire code
+
 Index: CMakeLists.txt
 --- CMakeLists.txt.orig
 +++ CMakeLists.txt
-@@ -63,13 +63,10 @@ include(cmake/init_target.cmake)
+@@ -63,13 +63,9 @@ include(cmake/init_target.cmake)
  include(cmake/generate_target.cmake)
  include(cmake/target_yasm_sources.cmake)
  include(cmake/external.cmake)
 -include(cmake/libabsl.cmake)
- include(cmake/libopenh264.cmake)
+-include(cmake/libopenh264.cmake)
  include(cmake/libpffft.cmake)
  include(cmake/librnnoise.cmake)
  include(cmake/libsrtp.cmake)
 -include(cmake/libusrsctp.cmake)
 -include(cmake/libvpx.cmake)
  include(cmake/libyuv.cmake)
- if (NOT WIN32 AND NOT APPLE)
-     include(cmake/libevent.cmake)
-@@ -2034,8 +2031,8 @@ PRIVATE
+ if (APPLE)
+     include(cmake/libsdkmacos.cmake)
+@@ -2077,8 +2073,6 @@ PRIVATE
      modules/desktop_capture/window_capturer_null.cc
  
      # linux specific
 -    modules/desktop_capture/linux/base_capturer_pipewire.cc
 -    modules/desktop_capture/linux/base_capturer_pipewire.h
-+    #modules/desktop_capture/linux/base_capturer_pipewire.cc
-+    #modules/desktop_capture/linux/base_capturer_pipewire.h
      modules/desktop_capture/linux/mouse_cursor_monitor_x11.cc
      modules/desktop_capture/linux/mouse_cursor_monitor_x11.h
      modules/desktop_capture/linux/screen_capturer_x11.cc
-@@ -2333,16 +2330,19 @@ elseif (APPLE)
+@@ -2370,16 +2364,19 @@ if (APPLE)
      )
  endif()
  
@@ -56,13 +59,3 @@ Index: CMakeLists.txt
  endif()
  
  set(tg_owt_export tg_owt)
-@@ -2367,9 +2367,6 @@ if (TG_OWT_USE_PROTOBUF)
-     list(APPEND export_targets proto)
- endif()
- 
--if (NOT absl_FOUND)
--    list(APPEND export_targets libabsl)
--endif()
- if (NOT LIBOPENH264_FOUND)
-     list(APPEND export_targets libopenh264)
- endif()
