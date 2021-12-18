@@ -1,5 +1,8 @@
 # $OpenBSD$
 
+# See https://github.com/telegramdesktop/tdesktop/issues/3167#issuecomment-658308298
+NOT_FOR_ARCHS =	${BE_ARCHS}
+
 PKGNAME =	telegram-desktop-${V}
 V =		3.3.0
 REVISION =	5

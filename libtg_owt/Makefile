@@ -1,5 +1,8 @@
 # $OpenBSD$
 
+# follow net/tdeskop
+NOT_FOR_ARCHS =	${BE_ARCHS}
+
 PKGNAME =	libtg_owt-${V}
 V =		2021.12.12
 REVISION =	5
