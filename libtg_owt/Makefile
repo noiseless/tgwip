@@ -41,14 +41,21 @@ MAINTAINER =		Andrew Krasavin <noiseless-ak@yandex.ru>, \
 # BSD 3-clause
 PERMIT_PACKAGE =	Yes
 
-BUILD_DEPENDS +=	devel/range-v3 devel/yasm
-BUILD_DEPENDS +=	devel/microsoft-gsl local/abseil
+BUILD_DEPENDS =		devel/yasm
 
-LIB_DEPENDS +=		audio/opus graphics/ffmpeg devel/protobuf
-LIB_DEPENDS +=		multimedia/libvpx net/usrsctp>=0.9.5.0
-LIB_DEPENDS +=		devel/libevent2 graphics/ffmpeg
+LIB_DEPENDS =		audio/opus \
+			devel/abseil-cpp \
+			devel/gettext,-runtime \
+			devel/glib2 \
+			devel/protobuf \
+			graphics/ffmpeg \
+			graphics/jpeg \
+			multimedia/libvpx>=1.10.0 \
+			net/usrsctp>=0.9.5.0
 
-MODULES =	devel/cmake
+MODULES =		devel/cmake \
+			lang/python
+MODPY_RUNDEP =		No
 
 WANTLIB +=	${COMPILER_LIBCXX} X11 Xcomposite Xdamage Xext Xfixes
 WANTLIB +=	Xrandr Xrender Xtst crypto m ssl
