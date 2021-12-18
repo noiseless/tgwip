@@ -1,7 +1,7 @@
 # $OpenBSD$
 
 COMMENT =	abseil common libraries (c++)
-REVISION =	0
+REVISION =	1
 CATEGORIES =	devel
 
 GH_ACCOUNT =	abseil
@@ -99,5 +99,7 @@ CONFIGURE_ARGS +=	-DCMAKE_CXX_STANDARD=17
 # for CMake >= 3.8. Abseil developers recommend enabling this option
 # to ensure that our project builds correctly.
 CONFIGURE_ARGS +=	-DABSL_PROPAGATE_CXX_STD:BOOL=ON
+
+NO_TEST =		Yes
 
 .include <bsd.port.mk>
