@@ -31,7 +31,7 @@ EXTRACT_CASES +=	${LIBUV}${EXTRACT_SUFX}) pax -zrs \
 
 HOMEPAGE =	https://github.com/desktop-app/tg_owt
 
-# GPLv3
+# BSD 3-clause
 PERMIT_PACKAGE =	Yes
 
 BUILD_DEPENDS +=	devel/range-v3 devel/yasm
