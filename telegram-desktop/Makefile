@@ -30,7 +30,7 @@ BUILD_DEPENDS +=	devel/microsoft-gsl
 LIB_DEPENDS +=	audio/opus graphics/ffmpeg audio/openal textproc/hunspell
 LIB_DEPENDS +=	sysutils/xxhash devel/glib2mm net/usrsctp>=${USRSCTP_V}
 LIB_DEPENDS +=	audio/rnnoise local/abseil devel/libevent2 x11/qt5/qtsvg
-LIB_DEPENDS +=	local/libtg_owt=${TGOWT_V} x11/dbusmenu-qt
+LIB_DEPENDS +=	local/tg_owt=${TGOWT_V} x11/dbusmenu-qt
 
 WANTLIB +=	${COMPILER_LIBCXX} Qt5Core Qt5Gui Qt5Network Qt5Svg
 WANTLIB +=	Qt5Widgets X11 absl_base absl_int128 absl_log_severity
