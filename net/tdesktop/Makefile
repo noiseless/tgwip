@@ -52,6 +52,17 @@ MODULES =		devel/cmake \
 			x11/qt5
 MODPY_RUNDEP =		No
 
+# XXX we have x11/qt6 but it is too new
+CONFIGURE_ARGS +=	-DDESKTOP_APP_QT6=OFF
+
+# OpenBSD is detected as Linux and uses OpenAL
+CONFIGURE_ARGS +=	-DLIBTGVOIP_DISABLE_ALSA=ON \
+			-DLIBTGVOIP_DISABLE_PULSEAUDIO=ON
+
+# disable unported/unwanted components
+CONFIGURE_ARGS +=	-DDESKTOP_APP_DISABLE_WAYLAND_INTEGRATION=ON \
+			-DDESKTOP_APP_DISABLE_DBUS_INTEGRATION=ON
+
 WANTLIB +=	${COMPILER_LIBCXX} Qt5Core Qt5Gui Qt5Network Qt5Svg
 WANTLIB +=	Qt5Widgets X11 absl_base absl_int128 absl_log_severity
 WANTLIB +=	absl_raw_logging_internal absl_spinlock_wait absl_strings
@@ -67,18 +78,13 @@ EXTRA_LDFL =	`pkg-config --libs vpx usrsctp absl_strings libevent x11` -pthread
 # # We're allowed to used the API ID of the Snap package
 CONFIGURE_ARGS +=	-DCMAKE_BUILD_TYPE=Release \
 			-DCMAKE_CXX_STANDARD=17 \
-			-DLIBTGVOIP_DISABLE_ALSA=ON \
-			-DLIBTGVOIP_DISABLE_PULSEAUDIO=ON \
 			-DTDESKTOP_API_ID=611335 \
 			-DTDESKTOP_API_HASH=d524b414d21f4d37f08684c1df41ac9c \
 			-DDESKTOP_APP_SPECIAL_TARGET="" \
 			-Ddisable_autoupdate=1 \
-			-DDESKTOP_APP_DISABLE_DBUS_INTEGRATION=OFF \
-			-DDESKTOP_APP_DISABLE_WAYLAND_INTEGRATION=ON \
 			-DDESKTOP_APP_DISABLE_CRASH_REPORTS=ON \
 			-DDESKTOP_APP_USE_PACKAGED=ON \
 			-DDESKTOP_APP_USE_PACKAGED_FONTS=OFF \
-			-DDESKTOP_APP_QT6=OFF \
 			-DCMAKE_EXE_LINKER_FLAGS="${LDFLAGS} ${EXTRA_LDFL}"
 
 .include <bsd.port.mk>
