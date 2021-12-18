@@ -1,7 +1,6 @@
-Index: Telegram/SourceFiles/data/data_sponsored_messages.cpp
---- Telegram/SourceFiles/data/data_sponsored_messages.cpp.orig
-+++ Telegram/SourceFiles/data/data_sponsored_messages.cpp
-@@ -93,7 +93,7 @@ bool SponsoredMessages::append(not_null<History*> hist
+--- Telegram/SourceFiles/data/data_sponsored_messages.cpp.orig	Thu Nov  4 00:11:13 2021
++++ Telegram/SourceFiles/data/data_sponsored_messages.cpp	Thu Nov  4 12:22:39 2021
+@@ -93,7 +93,7 @@
  }
  
  bool SponsoredMessages::canHaveFor(not_null<History*> history) const {
@@ -10,7 +9,7 @@ Index: Telegram/SourceFiles/data/data_sponsored_messages.cpp
  }
  
  void SponsoredMessages::request(not_null<History*> history) {
-@@ -189,7 +189,7 @@ void SponsoredMessages::clearItems(not_null<History*> 
+@@ -178,7 +178,7 @@
  
  const SponsoredMessages::Entry *SponsoredMessages::find(
  		const FullMsgId &fullId) const {
@@ -19,7 +18,7 @@ Index: Telegram/SourceFiles/data/data_sponsored_messages.cpp
  		return nullptr;
  	}
  	const auto history = _session->data().history(
-@@ -210,7 +210,7 @@ const SponsoredMessages::Entry *SponsoredMessages::fin
+@@ -199,7 +199,7 @@
  
  void SponsoredMessages::view(const FullMsgId &fullId) {
  	const auto entryPtr = find(fullId);

@@ -1,7 +1,7 @@
 Index: Telegram/SourceFiles/platform/linux/specific_linux.cpp
 --- Telegram/SourceFiles/platform/linux/specific_linux.cpp.orig
 +++ Telegram/SourceFiles/platform/linux/specific_linux.cpp
-@@ -42,11 +42,13 @@ https://github.com/telegramdesktop/tdesktop/blob/maste
+@@ -47,11 +47,13 @@ https://github.com/telegramdesktop/tdesktop/blob/maste
  
  #include <private/qguiapplication_p.h>
  
@@ -15,7 +15,7 @@ Index: Telegram/SourceFiles/platform/linux/specific_linux.cpp
  
  #ifndef DESKTOP_APP_DISABLE_DBUS_INTEGRATION
  #include <glibmm.h>
-@@ -690,8 +692,10 @@ int psFixPrevious() {
+@@ -661,8 +663,10 @@ int psFixPrevious() {
  namespace Platform {
  
  void start() {

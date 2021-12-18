@@ -7,5 +7,5 @@ Index: Telegram/CMakeLists.txt
  
 +link_directories(${OPUS_LIBDIR})
  add_executable(Telegram WIN32 MACOSX_BUNDLE)
- init_non_host_target(Telegram)
+ init_target(Telegram)
  

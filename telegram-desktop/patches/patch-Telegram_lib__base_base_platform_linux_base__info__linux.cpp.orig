@@ -1,7 +1,6 @@
-Index: Telegram/lib_base/base/platform/linux/base_info_linux.cpp
---- Telegram/lib_base/base/platform/linux/base_info_linux.cpp.orig
-+++ Telegram/lib_base/base/platform/linux/base_info_linux.cpp
-@@ -22,9 +22,11 @@
+--- Telegram/lib_base/base/platform/linux/base_info_linux.cpp.orig	Fri Oct 29 16:26:14 2021
++++ Telegram/lib_base/base/platform/linux/base_info_linux.cpp	Sat Oct 30 04:17:21 2021
+@@ -19,9 +19,11 @@
  
  #include <sys/utsname.h>
  
@@ -13,7 +12,7 @@ Index: Telegram/lib_base/base/platform/linux/base_info_linux.cpp
  
  namespace Platform {
  namespace {
-@@ -200,9 +202,11 @@ QString AutoUpdateKey() {
+@@ -199,9 +201,11 @@
  }
  
  QString GetLibcName() {

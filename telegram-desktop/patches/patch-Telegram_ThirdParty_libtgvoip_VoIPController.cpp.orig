@@ -1,7 +1,7 @@
 Index: Telegram/ThirdParty/libtgvoip/VoIPController.cpp
 --- Telegram/ThirdParty/libtgvoip/VoIPController.cpp.orig
 +++ Telegram/ThirdParty/libtgvoip/VoIPController.cpp
-@@ -3009,7 +3009,7 @@ static void initMachTimestart() {
+@@ -3005,7 +3005,7 @@ static void initMachTimestart() {
  #endif
  
  double VoIPController::GetCurrentTime(){

@@ -1,7 +1,7 @@
 Index: cmake/external/webrtc/CMakeLists.txt
 --- cmake/external/webrtc/CMakeLists.txt.orig
 +++ cmake/external/webrtc/CMakeLists.txt
-@@ -63,8 +63,6 @@ else()
+@@ -62,8 +62,6 @@ else()
      target_include_directories(external_webrtc SYSTEM
      INTERFACE
          ${webrtc_loc}
