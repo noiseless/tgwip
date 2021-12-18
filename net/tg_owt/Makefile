@@ -12,7 +12,7 @@ GH_COMMIT =		429a6869e4a164e0aad2d8657db341d56f9a6a6f
 DISTNAME =		${GH_PROJECT}-0.0.0.20211212
 CATEGORIES =		net
 
-SHARED_LIBS =		tg_owt	1.0	# 0.0.0
+SHARED_LIBS =		tg_owt	0.0	# 0.0.0
 
 # Fetch bundled dependencies that are missing from the tarball as per
 # ${WRKSRC}/.gitmodules
@@ -57,7 +57,7 @@ WANTLIB += absl_raw_logging_internal absl_spinlock_wait absl_stacktrace
 WANTLIB += absl_str_format_internal absl_strings absl_strings_internal
 WANTLIB += absl_symbolize absl_synchronization absl_throw_delegate
 WANTLIB += absl_time absl_time_zone avcodec avformat avutil crypto
-WANTLIB += gio-2.0 glib-2.0 gobject-2.0 intl jpeg m opus protobuf
+WANTLIB += gio-2.0 glib-2.0 gobject-2.0 intl jpeg m openh264 opus protobuf
 WANTLIB += ssl swresample swscale usrsctp vpx
 
 # C++17 set below, some components use -std=gnu++20
@@ -73,6 +73,7 @@ LIB_DEPENDS =		audio/opus \
 			graphics/ffmpeg \
 			graphics/jpeg \
 			multimedia/libvpx>=1.10.0 \
+			multimedia/openh264 \
 			net/usrsctp>=0.9.5.0
 
 MODULES =		devel/cmake \
