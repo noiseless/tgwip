@@ -25,7 +25,7 @@ PERMIT_PACKAGE =	Yes
 COMPILER =		base-clang ports-gcc
 
 BUILD_DEPENDS =		devel/microsoft-gsl \
-			devel/range-v3 \
+			devel/range-v3>=0.11.0p0 \
 			devel/tl-expected
 
 LIB_DEPENDS =		audio/rnnoise \
