@@ -1,7 +1,7 @@
 # $OpenBSD$
 
 COMMENT =	abseil common libraries (c++)
-CATEGORIES =	devel tgwip
+CATEGORIES =	devel
 
 GH_ACCOUNT =	abseil
 GH_PROJECT =	${GH_ACCOUNT}-cpp
