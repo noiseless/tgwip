@@ -57,25 +57,24 @@ MODULES =		devel/cmake \
 			lang/python
 MODPY_RUNDEP =		No
 
-WANTLIB +=	${COMPILER_LIBCXX} X11 Xcomposite Xdamage Xext Xfixes
-WANTLIB +=	Xrandr Xrender Xtst crypto m ssl
-WANTLIB +=	absl_bad_optional_access absl_bad_variant_access absl_base
-WANTLIB +=	absl_city absl_civil_time absl_cord absl_cord_internal
-WANTLIB +=	absl_cordz_functions absl_cordz_handle absl_cordz_info
-WANTLIB +=	absl_debugging_internal absl_demangle_internal absl_exponential_biased
-WANTLIB +=	absl_flags absl_flags_commandlineflag absl_flags_commandlineflag_internal
-WANTLIB +=	absl_flags_config absl_flags_internal absl_flags_marshalling
-WANTLIB +=	absl_flags_parse absl_flags_private_handle_accessor
-WANTLIB +=	absl_flags_program_name absl_flags_reflection absl_flags_usage
-WANTLIB +=	absl_flags_usage_internal absl_graphcycles_internal
-WANTLIB +=	absl_hash absl_hashtablez_sampler absl_int128 absl_log_severity
-WANTLIB +=	absl_low_level_hash absl_malloc_internal absl_raw_hash_set
-WANTLIB +=	absl_raw_logging_internal absl_spinlock_wait absl_stacktrace
-WANTLIB +=	absl_str_format_internal absl_strings absl_strings_internal
-WANTLIB +=	absl_symbolize absl_synchronization absl_throw_delegate
-WANTLIB +=	absl_time absl_time_zone avcodec avformat avutil gio-2.0
-WANTLIB +=	glib-2.0 gobject-2.0 intl jpeg opus protobuf swresample
-WANTLIB +=	swscale usrsctp vpx
+WANTLIB += ${COMPILER_LIBCXX} X11 Xcomposite Xdamage Xext Xfixes
+WANTLIB += Xrandr Xrender Xtst absl_bad_optional_access absl_bad_variant_access
+WANTLIB += absl_base absl_city absl_civil_time absl_cord absl_cord_internal
+WANTLIB += absl_cordz_functions absl_cordz_handle absl_cordz_info
+WANTLIB += absl_debugging_internal absl_demangle_internal absl_exponential_biased
+WANTLIB += absl_flags absl_flags_commandlineflag absl_flags_commandlineflag_internal
+WANTLIB += absl_flags_config absl_flags_internal absl_flags_marshalling
+WANTLIB += absl_flags_parse absl_flags_private_handle_accessor
+WANTLIB += absl_flags_program_name absl_flags_reflection absl_flags_usage
+WANTLIB += absl_flags_usage_internal absl_graphcycles_internal
+WANTLIB += absl_hash absl_hashtablez_sampler absl_int128 absl_log_severity
+WANTLIB += absl_low_level_hash absl_malloc_internal absl_raw_hash_set
+WANTLIB += absl_raw_logging_internal absl_spinlock_wait absl_stacktrace
+WANTLIB += absl_str_format_internal absl_strings absl_strings_internal
+WANTLIB += absl_symbolize absl_synchronization absl_throw_delegate
+WANTLIB += absl_time absl_time_zone avcodec avformat avutil crypto
+WANTLIB += gio-2.0 glib-2.0 gobject-2.0 intl jpeg m opus protobuf
+WANTLIB += ssl swresample swscale usrsctp vpx
 
 # shared builds is not officially supported:
 # https://github.com/telegramdesktop/tdesktop/issues/10257#issuecomment-769698680
