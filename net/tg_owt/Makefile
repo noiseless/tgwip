@@ -96,4 +96,21 @@ CONFIGURE_ARGS +=	-DCMAKE_POSITION_INDEPENDENT_CODE:BOOL=ON \
 			-DCMAKE_CXX_FLAGS="-DNDEBUG" \
 			-DCMAKE_CXX_STANDARD=17
 
+
+# ${WRKSRC}/src/third_party/ subdirectories
+ALL_BUNDLES =	abseil-cpp libsrtp libvpx libyuv openh264 pffft pipewire rnnoise usrsctp yasm
+# these are ported and probed for in ${WRKSRC}/cmake/external.cmake
+PORTED_BUNDLES =abseil-cpp libsrtp libvpx        openh264                rnnoise usrsctp yasm
+# these are unported and/or not probed for and/or contain patches
+NEEDED_BUNDLES =           libsrtp        libyuv          pffft          rnnoise
+
+post-extract:
+	# remove unneded bundled sources to ensure ports dependencies are used;
+	# especially because they also end up being packaged
+.for _bundle in ${PORTED_BUNDLES}
+.    if !${NEEDED_BUNDLES:M${_bundle}}
+	rm -fr -- ${WRKSRC}/src/third_party/${_bundle}
+.    endif
+.endfor
+
 .include <bsd.port.mk>
