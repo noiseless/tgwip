@@ -3,33 +3,40 @@
 # follow net/tdeskop
 NOT_FOR_ARCHS =	${BE_ARCHS}
 
-PKGNAME =	libtg_owt-${V}
-V =		2021.12.12
-REVISION =	5
-COMMENT =	open webrtc toolkit with telegram patches
-DISTNAME =	${TGOWT_COMMIT}
-CATEGORIES =	tgwip local net
+COMMENT =		WebRTC build for Telegram
 
-USRSCTP_V =	0.9.5.0
+GH_ACCOUNT =		desktop-app
+GH_PROJECT =		tg_owt
+# no releases or tags, use latest master
+GH_COMMIT =		429a6869e4a164e0aad2d8657db341d56f9a6a6f
+DISTNAME =		${GH_PROJECT}-0.0.0.20211212
+CATEGORIES =		net
 
-TGOWT_COMMIT =	429a6869e4a164e0aad2d8657db341d56f9a6a6f
-YUV_COMMIT =	a04e4f87fbf40405707b1d0ae9fcba8fc93f7856
+SHARED_LIBS =		tg_owt	1.0	# 0.0.0
 
-MASTER_SITES0 =	https://github.com/desktop-app/tg_owt/archive/
-MASTER_SITES2 =	https://gitlab.com/chromiumsrc/libyuv/-/archive/${YUV_COMMIT}/
+# Fetch bundled dependencies that are missing from the tarball as per
+# ${WRKSRC}/.gitmodules
+#
+# clone of https://chromium.googlesource.com/libyuv/libyuv which has
+# no releases or tags, main/master/stable/<commit> tarballs are *unstable*;
+# use GitHub fork with stable tarballs;
+# no releases or tags, use latest master
+LIBYUV_COMMIT =		742791f13a8ca9e8a297c323699aff8af30a360b
+LIBYUV_DISTNAME =	libyuv-20210205-${LIBYUV_COMMIT:C/(........).*/\1/}
+# Henry Hy maintains the FreeBSD package, they probably forked/clone precisely
+# to have stable tarballs
+MASTER_SITES0 =		https://github.com/HenryHu/libyuv/archive/
 
-DISTFILES =	${DISTNAME}${EXTRACT_SUFX}:0 \
-		libyuv-${YUV_COMMIT}${EXTRACT_SUFX}:2
+DISTFILES =		${GH_DISTFILE} \
+			${LIBYUV_DISTNAME}${EXTRACT_SUFX}
+# XXX can we rely on bsd.port.mk extracting libyuv after/inside of tg_owt?
+EXTRACT_CASES =		${LIBYUV_DISTNAME}${EXTRACT_SUFX}) ${TAR} -xz \
+			    -f ${FULLDISTDIR}/$$archive \
+			    -C ${WRKSRC}/src/third_party/libyuv/ \
+			    -s ,libyuv-${LIBYUV_COMMIT}/,, ;;
 
-WRKDIST =	${WRKDIR}/tg_owt-${DISTNAME}
-YUV_PATH = 	${WRKDIST}/src/third_party/libyuv
-LIBUV =		libyuv-${YUV_COMMIT}
-
-EXTRACT_CASES +=	${LIBUV}${EXTRACT_SUFX}) pax -zrs \
-			',^.*${LIBUV},${YUV_PATH},' \
-			-f ${FULLDISTDIR}/$$archive;;
-
-HOMEPAGE =	https://github.com/desktop-app/tg_owt
+MAINTAINER =		Andrew Krasavin <noiseless-ak@yandex.ru>, \
+			Klemens Nanni <kn@openbsd.org>
 
 # BSD 3-clause
 PERMIT_PACKAGE =	Yes
@@ -38,12 +45,10 @@ BUILD_DEPENDS +=	devel/range-v3 devel/yasm
 BUILD_DEPENDS +=	devel/microsoft-gsl local/abseil
 
 LIB_DEPENDS +=		audio/opus graphics/ffmpeg devel/protobuf
-LIB_DEPENDS +=		multimedia/libvpx net/usrsctp>=${USRSCTP_V}
+LIB_DEPENDS +=		multimedia/libvpx net/usrsctp>=0.9.5.0
 LIB_DEPENDS +=		devel/libevent2 graphics/ffmpeg
 
 MODULES =	devel/cmake
-
-SHARED_LIBS =	tg_owt	1.0
 
 WANTLIB +=	${COMPILER_LIBCXX} X11 Xcomposite Xdamage Xext Xfixes
 WANTLIB +=	Xrandr Xrender Xtst crypto m ssl
