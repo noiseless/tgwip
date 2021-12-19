@@ -89,7 +89,7 @@ MODPY_RUNDEP =		No
 # but OpenBSD ports can do better
 CONFIGURE_ARGS +=	-DTG_OWT_PACKAGED_BUILD=ON
 
-# aovid unported ALSA und unneeded PulseAudio, net/tdesktop works wit OpenAL
+# avoid unported ALSA and unneeded PulseAudio, net/tdesktop works wit OpenAL
 CONFIGURE_ARGS +=	-DTG_OWT_BUILD_AUDIO_BACKENDS=OFF
 
 # do not use unported pipewire for desktop capture (or anything else)
