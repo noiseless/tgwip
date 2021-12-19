@@ -1,7 +1,12 @@
 # $OpenBSD$
 
-# follow net/tdeskop
-NOT_FOR_ARCHS =	${BE_ARCHS}
+# CMake Warning at cmake/arch.cmake:114 (message):
+#   Unsupported CPU architecture.
+# ...
+# [1045/1275]
+# ${WRKSRC}/src/common_audio/wav_header.cc:30:2:
+#   error: #error "Code not working properly for big endian platforms."
+NOT_FOR_ARCHS =		${BE_ARCHS}
 
 COMMENT =		WebRTC build for Telegram
 
