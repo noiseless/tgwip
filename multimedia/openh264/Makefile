@@ -19,7 +19,7 @@ PERMIT_PACKAGE =	Yes
 # Fixed #3305: Frame reorder after the frame is read.
 # https://github.com/cisco/openh264/pull/3319
 C =			6cc269bebccc8acc6eb28fffb312d8189d4788ad
-MASTER_SITES0 =		https://github.com/${GH_ACCOUNT}/${GH_PROJECT}/commit/
+MASTER_SITES0 =		${MASTER_SITES_GITHUB:H:H:H}/commit/
 PATCHFILES =		openh264-frame-reorder-fix{${C}}.patch:0
 PATCH_DIST_STRIP =	-p1
 
