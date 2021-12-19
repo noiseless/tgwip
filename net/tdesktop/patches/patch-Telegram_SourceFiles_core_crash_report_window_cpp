@@ -1,0 +1,26 @@
+$OpenBSD$
+
+- Z_DEFAULT_COMPRESSION needs <zlib.h>
+- XXX workaround "error: excess elements in scalar initializer"
+  with lazier struct initialisation
+
+Index: Telegram/SourceFiles/core/crash_report_window.cpp
+--- Telegram/SourceFiles/core/crash_report_window.cpp.orig
++++ Telegram/SourceFiles/core/crash_report_window.cpp
+@@ -5,6 +5,7 @@ the official desktop application for the Telegram mess
+ For license and copyright information please follow this link:
+ https://github.com/telegramdesktop/tdesktop/blob/master/LEGAL
+ */
++#include <zlib.h>
+ #include "core/crash_report_window.h"
+ 
+ #include "core/crash_reports.h"
+@@ -592,7 +593,7 @@ void LastCrashedWindow::checkingFinished() {
+ 
+ 			zlib::FileToWrite minidumpZip;
+ 
+-			zip_fileinfo zfi = { { 0, 0, 0, 0, 0, 0 }, 0, 0, 0 };
++			zip_fileinfo zfi = { 0 };
+ 			QByteArray dmpNameUtf = dmpName.toUtf8();
+ 			minidumpZip.openNewFile(dmpNameUtf.constData(), &zfi, nullptr, 0, nullptr, 0, nullptr, Z_DEFLATED, Z_DEFAULT_COMPRESSION);
+ 			minidumpZip.writeInFile(minidump.constData(), minidump.size());
