@@ -1,35 +1,31 @@
 # $OpenBSD$
 
 COMMENT =		Cisco implementation of H.264 codec
-
 GH_ACCOUNT =		cisco
 GH_PROJECT =		openh264
 GH_TAGNAME =		v2.1.1
-
 CATEGORIES =		multimedia
+
+# Fixed #3305: Frame reorder after the frame is read.
+# https://github.com/cisco/openh264/pull/3319
+MASTER_SITES0 =		${MASTER_SITES_GITHUB:H:H:H}/commit/
+PATCHFILES =		openh264-frame-reorder-fix{6cc269beb}.patch:0
+PATCH_DIST_STRIP =	-p1
 
 SHARED_LIBS =		openh264	0.0	# 6.0
 
-MAINTAINER =		Andrew Krasavin <noiseless-ak@yandex.ru>, \
-			Klemens Nanni <kn@openbsd.org>
+MAINTAINER =		Klemens Nanni <kn@openbsd.org>
 
 # BSD 2-clause
 PERMIT_PACKAGE =	Yes
 
-# Fixed #3305: Frame reorder after the frame is read.
-# https://github.com/cisco/openh264/pull/3319
-C =			6cc269bebccc8acc6eb28fffb312d8189d4788ad
-MASTER_SITES0 =		${MASTER_SITES_GITHUB:H:H:H}/commit/
-PATCHFILES =		openh264-frame-reorder-fix{${C}}.patch:0
-PATCH_DIST_STRIP =	-p1
+WANTLIB =		${COMPILER_LIBCXX} m
 
-WANTLIB +=		${COMPILER_LIBCXX} m
+TEST_DEPENDS =		devel/gtest
 
 USE_GMAKE =		Yes
-
 MAKE_FLAGS +=		PREFIX=${PREFIX}
-
-# disable tests and unneeded GMP API for now
+# disable unneeded GMP API for now
 MAKE_FLAGS +=		HAVE_GMP_API=No
 
 # pass our .so version, see ${WRKSRC}/build-${OS}.mk
@@ -42,12 +38,13 @@ MAKE_FLAGS +=		CXX=${CXX} \
 			CFLAGS_OPT='${CFLAGS}' \
 			CFLAGS_DEBUG='${DEBUG}'
 
-TEST_DEPENDS =		devel/gtest
-
 TEST_FLAGS +=		HAVE_GTEST=Yes
+# find devel/gtest and remove libgtest.a to avoid building it as dependency
+TEST_FLAGS +=	CODEC_UNITTEST_INCLUDES='-I${WRKSRC}/test -I/usr/local/include' \
+		CODEC_UNITTEST_LDFLAGS_SUFFIX=-L/usr/local/lib \
+		CODEC_UNITTEST_DEPS='libdecoder.a libencoder.a libprocessing.a libcommon.a'
 
 post-install:
-	${INSTALL_PROGRAM} ${WRKBUILD}/h264enc ${PREFIX}/bin/
-	${INSTALL_PROGRAM} ${WRKBUILD}/h264dec ${PREFIX}/bin/
+	${INSTALL_PROGRAM} ${WRKBUILD}/h264{enc,dec} ${PREFIX}/bin/
 
 .include <bsd.port.mk>
