@@ -1,16 +1,15 @@
 $OpenBSD$
 
-Force gmp plugin to link dynamically against libopenh264
+Fix devel/gtest include path;  this seems impossible using MAKE_FLAGS
 
 Index: Makefile
 --- Makefile.orig
 +++ Makefile
-@@ -266,7 +266,7 @@ endif
- echo-plugin-name:
- 	@echo $(MODULE)
+@@ -127,6 +127,7 @@ GTEST_INCLUDES += \
+     -I$(SRC_PATH)gtest/googletest/include
  
--$(LIBPREFIX)$(MODULE_NAME).$(SHAREDLIBSUFFIXFULLVER): $(MODULE_OBJS) $(ENCODER_OBJS) $(DECODER_OBJS) $(PROCESSING_OBJS) $(COMMON_OBJS)
-+$(LIBPREFIX)$(MODULE_NAME).$(SHAREDLIBSUFFIXFULLVER): $(MODULE_OBJS) $(LIBPREFIX)$(PROJECT_NAME).$(SHAREDLIBSUFFIX)
- 	$(QUIET)rm -f $@
- 	$(QUIET_CXX)$(CXX) $(SHARED) $(CXX_LINK_O) $+ $(LDFLAGS) $(SHLDFLAGS) $(MODULE_LDFLAGS)
- ifeq (True, $(PROCESS_FILES))
+ CODEC_UNITTEST_INCLUDES += \
++    -I/usr/local/include \
+     -I$(SRC_PATH)gtest/googletest/include \
+     -I$(SRC_PATH)codec/common/inc \
+     -I$(SRC_PATH)test

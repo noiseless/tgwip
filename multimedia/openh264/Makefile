@@ -23,22 +23,31 @@ MASTER_SITES0 =		https://github.com/${GH_ACCOUNT}/${GH_PROJECT}/commit/
 PATCHFILES =		openh264-frame-reorder-fix{${C}}.patch:0
 PATCH_DIST_STRIP =	-p1
 
-BUILD_DEPENDS =		devel/nasm
-
 WANTLIB +=		${COMPILER_LIBCXX} m
 
 USE_GMAKE =		Yes
 
+MAKE_FLAGS +=		PREFIX=${PREFIX}
+
+# disable tests and unneeded GMP API for now
+MAKE_FLAGS +=		HAVE_GMP_API=No
+
 # pass our .so version, see ${WRKSRC}/build-${OS}.mk
 MAKE_FLAGS +=		OS=bsd \
 			FULL_VERSION=${LIBopenh264_VERSION} \
-			SHAREDLIB_MAJORVERSION=${LIBopenh264_VERSION:R} \
+			SHAREDLIB_MAJORVERSION=${LIBopenh264_VERSION:R}
 
 # overwrite upstream "-O3" and "-g" defaults, ensure our DEBUG build works
-MAKE_FLAGS +=		CFLAGS_OPT='${CFLAGS}' \
+MAKE_FLAGS +=		CXX=${CXX} \
+			CFLAGS_OPT='${CFLAGS}' \
 			CFLAGS_DEBUG='${DEBUG}'
 
-MAKE_FLAGS +=		CXX=${CXX} \
-			PREFIX=${PREFIX}
+TEST_DEPENDS =		devel/gtest
+
+TEST_FLAGS +=		HAVE_GTEST=Yes
+
+post-install:
+	${INSTALL_PROGRAM} ${WRKBUILD}/h264enc ${PREFIX}/bin/
+	${INSTALL_PROGRAM} ${WRKBUILD}/h264dec ${PREFIX}/bin/
 
 .include <bsd.port.mk>
