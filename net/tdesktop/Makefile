@@ -21,6 +21,15 @@ MAINTAINER =		Andrew Krasavin <noiseless-ak@yandex.ru>, \
 # GPLv3
 PERMIT_PACKAGE =	Yes
 
+WANTLIB += ${COMPILER_LIBCXX} Qt5Core Qt5Gui Qt5Network Qt5Svg
+WANTLIB += Qt5Widgets X11 absl_base absl_int128 absl_log_severity
+WANTLIB += absl_raw_logging_internal absl_spinlock_wait absl_strings
+WANTLIB += absl_strings_internal absl_throw_delegate avcodec avformat
+WANTLIB += avutil c crypto event_core event_extra hunspell-1.7
+WANTLIB += lz4 m openal opus rnnoise swresample swscale tg_owt
+WANTLIB += usrsctp vpx xcb xcb-keysyms xcb-record xcb-screensaver
+WANTLIB += xxhash z
+
 # C++17 set below
 COMPILER =		base-clang ports-gcc
 
@@ -31,9 +40,7 @@ BUILD_DEPENDS =		devel/microsoft-gsl \
 LIB_DEPENDS =		audio/rnnoise \
 			audio/openal \
 			audio/opus \
-			archivers/minizip \
 			devel/abseil-cpp \
-			devel/glib2mm \
 			devel/libevent2 \
 			graphics/ffmpeg \
 			graphics/jpeg \
@@ -41,7 +48,6 @@ LIB_DEPENDS =		audio/rnnoise \
 			net/usrsctp>=0.9.5.0 \
 			sysutils/xxhash \
 			textproc/hunspell \
-			x11/dbusmenu-qt \
 			x11/qt5/qtsvg
 
 RUN_DEPENDS =		devel/desktop-file-utils \
