@@ -1,0 +1,26 @@
+Index: cmake/external/minizip/CMakeLists.txt
+--- cmake/external/minizip/CMakeLists.txt.orig
++++ cmake/external/minizip/CMakeLists.txt
+@@ -13,10 +13,12 @@ if (DESKTOP_APP_USE_PACKAGED)
+ 
+     if (MINIZIP_FOUND)
+         target_link_libraries(external_minizip INTERFACE PkgConfig::MINIZIP)
++    else()
++        message( FATAL_ERROR "Minizip not found. It is not possible to continue the build." )
+     endif()
+ endif()
+ 
+-if (NOT MINIZIP_FOUND)
++if (0)
+     if (NOT WIN32)
+         add_library(external_minizip_bundled STATIC)
+         init_target(external_minizip_bundled "(external)")
+@@ -34,7 +36,7 @@ if (NOT MINIZIP_FOUND)
+             ${minizip_loc}/unzip.h
+         )
+ 
+-        target_include_directories(external_minizip_bundled SYSTEM
++        target_include_directories(external_minizip_bundled
+         PUBLIC
+             ${minizip_loc}
+         )

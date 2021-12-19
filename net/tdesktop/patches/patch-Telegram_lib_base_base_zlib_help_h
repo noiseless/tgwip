@@ -1,0 +1,36 @@
+$OpenBSD$
+
+- include <minizip/mz_compat.h> for `unzLocateFile()'
+- include <zconf.h> for `voidpf' and `uLong' definitions
+- XXX "fix" iCaseSensitivity type
+
+Index: Telegram/lib_base/base/zlib_help.h
+--- Telegram/lib_base/base/zlib_help.h.orig
++++ Telegram/lib_base/base/zlib_help.h
+@@ -6,6 +6,8 @@
+ //
+ #pragma once
+ 
++#include <minizip/mz_compat.h>
++#include <zconf.h>
+ #include <zip.h>
+ #include <unzip.h>
+ #include "logs.h"
+@@ -166,7 +168,7 @@ class FileToRead { (public)
+ 		return _error;
+ 	}
+ 
+-	int locateFile(const char *szFileName, int iCaseSensitivity) {
++	int locateFile(const char *szFileName, unzFileNameComparer iCaseSensitivity) {
+ 		if (error() == UNZ_OK) {
+ 			_error = _handle ? unzLocateFile(_handle, szFileName, iCaseSensitivity) : -1;
+ 		}
+@@ -286,7 +288,7 @@ class FileToRead { (public)
+ 		return result;
+ 	}
+ 
+-	QByteArray readFileContent(const char *szFileName, int iCaseSensitivity, int fileSizeLimit) {
++	QByteArray readFileContent(const char *szFileName, unzFileNameComparer iCaseSensitivity, int fileSizeLimit) {
+ 		if (locateFile(szFileName, iCaseSensitivity) != UNZ_OK) {
+ 			LOG(("Error: could not locate '%1' in a zip file.").arg(szFileName));
+ 			return QByteArray();
