@@ -1,3 +1,11 @@
+$ OpenBSD: $
+
+1) We prefer to use the system malloc instead of malloc. The problem
+that is solved with it has never been reproduced with OpenBSD malloc.
+more: https://github.com/telegramdesktop/tdesktop/issues/16084
+
+2) 2) Avoid unnecessary dependence on libatomic.
+
 Index: cmake/options_linux.cmake
 --- cmake/options_linux.cmake.orig
 +++ cmake/options_linux.cmake

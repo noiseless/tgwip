@@ -1,3 +1,7 @@
+$ OpenBSD: $
+
+Enforce building rlottie from bundle
+
 --- cmake/external/rlottie/CMakeLists.txt.orig	2020-10-23 14:48:52 UTC
 +++ cmake/external/rlottie/CMakeLists.txt
 @@ -7,7 +7,7 @@

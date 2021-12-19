@@ -1,3 +1,7 @@
+$ OpenBSD: $
+
+Remove unneded 'thirdparties' for webrtc.
+
 Index: cmake/external/webrtc/CMakeLists.txt
 --- cmake/external/webrtc/CMakeLists.txt.orig
 +++ cmake/external/webrtc/CMakeLists.txt
