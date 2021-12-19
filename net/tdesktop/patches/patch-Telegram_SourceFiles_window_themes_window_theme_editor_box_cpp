@@ -1,0 +1,26 @@
+$OpenBSD$
+
+- Z_DEFAULT_COMPRESSION needs <zlib.h>
+- XXX workaround "error: excess elements in scalar initializer"
+  with lazier struct initialisation
+
+Index: Telegram/SourceFiles/window/themes/window_theme_editor_box.cpp
+--- Telegram/SourceFiles/window/themes/window_theme_editor_box.cpp.orig
++++ Telegram/SourceFiles/window/themes/window_theme_editor_box.cpp
+@@ -47,6 +47,7 @@ https://github.com/telegramdesktop/tdesktop/blob/maste
+ #include "styles/style_layers.h"
+ #include "styles/style_boxes.h"
+ 
++#include <zlib.h>
+ #include <QtCore/QBuffer>
+ 
+ namespace Window {
+@@ -333,7 +334,7 @@ bool CopyColorsToPalette(
+ [[nodiscard]] QByteArray PackTheme(const ParsedTheme &parsed) {
+ 	zlib::FileToWrite zip;
+ 
+-	zip_fileinfo zfi = { { 0, 0, 0, 0, 0, 0 }, 0, 0, 0 };
++	zip_fileinfo zfi = { 0 };
+ 	const auto back = std::string(parsed.tiled ? "tiled" : "background")
+ 		+ (parsed.isPng ? ".png" : ".jpg");
+ 	zip.openNewFile(
