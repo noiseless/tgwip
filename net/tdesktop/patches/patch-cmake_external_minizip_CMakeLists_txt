@@ -1,26 +1,24 @@
+Temporarily enforce building minizip from bundle
+instead of minizip from ports
+
 Index: cmake/external/minizip/CMakeLists.txt
 --- cmake/external/minizip/CMakeLists.txt.orig
 +++ cmake/external/minizip/CMakeLists.txt
-@@ -13,10 +13,12 @@ if (DESKTOP_APP_USE_PACKAGED)
+@@ -7,7 +7,7 @@
+ add_library(external_minizip INTERFACE IMPORTED GLOBAL)
+ add_library(desktop-app::external_minizip ALIAS external_minizip)
  
-     if (MINIZIP_FOUND)
-         target_link_libraries(external_minizip INTERFACE PkgConfig::MINIZIP)
-+    else()
-+        message( FATAL_ERROR "Minizip not found. It is not possible to continue the build." )
+-if (DESKTOP_APP_USE_PACKAGED)
++if (0)
+     find_package(PkgConfig REQUIRED)
+     pkg_check_modules(MINIZIP IMPORTED_TARGET minizip)
+ 
+@@ -16,7 +16,7 @@ if (DESKTOP_APP_USE_PACKAGED)
      endif()
  endif()
  
 -if (NOT MINIZIP_FOUND)
-+if (0)
++if (1)
      if (NOT WIN32)
          add_library(external_minizip_bundled STATIC)
          init_target(external_minizip_bundled "(external)")
-@@ -34,7 +36,7 @@ if (NOT MINIZIP_FOUND)
-             ${minizip_loc}/unzip.h
-         )
- 
--        target_include_directories(external_minizip_bundled SYSTEM
-+        target_include_directories(external_minizip_bundled
-         PUBLIC
-             ${minizip_loc}
-         )
