@@ -1,3 +1,7 @@
+$ OpenBSD: $
+
+Adding the missing header
+
 Index: Telegram/lib_webview/webview/platform/linux/webview_linux_webkit_gtk.cpp
 --- Telegram/lib_webview/webview/platform/linux/webview_linux_webkit_gtk.cpp.orig
 +++ Telegram/lib_webview/webview/platform/linux/webview_linux_webkit_gtk.cpp

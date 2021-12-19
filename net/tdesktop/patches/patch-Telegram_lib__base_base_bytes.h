@@ -1,3 +1,5 @@
+$ OpenBSD: $
+
 Index: Telegram/lib_base/base/bytes.h
 --- Telegram/lib_base/base/bytes.h.orig
 +++ Telegram/lib_base/base/bytes.h

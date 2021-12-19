@@ -1,3 +1,7 @@
+$ OpenBSD: $
+
+Do not include header files that are not available on OpenBSD.
+
 Index: Telegram/lib_base/base/platform/linux/base_info_linux.cpp
 --- Telegram/lib_base/base/platform/linux/base_info_linux.cpp.orig
 +++ Telegram/lib_base/base/platform/linux/base_info_linux.cpp

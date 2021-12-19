@@ -1,3 +1,9 @@
+$ OpenBSD: $
+
+1) We prefer to use the system malloc instead of jemalloc. The problem
+that is solved with it has never been reproduced with OpenBSD malloc.
+more: https://github.com/telegramdesktop/tdesktop/issues/16084
+
 Index: cmake/external/CMakeLists.txt
 --- cmake/external/CMakeLists.txt.orig
 +++ cmake/external/CMakeLists.txt
