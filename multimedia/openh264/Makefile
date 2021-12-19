@@ -9,7 +9,7 @@ CATEGORIES =		multimedia
 # Fixed #3305: Frame reorder after the frame is read.
 # https://github.com/cisco/openh264/pull/3319
 MASTER_SITES0 =		${MASTER_SITES_GITHUB:H:H:H}/commit/
-PATCHFILES =		openh264-frame-reorder-fix{6cc269beb}.patch:0
+PATCHFILES =		openh264-frame-reorder-fix-{}6cc269be.patch:0
 PATCH_DIST_STRIP =	-p1
 
 SHARED_LIBS =		openh264	0.0	# 6.0
