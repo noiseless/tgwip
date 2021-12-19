@@ -1,5 +1,3 @@
-$OpenBSD$
-
 Index: src/modules/audio_device/audio_device_impl.cc
 --- src/modules/audio_device/audio_device_impl.cc.orig
 +++ src/modules/audio_device/audio_device_impl.cc
