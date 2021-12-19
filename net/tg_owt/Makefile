@@ -28,7 +28,7 @@ LIBYUV_DISTNAME =	libyuv-20210205-${LIBYUV_COMMIT:C/(........).*/\1/}
 MASTER_SITES0 =		https://github.com/HenryHu/libyuv/archive/
 
 DISTFILES =		${GH_DISTFILE} \
-			${LIBYUV_DISTNAME}${EXTRACT_SUFX}
+			${LIBYUV_DISTNAME}{${LIBYUV_COMMIT}}${EXTRACT_SUFX}:0
 # XXX can we rely on bsd.port.mk extracting libyuv after/inside of tg_owt?
 EXTRACT_CASES =		${LIBYUV_DISTNAME}${EXTRACT_SUFX}) ${TAR} -xz \
 			    -f ${FULLDISTDIR}/$$archive \
