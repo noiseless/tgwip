@@ -14,6 +14,8 @@ PATCH_DIST_STRIP =	-p1
 
 SHARED_LIBS =		openh264	0.0	# 6.0
 
+HOMEPAGE =		http://www.openh264.org/
+
 MAINTAINER =		Klemens Nanni <kn@openbsd.org>
 
 # BSD 2-clause
