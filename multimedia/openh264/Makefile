@@ -21,6 +21,9 @@ PERMIT_PACKAGE =	Yes
 
 WANTLIB =		${COMPILER_LIBCXX} m
 
+# C++ devel/gtest
+COMPILER =		base-clang ports-gcc
+
 TEST_DEPENDS =		devel/gtest
 
 USE_GMAKE =		Yes
@@ -39,7 +42,8 @@ MAKE_FLAGS +=		CXX=${CXX} \
 			CFLAGS_DEBUG='${DEBUG}'
 
 TEST_FLAGS +=		HAVE_GTEST=Yes
-# find devel/gtest and remove libgtest.a to avoid building it as dependency
+# find devel/gtest and remove libgtest.a to avoid its build in
+# ${WRKSRC}/build/gtest-targets.mk
 TEST_FLAGS +=	CODEC_UNITTEST_INCLUDES='-I${WRKSRC}/test -I/usr/local/include' \
 		CODEC_UNITTEST_LDFLAGS_SUFFIX=-L/usr/local/lib \
 		CODEC_UNITTEST_DEPS='libdecoder.a libencoder.a libprocessing.a libcommon.a'
