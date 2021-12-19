@@ -19,8 +19,7 @@ CATEGORIES =		net
 
 SHARED_LIBS =		tg_owt	0.0	# 0.0.0
 
-# Fetch bundled dependencies that are missing from the tarball as per
-# ${WRKSRC}/.gitmodules
+# Fetch required bundles not included in the tarball, see ${WRKSRC}/.gitmodules
 #
 # clone of https://chromium.googlesource.com/libyuv/libyuv which has
 # no releases or tags, main/master/stable/<commit> tarballs are *unstable*;
@@ -33,9 +32,9 @@ LIBYUV_DISTNAME =	libyuv-20210205-${LIBYUV_COMMIT:C/(........).*/\1/}
 MASTER_SITES0 =		https://github.com/HenryHu/libyuv/archive/
 
 DISTFILES =		${GH_DISTFILE} \
-			${LIBYUV_DISTNAME}{${LIBYUV_COMMIT}}${EXTRACT_SUFX}:0
+			${LIBYUV_DISTNAME}{${LIBYUV_COMMIT}}.tar.gz:0
 # XXX can we rely on bsd.port.mk extracting libyuv after/inside of tg_owt?
-EXTRACT_CASES =		${LIBYUV_DISTNAME}${EXTRACT_SUFX}) ${TAR} -xz \
+EXTRACT_CASES =		${LIBYUV_DISTNAME}.tar.gz) ${TAR} -xz \
 			    -f ${FULLDISTDIR}/$$archive \
 			    -C ${WRKSRC}/src/third_party/libyuv/ \
 			    -s ,libyuv-${LIBYUV_COMMIT}/,, ;;
@@ -113,8 +112,7 @@ PORTED_BUNDLES =abseil-cpp libsrtp libvpx        openh264                rnnoise
 NEEDED_BUNDLES =           libsrtp        libyuv          pffft          rnnoise
 
 post-extract:
-	# remove unneded bundled sources to ensure ports dependencies are used;
-	# especially because they also end up being packaged
+	# zap unused bundles, otherwise they are packaged
 .for _bundle in ${PORTED_BUNDLES}
 .    if !${NEEDED_BUNDLES:M${_bundle}}
 	rm -fr -- ${WRKSRC}/src/third_party/${_bundle}
