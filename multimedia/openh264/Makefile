@@ -23,27 +23,32 @@ PERMIT_PACKAGE =	Yes
 
 WANTLIB =		${COMPILER_LIBCXX} c m
 
-# only tests need C++ due to devel/gtest, openh264 builds with base-gcc
 COMPILER =		base-clang ports-gcc
 
-.if ${MACHINE_ARCH:Mi386}
+.if ${MACHINE_ARCH:Mi386} || ${MACHINE_ARCH:Mamd64}
 BUILD_DEPENDS +=	devel/nasm
+.endif
+
+.if ${MACHINE_ARCH:Mi386}
 MAKE_ENV +=		LDFLAGS=-Wl,-z,notext
 .endif
 
 TEST_DEPENDS =		devel/gtest
 
 USE_GMAKE =		Yes
+
+# enable architecture specific optimizations, see ${WRKSRC}/build/arch.mk
+MAKE_FLAGS +=		ARCH=${MACHINE_ARCH:amd64=x86_64}
+
 # disable unneeded GMP API for now
 MAKE_FLAGS +=		HAVE_GMP_API=No
 
-# pass our .so version, see ${WRKSRC}/build-${OS}.mk
-MAKE_FLAGS +=		OS=bsd \
-			FULL_VERSION=${LIBopenh264_VERSION} \
+# pass our .so version, see ${WRKSRC}/build-bsd.mk
+MAKE_FLAGS +=		FULL_VERSION=${LIBopenh264_VERSION} \
 			SHAREDLIB_MAJORVERSION=${LIBopenh264_VERSION:R}
 
 # clear upstream "-O3" and "-g" defaults
-MAKE_FLAGS +=		CXX=${CXX} \
+MAKE_FLAGS +=		CXX='${CXX}' \
 			CFLAGS_OPT='' \
 			CFLAGS_DEBUG=''
 
