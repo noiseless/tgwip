@@ -1,3 +1,8 @@
+$ OpenBSD: $
+
+Disabling jemalloc-related code on OpenBSD.
+We use our system malloc.
+
 Index: Telegram/SourceFiles/platform/linux/specific_linux.cpp
 --- Telegram/SourceFiles/platform/linux/specific_linux.cpp.orig
 +++ Telegram/SourceFiles/platform/linux/specific_linux.cpp

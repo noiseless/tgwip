@@ -1,3 +1,7 @@
+$ OpenBSD: $
+
+Code required for the build is included
+
 Index: Telegram/ThirdParty/libtgvoip/VoIPController.cpp
 --- Telegram/ThirdParty/libtgvoip/VoIPController.cpp.orig
 +++ Telegram/ThirdParty/libtgvoip/VoIPController.cpp
