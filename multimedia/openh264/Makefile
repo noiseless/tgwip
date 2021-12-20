@@ -8,7 +8,7 @@ CATEGORIES =		multimedia
 
 # Fixed #3305: Frame reorder after the frame is read.
 # https://github.com/cisco/openh264/pull/3319
-MASTER_SITES0 =		${MASTER_SITES_GITHUB:H:H:H}/commit/
+MASTER_SITES0 =		https://github.com/cisco/openh264/commit/
 PATCHFILES =		openh264-frame-reorder-fix-{}6cc269be.patch:0
 PATCH_DIST_STRIP =	-p1
 
@@ -23,7 +23,7 @@ PERMIT_PACKAGE =	Yes
 
 WANTLIB =		${COMPILER_LIBCXX} c m
 
-# tests are C++ due to devel/gtest
+# only tests need C++ due to devel/gtest, openh264 builds with base-gcc
 COMPILER =		base-clang ports-gcc
 
 .if ${MACHINE_ARCH:Mi386}
