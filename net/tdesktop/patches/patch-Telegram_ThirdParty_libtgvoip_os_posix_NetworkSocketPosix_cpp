@@ -1,5 +1,8 @@
 $OpenBSD$
 
+At least in the past, it fixed app crashes when making calls.
+Check the relevance in the latest versions.
+
 Index: Telegram/ThirdParty/libtgvoip/os/posix/NetworkSocketPosix.cpp
 --- Telegram/ThirdParty/libtgvoip/os/posix/NetworkSocketPosix.cpp.orig
 +++ Telegram/ThirdParty/libtgvoip/os/posix/NetworkSocketPosix.cpp

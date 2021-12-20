@@ -1,3 +1,7 @@
+$ OpenBSD: $
+
+Include headers that are relevant for the OpenBSD build.
+
 Index: Telegram/ThirdParty/libtgvoip/logging.cpp
 --- Telegram/ThirdParty/libtgvoip/logging.cpp.orig
 +++ Telegram/ThirdParty/libtgvoip/logging.cpp

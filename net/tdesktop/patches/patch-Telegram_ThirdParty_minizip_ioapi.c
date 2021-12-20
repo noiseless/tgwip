@@ -1,5 +1,11 @@
---- Telegram/ThirdParty/minizip/ioapi.c.orig	Sun Nov 22 04:59:10 2020
-+++ Telegram/ThirdParty/minizip/ioapi.c	Sun Nov 22 05:00:46 2020
+$ OpenBSD: $
+
+In OpenBSD off_t is a 64 bit value, hence no need for
+specific 64 bit functions
+
+Index: Telegram/ThirdParty/minizip/ioapi.c
+--- Telegram/ThirdParty/minizip/ioapi.c.orig
++++ Telegram/ThirdParty/minizip/ioapi.c
 @@ -14,7 +14,7 @@
          #define _CRT_SECURE_NO_WARNINGS
  #endif

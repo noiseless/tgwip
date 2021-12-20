@@ -1,5 +1,10 @@
---- Telegram/ThirdParty/minizip/zip.c.orig	Thu Nov 19 05:12:40 2020
-+++ Telegram/ThirdParty/minizip/zip.c	Thu Nov 19 05:13:37 2020
+$ OpenBSD: $
+
+Fix minizip building from the bundle by declaring NOCRYPT.
+
+Index: Telegram/ThirdParty/minizip/zip.c
+--- Telegram/ThirdParty/minizip/zip.c.orig
++++ Telegram/ThirdParty/minizip/zip.c
 @@ -22,6 +22,7 @@
  */
  
