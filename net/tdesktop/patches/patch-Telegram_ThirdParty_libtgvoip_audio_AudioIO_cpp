@@ -1,5 +1,9 @@
 $OpenBSD$
 
+We don't need to build ALSA/Pulseaudio-related code because the
+sound on OpenBSD in tdesktop works through openal-soft (via sndio).
+At the same time, we should not get an error about an unsupported OS.
+
 Index: Telegram/ThirdParty/libtgvoip/audio/AudioIO.cpp
 --- Telegram/ThirdParty/libtgvoip/audio/AudioIO.cpp.orig
 +++ Telegram/ThirdParty/libtgvoip/audio/AudioIO.cpp

@@ -1,3 +1,7 @@
+$ OpenBSD: $
+
+This patch disables the display of sponsored messages.
+
 Index: Telegram/SourceFiles/data/data_sponsored_messages.cpp
 --- Telegram/SourceFiles/data/data_sponsored_messages.cpp.orig
 +++ Telegram/SourceFiles/data/data_sponsored_messages.cpp
