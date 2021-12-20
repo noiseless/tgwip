@@ -1,3 +1,7 @@
+$ OpenBSD: $
+
+Fixing an build with libressl.
+
 Index: Telegram/SourceFiles/core/utils.cpp
 --- Telegram/SourceFiles/core/utils.cpp.orig
 +++ Telegram/SourceFiles/core/utils.cpp

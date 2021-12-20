@@ -1,5 +1,8 @@
 $ OpenBSD: $
 
+Forcing linking with opus from /usr/local instead of bundled.
+XXX: check the relevance
+
 Index: Telegram/CMakeLists.txt
 --- Telegram/CMakeLists.txt.orig
 +++ Telegram/CMakeLists.txt
