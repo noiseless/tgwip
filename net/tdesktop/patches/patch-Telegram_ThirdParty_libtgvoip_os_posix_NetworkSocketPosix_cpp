@@ -1,4 +1,4 @@
-$OpenBSD$
+$ OpenBSD: $
 
 At least in the past, it fixed app crashes when making calls.
 Check the relevance in the latest versions.

@@ -1,3 +1,7 @@
+$ OpenBSD: $
+
+Fix compilation errors (recheck relevance).
+
 Index: Telegram/SourceFiles/chat_helpers/stickers_emoji_pack.cpp
 --- Telegram/SourceFiles/chat_helpers/stickers_emoji_pack.cpp.orig
 +++ Telegram/SourceFiles/chat_helpers/stickers_emoji_pack.cpp

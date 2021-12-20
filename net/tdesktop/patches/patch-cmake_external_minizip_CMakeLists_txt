@@ -1,3 +1,5 @@
+$ OpenBSD: $
+
 Temporarily enforce building minizip from bundle
 instead of minizip from ports
 

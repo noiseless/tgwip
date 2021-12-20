@@ -1,4 +1,9 @@
---- Telegram/ThirdParty/libtgvoip/webrtc_dsp/rtc_base/platform_thread_types.cc.orig	2018-11-23 01:03:16 UTC
+$ OpenBSD: $
+
+Headers and definitions needed to build on OpenBSD.
+
+Index: Telegram/ThirdParty/libtgvoip/webrtc_dsp/rtc_base/platform_thread_types.cc
+--- Telegram/ThirdParty/libtgvoip/webrtc_dsp/rtc_base/platform_thread_types.cc.orig
 +++ Telegram/ThirdParty/libtgvoip/webrtc_dsp/rtc_base/platform_thread_types.cc
 @@ -11,9 +11,13 @@
  #include "rtc_base/platform_thread_types.h"
