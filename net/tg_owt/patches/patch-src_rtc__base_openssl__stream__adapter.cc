@@ -1,5 +1,9 @@
---- src/rtc_base/openssl_stream_adapter.cc.orig	Sun May  2 01:58:21 2021
-+++ src/rtc_base/openssl_stream_adapter.cc	Sun May  2 02:06:27 2021
+$ OpenBSD: $
+
+Compatibility with libressl
+
+--- src/rtc_base/openssl_stream_adapter.cc.orig
++++ src/rtc_base/openssl_stream_adapter.cc
 @@ -17,8 +17,11 @@
  #include <openssl/tls1.h>
  #include <openssl/x509v3.h>

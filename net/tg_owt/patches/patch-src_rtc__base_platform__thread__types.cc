@@ -1,3 +1,7 @@
+$ OpenBSD: $
+
+Support for OpenBSD threads
+
 Index: src/rtc_base/platform_thread_types.cc
 --- src/rtc_base/platform_thread_types.cc.orig
 +++ src/rtc_base/platform_thread_types.cc

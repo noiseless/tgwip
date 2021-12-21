@@ -1,3 +1,7 @@
+$ OpenBSD: $
+
+Higher priority of headers from /usr/local/include over bundled ones
+
 Index: cmake/init_target.cmake
 --- cmake/init_target.cmake.orig
 +++ cmake/init_target.cmake

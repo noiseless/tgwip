@@ -1,5 +1,10 @@
---- src/rtc_base/byte_order.h.orig	Thu Oct 21 09:15:41 2021
-+++ src/rtc_base/byte_order.h	Sat Oct 30 00:53:36 2021
+$ OpenBSD: $
+
+Included required header files
+
+Index: src/rtc_base/byte_order.h
+--- src/rtc_base/byte_order.h.orig
++++ src/rtc_base/byte_order.h
 @@ -92,6 +92,8 @@
  #include <endian.h>
  #elif defined(WEBRTC_FREEBSD)

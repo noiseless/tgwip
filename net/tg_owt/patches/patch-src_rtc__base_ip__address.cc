@@ -1,5 +1,10 @@
---- src/rtc_base/ip_address.cc.orig	Thu Oct 21 09:15:41 2021
-+++ src/rtc_base/ip_address.cc	Sat Oct 30 00:58:12 2021
+$ OpenBSD: $
+
+Included required header files
+
+Index: src/rtc_base/ip_address.cc
+--- src/rtc_base/ip_address.cc.orig
++++ src/rtc_base/ip_address.cc
 @@ -13,6 +13,7 @@
  #include <sys/socket.h>
  #ifdef OPENBSD
