@@ -112,8 +112,8 @@ PORTED_BUNDLES =abseil-cpp libsrtp libvpx        openh264                rnnoise
 NEEDED_BUNDLES =           libsrtp        libyuv          pffft          rnnoise
 
 post-extract:
-	# zap unused bundles, otherwise they are packaged
-.for _bundle in ${PORTED_BUNDLES}
+	# remove unneeded bundles to prevent (accidential) use and packaging
+.for _bundle in ${ALL_BUNDLES}
 .    if !${NEEDED_BUNDLES:M${_bundle}}
 	rm -fr -- ${WRKSRC}/src/third_party/${_bundle}
 .    endif

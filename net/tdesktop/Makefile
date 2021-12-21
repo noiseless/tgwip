@@ -85,6 +85,22 @@ CONFIGURE_ARGS +=	-DCMAKE_BUILD_TYPE=Release \
 			-DDESKTOP_APP_USE_PACKAGED_FONTS=OFF \
 			-DCMAKE_EXE_LINKER_FLAGS="${LDFLAGS} ${EXTRA_LDFL}"
 
+
+# ${WRKSRC}/Telegram/ThirdParty/ subdirectories
+ALL_BUNDLES =	Catch GSL QR expected fcitx-qt5 fcitx5-qt hime hunspell jemalloc libdbusmenu-qt libtgvoip lz4 minizip nimf range-v3 rlottie statusnotifieritem tgcalls xxHash
+# these are ported and probed for in ${WRKSRC}/cmake/external/${_bundle}/CMakeLists.txt
+PORTED_BUNDLES =      GSL    expected                          hunspell          libdbusmenu-qt           lz4 minizip      range-v3                                    xxHash
+# these are unported and/or not probed for and/or contain patches
+NEEDED_BUNDLES =          QR                                                                    libtgvoip     minizip               rlottie                    tgcalls
+
+post-extract:
+	# zap unneeded bundles to prevent (accidential) use
+.for _bundle in ${ALL_BUNDLES}
+.    if !${NEEDED_BUNDLES:M${_bundle}}
+	rm -fr -- ${WRKSRC}/Telegram/ThirdParty/${_bundle}
+.    endif
+.endfor
+
 # According to clang docs, compiler-rt contains an implementation of
 # an atomics library, so libatomic from gcc is rendundant.
 # more: https://clang.llvm.org/docs/Toolchain.html#atomics-library
