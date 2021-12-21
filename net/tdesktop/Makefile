@@ -62,7 +62,7 @@ MODPY_RUNDEP =		No
 # XXX we have x11/qt6 but it is too new
 CONFIGURE_ARGS +=	-DDESKTOP_APP_QT6=OFF
 
-# OpenBSD is detected as Linux and uses OpenAL
+# (Open)BSD is detected as Linux;  OpenBSD uses OpenAL
 CONFIGURE_ARGS +=	-DLIBTGVOIP_DISABLE_ALSA=ON \
 			-DLIBTGVOIP_DISABLE_PULSEAUDIO=ON
 
@@ -89,7 +89,7 @@ CONFIGURE_ARGS +=	-DCMAKE_BUILD_TYPE=Release \
 # ${WRKSRC}/Telegram/ThirdParty/ subdirectories
 ALL_BUNDLES =	Catch GSL QR expected fcitx-qt5 fcitx5-qt hime hunspell jemalloc libdbusmenu-qt libtgvoip lz4 minizip nimf range-v3 rlottie statusnotifieritem tgcalls xxHash
 # these are ported and may or may not be used through ${WRKSRC}/cmake/external/*/CMakeLists.txt
-PORTED_BUNDLES =Catch GSL    expected                          hunspell          libdbusmenu-qt           lz4 minizip      range-v3                                    xxHash
+PORTED_BUNDLES =Catch GSL    expected fcitx-qt5                hunspell          libdbusmenu-qt           lz4 minizip      range-v3         statusnotifieritem         xxHash
 # these are unported and/or not probed for and/or contain patches
 NEEDED_BUNDLES =          QR                                                                    libtgvoip     minizip               rlottie                    tgcalls
 
