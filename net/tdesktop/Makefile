@@ -71,7 +71,7 @@ CONFIGURE_ARGS +=	-DDESKTOP_APP_DISABLE_WAYLAND_INTEGRATION=ON \
 			-DDESKTOP_APP_DISABLE_DBUS_INTEGRATION=ON
 
 CXXFLAGS +=	-DNDEBUG
-EXTRA_LDFL =	`pkg-config --libs vpx usrsctp absl_strings libevent x11` -pthread
+LDFLAGS +=	`pkg-config --libs absl_strings libevent usrsctp vpx x11`
 
 # # We're allowed to used the API ID of the Snap package
 CONFIGURE_ARGS +=	-DCMAKE_BUILD_TYPE=Release \
@@ -83,7 +83,7 @@ CONFIGURE_ARGS +=	-DCMAKE_BUILD_TYPE=Release \
 			-DDESKTOP_APP_DISABLE_CRASH_REPORTS=ON \
 			-DDESKTOP_APP_USE_PACKAGED=ON \
 			-DDESKTOP_APP_USE_PACKAGED_FONTS=OFF \
-			-DCMAKE_EXE_LINKER_FLAGS="${LDFLAGS} ${EXTRA_LDFL}"
+			-DCMAKE_EXE_LINKER_FLAGS='${LDFLAGS}'
 
 
 # ${WRKSRC}/Telegram/ThirdParty/ subdirectories
@@ -104,6 +104,6 @@ post-extract:
 .include <bsd.port.mk>
 
 .if ${CHOSEN_COMPILER} == "ports-gcc"
-EXTRA_LDFL +=		-latomic
+LDFLAGS +=		-latomic
 WANTLIB +=		atomic
 .endif
