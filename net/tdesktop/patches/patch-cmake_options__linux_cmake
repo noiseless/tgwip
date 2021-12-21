@@ -4,7 +4,10 @@ $ OpenBSD: $
 that is solved with it has never been reproduced with OpenBSD malloc.
 more: https://github.com/telegramdesktop/tdesktop/issues/16084
 
-2) 2) Avoid unnecessary dependence on libatomic.
+2) Avoid unnecessary dependence on libatomic.
+
+3) Turn on '-pie' - the bug that caused it to be disabled is solved.
+more: https://gitlab.gnome.org/GNOME/nautilus/-/issues/1601
 
 Index: cmake/options_linux.cmake
 --- cmake/options_linux.cmake.orig
