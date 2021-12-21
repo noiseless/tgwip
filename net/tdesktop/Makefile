@@ -101,14 +101,9 @@ post-extract:
 .    endif
 .endfor
 
-# According to clang docs, compiler-rt contains an implementation of
-# an atomics library, so libatomic from gcc is rendundant.
-# more: https://clang.llvm.org/docs/Toolchain.html#atomics-library
-# But it is still needed if we use ports-gcc.
-# XXX: specify the correct LIB_DEPENDS
+.include <bsd.port.mk>
+
 .if ${CHOSEN_COMPILER} == "ports-gcc"
-CONFIGURE_ARGS +=	-DCMAKE_EXE_LINKER_FLAGS="-latomic"
+EXTRA_LDFL +=		-latomic
 WANTLIB +=		atomic
 .endif
-
-.include <bsd.port.mk>
