@@ -5,6 +5,12 @@ that is solved with it has never been reproduced with OpenBSD malloc.
 more: https://github.com/telegramdesktop/tdesktop/issues/16084
 
 2) Avoid unnecessary dependence on libatomic.
+According to clang docs, compiler-rt contains an implementation of
+an atomics library, so libatomic from gcc is rendundant.
+more: https://clang.llvm.org/docs/Toolchain.html#atomics-library
+
+The ability to build with ported gcc, probably requires a
+different version of the patch.
 
 3) Turn on '-pie' - the bug that caused it to be disabled is solved.
 more: https://gitlab.gnome.org/GNOME/nautilus/-/issues/1601
