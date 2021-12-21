@@ -2704,7 +2704,6 @@ include/tg_owt/third_party/pffft/patches/
 include/tg_owt/third_party/pffft/src/
 include/tg_owt/third_party/pffft/src/fftpack.h
 include/tg_owt/third_party/pffft/src/pffft.h
-include/tg_owt/third_party/pipewire/
 include/tg_owt/third_party/rnnoise/
 include/tg_owt/third_party/rnnoise/src/
 include/tg_owt/third_party/rnnoise/src/rnn_activations.h
