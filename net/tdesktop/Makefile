@@ -88,8 +88,8 @@ CONFIGURE_ARGS +=	-DCMAKE_BUILD_TYPE=Release \
 
 # ${WRKSRC}/Telegram/ThirdParty/ subdirectories
 ALL_BUNDLES =	Catch GSL QR expected fcitx-qt5 fcitx5-qt hime hunspell jemalloc libdbusmenu-qt libtgvoip lz4 minizip nimf range-v3 rlottie statusnotifieritem tgcalls xxHash
-# these are ported and probed for in ${WRKSRC}/cmake/external/${_bundle}/CMakeLists.txt
-PORTED_BUNDLES =      GSL    expected                          hunspell          libdbusmenu-qt           lz4 minizip      range-v3                                    xxHash
+# these are ported and may or may not be used through ${WRKSRC}/cmake/external/*/CMakeLists.txt
+PORTED_BUNDLES =Catch GSL    expected                          hunspell          libdbusmenu-qt           lz4 minizip      range-v3                                    xxHash
 # these are unported and/or not probed for and/or contain patches
 NEEDED_BUNDLES =          QR                                                                    libtgvoip     minizip               rlottie                    tgcalls
 
