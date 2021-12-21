@@ -85,4 +85,14 @@ CONFIGURE_ARGS +=	-DCMAKE_BUILD_TYPE=Release \
 			-DDESKTOP_APP_USE_PACKAGED_FONTS=OFF \
 			-DCMAKE_EXE_LINKER_FLAGS="${LDFLAGS} ${EXTRA_LDFL}"
 
+# According to clang docs, compiler-rt contains an implementation of
+# an atomics library, so libatomic from gcc is rendundant.
+# more: https://clang.llvm.org/docs/Toolchain.html#atomics-library
+# But it is still needed if we use ports-gcc.
+# XXX: specify the correct LIB_DEPENDS
+.if ${CHOSEN_COMPILER} == "ports-gcc"
+CONFIGURE_ARGS +=	-DCMAKE_EXE_LINKER_FLAGS="-latomic"
+WANTLIB +=		atomic
+.endif
+
 .include <bsd.port.mk>
