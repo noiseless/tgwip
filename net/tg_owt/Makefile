@@ -91,7 +91,7 @@ MODPY_RUNDEP =		No
 # a shared library, even though upstream officially discourages it as per
 # https://github.com/telegramdesktop/tdesktop/issues/10257#issuecomment-769698680
 CONFIGURE_ARGS +=	-DTG_OWT_PACKAGED_BUILD=ON \
-			-DTG_BUILD_SHARED_LIBS=ON
+			-DBUILD_SHARED_LIBS=ON
 
 # do not use unported pipewire for desktop capture (or anything else)
 CONFIGURE_ARGS +=	-DTG_OWT_USE_PIPEWIRE=OFF
