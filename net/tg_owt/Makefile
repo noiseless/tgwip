@@ -39,10 +39,16 @@ EXTRACT_CASES =		${LIBYUV_DISTNAME}.tar.gz) ${TAR} -xz \
 			    -C ${WRKSRC}/src/third_party/libyuv/ \
 			    -s ,libyuv-${LIBYUV_COMMIT}/,, ;;
 
+MASTER_SITES1 =		https://github.com/desktop-app/tg_owt/commit/
 # Pending "video_capture: Use correct V4L2 header on OpenBSD"
 # https://github.com/desktop-app/tg_owt/pull/81
-MASTER_SITES1 =		https://github.com/desktop-app/tg_owt/commit/
-PATCHFILES =		v4l2-header-fix-{}5036a7a5.patch:1
+PATCHFILES +=		v4l2-header-fix-{}5036a7a5.patch:1
+# Pending "Build on OpenBSD"
+# https://github.com/desktop-app/tg_owt/pull/79
+PATCHFILES +=		rtc_base-pthread-{}1f3189db.patch:1
+PATCHFILES +=		rtc_base-endianness-{}442e3386.patch:1
+PATCHFILES +=		libwebrtc-recognise-os-{}843c18ca.patch:1
+PATCHFILES +=		audio_device-log-supported-{}5b100784.patch:1
 PATCH_DIST_STRIP =	-p1
 
 MAINTAINER =		Andrew Krasavin <noiseless-ak@yandex.ru>, \
