@@ -50,6 +50,7 @@ FAKE_FLAGS =		LIBDIR=/usr/local/lib
 CPPFLAGS +=		-I/usr/include/c++/v1
 
 INC_DIR =		${PREFIX}/include
+DOC_DIR =		${PREFIX}/share/doc/qr-code-generator
 
 post-patch:
 	echo 'SUBDIR =	${LANGS}'		>| ${WRKSRC}/${MAKE_FILE}
@@ -65,5 +66,7 @@ post-install:
 	${INSTALL_DATA_DIR} ${INC_DIR}
 	${INSTALL_DATA} ${WRKSRC}/${_lang}/qrcodegen.${_lang:S/c/h/} ${INC_DIR}/
 .endfor
+	${INSTALL_DATA_DIR} ${DOC_DIR}
+	${INSTALL_DATA} ${WRKSRC}/Readme.markdown ${DOC_DIR}/
 
 .include <bsd.port.mk>
