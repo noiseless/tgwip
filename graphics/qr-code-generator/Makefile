@@ -49,7 +49,7 @@ FAKE_FLAGS =		LIBDIR=/usr/local/lib
 # include <algorithm>
 CPPFLAGS +=		-I/usr/include/c++/v1
 
-post-extract:
+post-patch:
 	echo 'SUBDIR =	${LANGS}'		>| ${WRKSRC}/${MAKE_FILE}
 	echo '.include <bsd.subdir.mk>'		>> ${WRKSRC}/${MAKE_FILE}
 .for _lang in ${LANGS}
