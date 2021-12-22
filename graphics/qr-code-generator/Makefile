@@ -49,7 +49,7 @@ FAKE_FLAGS =		LIBDIR=/usr/local/lib
 # include <algorithm>
 CPPFLAGS +=		-I/usr/include/c++/v1
 
-INC_DIR =		${PREFIX}/include/qrcodegen
+INC_DIR =		${PREFIX}/include
 
 post-patch:
 	echo 'SUBDIR =	${LANGS}'		>| ${WRKSRC}/${MAKE_FILE}

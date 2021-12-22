@@ -1,6 +1,5 @@
 @comment $OpenBSD: PLIST,v$
-include/qrcodegen/
-include/qrcodegen/qrcodegen.h
-include/qrcodegen/qrcodegen.hpp
+include/qrcodegen.h
+include/qrcodegen.hpp
 @lib lib/libqrcodegen.so.${LIBqrcodegen_VERSION}
 @lib lib/libqrcodegencpp.so.${LIBqrcodegencpp_VERSION}
