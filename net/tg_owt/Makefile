@@ -13,8 +13,8 @@ COMMENT =		WebRTC build for Telegram
 GH_ACCOUNT =		desktop-app
 GH_PROJECT =		tg_owt
 # no releases or tags, use latest master
-GH_COMMIT =		429a6869e4a164e0aad2d8657db341d56f9a6a6f
-DISTNAME =		${GH_PROJECT}-0.0.0.20211212
+GH_COMMIT =		6708e0d31a73e64fe12f54829bf4060c41b2658e
+DISTNAME =		${GH_PROJECT}-0.0.0.20211214
 CATEGORIES =		net
 
 SHARED_LIBS =		tg_owt	0.0	# 0.0.0
@@ -87,14 +87,11 @@ MODULES =		devel/cmake \
 			lang/python
 MODPY_RUNDEP =		No
 
-# indicate an official package build and imply -DBUILD_SHARED_LIBS=ON;
-# shared builds are not officially supported as per
+# build an official package to look for system libraries and explicitly build
+# a shared library, even though upstream officially discourages it as per
 # https://github.com/telegramdesktop/tdesktop/issues/10257#issuecomment-769698680
-# but OpenBSD ports can do better
-CONFIGURE_ARGS +=	-DTG_OWT_PACKAGED_BUILD=ON
-
-# avoid unported ALSA and unneeded PulseAudio, net/tdesktop works wit OpenAL
-CONFIGURE_ARGS +=	-DTG_OWT_BUILD_AUDIO_BACKENDS=OFF
+CONFIGURE_ARGS +=	-DTG_OWT_PACKAGED_BUILD=ON \
+			-DTG_BUILD_SHARED_LIBS=ON
 
 # do not use unported pipewire for desktop capture (or anything else)
 CONFIGURE_ARGS +=	-DTG_OWT_USE_PIPEWIRE=OFF

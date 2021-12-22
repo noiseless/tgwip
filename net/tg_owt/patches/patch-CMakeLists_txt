@@ -7,7 +7,7 @@ $ OpenBSD: $
 Index: CMakeLists.txt
 --- CMakeLists.txt.orig
 +++ CMakeLists.txt
-@@ -63,13 +63,9 @@ include(cmake/init_target.cmake)
+@@ -77,13 +77,9 @@ include(cmake/init_target.cmake)
  include(cmake/generate_target.cmake)
  include(cmake/target_yasm_sources.cmake)
  include(cmake/external.cmake)
@@ -21,7 +21,7 @@ Index: CMakeLists.txt
  include(cmake/libyuv.cmake)
  if (APPLE)
      include(cmake/libsdkmacos.cmake)
-@@ -799,8 +795,6 @@ PRIVATE
+@@ -813,8 +809,6 @@ PRIVATE
      media/engine/webrtc_media_engine_defaults.cc
      media/engine/webrtc_video_engine.cc
      media/engine/webrtc_voice_engine.cc
@@ -30,7 +30,7 @@ Index: CMakeLists.txt
      media/sctp/sctp_transport_factory.cc
      media/sctp/sctp_transport_factory.h
      media/sctp/usrsctp_transport.cc
-@@ -2077,8 +2071,6 @@ PRIVATE
+@@ -2091,8 +2085,6 @@ PRIVATE
      modules/desktop_capture/window_capturer_null.cc
  
      # linux specific
@@ -39,7 +39,7 @@ Index: CMakeLists.txt
      modules/desktop_capture/linux/mouse_cursor_monitor_x11.cc
      modules/desktop_capture/linux/mouse_cursor_monitor_x11.h
      modules/desktop_capture/linux/screen_capturer_x11.cc
-@@ -2370,16 +2362,19 @@ if (APPLE)
+@@ -2384,16 +2376,19 @@ if (APPLE)
      )
  endif()
  
@@ -69,7 +69,7 @@ Index: CMakeLists.txt
  endif()
  
  set(tg_owt_export tg_owt)
-@@ -2404,9 +2399,6 @@ if (TG_OWT_USE_PROTOBUF)
+@@ -2418,9 +2413,6 @@ if (TG_OWT_USE_PROTOBUF)
      list(APPEND export_targets proto)
  endif()
  
