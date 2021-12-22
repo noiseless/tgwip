@@ -17,19 +17,21 @@ MAINTAINER =		Klemens Nanni <kn@openbsd.org>
 # C++
 COMPILER =		base-clang ports-gcc
 
-# c cpp java python rust typescript-javascript, but we only want these
+# upstream supports c cpp java python rust typescript-javascript
 LANGS 	=		c cpp
+
+MAKE_ENV +=		CPPFLAGS='${CPPFLAGS}' \
+			CXXFLAGS='${CXXFLAGS}'
+
 # upstream provides no shared library versions for any language;
 # maintain one version and keep all libraries in sync
-LIBVER =		0.0	# none upstream, keep libraries in sync
-MAKE_FLAGS =		SHLIB_MAJOR=${LIBVER:R} \
+LIBVER =		0.0
+MAKE_FLAGS +=		SHLIB_MAJOR=${LIBVER:R} \
 			SHLIB_MINOR=${LIBVER:E}
-
 .for _lang in ${LANGS}
 _LIB${_lang} =		qrcodegen${_lang:c=}
 SHARED_LIBS +=		${_LIB${_lang}}	${LIBVER}
 .endfor
-
 # just shared libraries
 MAKE_FLAGS +=		-DNOLIBSTATIC \
 			-DNOPROFILE
