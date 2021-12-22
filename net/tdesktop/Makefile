@@ -15,16 +15,6 @@ MASTER_SITES0 =		https://github.com/telegramdesktop/tdesktop/commit/
 PATCHFILES =		remove-openssl-callbacks-{}b2fb5424.patch:0
 PATCH_DIST_STRIP =	-p1
 
-MASTER_SITES1 =		https://github.com/telegramdesktop/libtgvoip/commit/
-# Pending "Support OpenBSD"
-# https://github.com/telegramdesktop/libtgvoip/pulls/37
-PATCHFILES +=		set-thread-names-{}8ec1806.patch:1
-PATCHFILES +=		fix-systemVersion-{}94ee492.patch:1
-# Pending "audio: Build on OpenBSD"
-# https://github.com/telegramdesktop/libtgvoip/pulls/36
-PATCHFILES +=		audio-fix-build-{}52bbb0c.patch:1
-PATCHFILES +=		fix-systemVersion-{}94ee492.patch:1
-
 HOMEPAGE =		https://desktop.telegram.org
 MASTER_SITES =		https://github.com/telegramdesktop/tdesktop/releases/download/v${V}/
 
