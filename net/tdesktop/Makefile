@@ -26,7 +26,7 @@ WANTLIB += Qt5Widgets X11 absl_base absl_int128 absl_log_severity
 WANTLIB += absl_raw_logging_internal absl_spinlock_wait absl_strings
 WANTLIB += absl_strings_internal absl_throw_delegate avcodec avformat
 WANTLIB += avutil c crypto event_core event_extra hunspell-1.7
-WANTLIB += lz4 m openal opus rnnoise swresample swscale tg_owt
+WANTLIB += lz4 m openal opus qrcodegencpp rnnoise swresample swscale tg_owt
 WANTLIB += usrsctp vpx xcb xcb-keysyms xcb-record xcb-screensaver
 WANTLIB += xxhash z
 
@@ -44,6 +44,7 @@ LIB_DEPENDS =		audio/rnnoise \
 			devel/libevent2 \
 			graphics/ffmpeg \
 			graphics/jpeg \
+			graphics/qr-code-generator \
 			net/tg_owt \
 			net/usrsctp>=0.9.5.0 \
 			sysutils/xxhash \
@@ -85,13 +86,17 @@ CONFIGURE_ARGS +=	-DCMAKE_BUILD_TYPE=Release \
 			-DDESKTOP_APP_USE_PACKAGED_FONTS=OFF \
 			-DCMAKE_EXE_LINKER_FLAGS='${LDFLAGS}'
 
+# ${WRKSRC}/cmake/external/qr_code_generator/CMakeLists.txt does not find our
+# port, point at it
+CONFIGURE_ARGS +=	-DQRCODE_LIBRARIES=qrcodegencpp \
+			-DQRCODE_INCLUDE_DIRS=/usr/local/include
 
 # ${WRKSRC}/Telegram/ThirdParty/ subdirectories
 ALL_BUNDLES =	Catch GSL QR expected fcitx-qt5 fcitx5-qt hime hunspell jemalloc libdbusmenu-qt libtgvoip lz4 minizip nimf range-v3 rlottie statusnotifieritem tgcalls xxHash
 # these are ported and may or may not be used through ${WRKSRC}/cmake/external/*/CMakeLists.txt
-PORTED_BUNDLES =Catch GSL    expected fcitx-qt5                hunspell          libdbusmenu-qt           lz4 minizip      range-v3         statusnotifieritem         xxHash
+PORTED_BUNDLES =Catch GSL QR expected fcitx-qt5                hunspell          libdbusmenu-qt           lz4 minizip      range-v3         statusnotifieritem         xxHash
 # these are unported and/or not probed for and/or contain patches
-NEEDED_BUNDLES =          QR                                                                    libtgvoip     minizip               rlottie                    tgcalls
+NEEDED_BUNDLES =                                                                                libtgvoip     minizip               rlottie                    tgcalls
 
 post-extract:
 	# zap unneeded bundles to prevent (accidential) use

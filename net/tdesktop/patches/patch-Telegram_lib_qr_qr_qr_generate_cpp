@@ -1,0 +1,16 @@
+$OpenBSD$
+
+Update grapics/qr-code-generator include as our port is newer than the bundle
+
+Index: Telegram/lib_qr/qr/qr_generate.cpp
+--- Telegram/lib_qr/qr/qr_generate.cpp.orig
++++ Telegram/lib_qr/qr/qr_generate.cpp
+@@ -8,7 +8,7 @@
+ 
+ #include "base/assertion.h"
+ 
+-#include "QrCode.hpp"
++#include "qrcodegen.hpp"
+ #include <QtGui/QPainter>
+ #include <string>
+ 
