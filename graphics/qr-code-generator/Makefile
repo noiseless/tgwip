@@ -49,6 +49,8 @@ FAKE_FLAGS =		LIBDIR=/usr/local/lib
 # include <algorithm>
 CPPFLAGS +=		-I/usr/include/c++/v1
 
+INC_DIR =		${PREFIX}/include/qrcodegen
+
 post-patch:
 	echo 'SUBDIR =	${LANGS}'		>| ${WRKSRC}/${MAKE_FILE}
 	echo '.include <bsd.subdir.mk>'		>> ${WRKSRC}/${MAKE_FILE}
@@ -56,6 +58,12 @@ post-patch:
 	echo 'LIB =	${_LIB${_lang}}'	>| ${WRKSRC}/${_lang}/Makefile
 	echo 'SRCS =	qrcodegen.${_lang}'	>> ${WRKSRC}/${_lang}/Makefile
 	echo '.include <bsd.lib.mk>'		>> ${WRKSRC}/${_lang}/Makefile
+.endfor
+
+post-install:
+.for _lang in ${LANGS}
+	${INSTALL_DATA_DIR} ${INC_DIR}
+	${INSTALL_DATA} ${WRKSRC}/${_lang}/qrcodegen.${_lang:S/c/h/} ${INC_DIR}/
 .endfor
 
 .include <bsd.port.mk>
