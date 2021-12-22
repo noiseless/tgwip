@@ -38,6 +38,17 @@ MAKE_FLAGS +=		-DNOLIBSTATIC \
 
 FAKE_FLAGS =		LIBDIR=/usr/local/lib
 
+# XXX on an amd64 snapshot with base-clang 11.1.0:
+# - base-clang builds without this
+# - ports-gcc needs this
+# on an amd64 snapshot with base-clang 13.0.0:
+# - base-clang needs this
+# - ports-gcc needs this
+#
+# qrcodegen.cpp:24:10: fatal error: 'algorithm' file not found
+# include <algorithm>
+CPPFLAGS +=		-I/usr/include/c++/v1
+
 post-extract:
 	echo 'SUBDIR =	${LANGS}'		>| ${WRKSRC}/${MAKE_FILE}
 	echo '.include <bsd.subdir.mk>'		>> ${WRKSRC}/${MAKE_FILE}
