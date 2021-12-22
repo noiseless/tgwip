@@ -39,6 +39,12 @@ EXTRACT_CASES =		${LIBYUV_DISTNAME}.tar.gz) ${TAR} -xz \
 			    -C ${WRKSRC}/src/third_party/libyuv/ \
 			    -s ,libyuv-${LIBYUV_COMMIT}/,, ;;
 
+# Pending "video_capture: Use correct V4L2 header on OpenBSD"
+# https://github.com/desktop-app/tg_owt/pull/81
+MASTER_SITES1 =		https://github.com/desktop-app/tg_owt/commit/
+PATCHFILES =		v4l2-header-fix-{}5036a7a5.patch:1
+PATCH_DIST_STRIP =	-p1
+
 MAINTAINER =		Andrew Krasavin <noiseless-ak@yandex.ru>, \
 			Klemens Nanni <kn@openbsd.org>
 
