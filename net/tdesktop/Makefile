@@ -43,7 +43,8 @@ BUILD_DEPENDS =		devel/microsoft-gsl \
 			devel/range-v3>=0.11.0p0 \
 			devel/tl-expected
 
-LIB_DEPENDS =		audio/rnnoise \
+LIB_DEPENDS =		archivers/lz4 \
+			audio/rnnoise \
 			audio/openal \
 			audio/opus \
 			devel/abseil-cpp \
