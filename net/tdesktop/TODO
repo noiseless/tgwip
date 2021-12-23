@@ -1,0 +1,17 @@
+REQUIRED for prior to port submission:
+
+* clarify api id/hash situation:  get explicit confirmation that we can use
+  some other package's id/hash or create our own (*not* linked to a private person)
+
+OPTIONAL/nice-to-have later on:
+
+* replace old minizip bundle with updated archivers/minizip
+  (API changed, needs patching, best wait for upstream to do so)
+* test audio/video calls in various network setups:
+  ipv4 only, ipv6 only, nat64/dns64, 464xlat clat, sock5 proxy set inside tdesktop
+* enable dbus integration (probably brings more control over notification)
+* replace QR bundle with graphics/qr-code-generator
+  (qr_code_generator.cmake does not find the port)
+* replace libtgvoip bundle with new port
+  (moves its patching from tg_owt to its own port, allows for more control)
+* replace rlottie bundle with new port
