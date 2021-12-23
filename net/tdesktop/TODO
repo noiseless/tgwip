@@ -1,5 +1,7 @@
 REQUIRED for prior to port submission:
 
+* fix `make package`:
+  LIB_DEPENDS graphics/jpeg not needed for net/tdesktop ?
 * clarify api id/hash situation:  get explicit confirmation that we can use
   some other package's id/hash or create our own (*not* linked to a private person)
 
