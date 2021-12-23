@@ -1,0 +1,16 @@
+REQUIRED for prior to port submission:
+
+* fix `make port-lib-depends-check`:
+  (`ldd libtg_owt.so.0.0` shows dep on libopenh264.so.0.0;  what is causing this?)
+
+	tg_owt-0.0.0.20211214(net/tg_owt):
+	Missing lib: libopenh264.so.0 (/usr/local/lib/libtg_owt.so.0.0) (NOT REACHABLE)
+	Extra:  openh264.0
+	*** Error 1 in target 'port-lib-depends-check' (ignored)
+
+OPTIONAL/nice-to-have later on:
+
+* replace libyuv bundle with new port
+  (needs porting, no explicit upstream support, iirc)
+* replace rnnoise bundle with audio/rnnoise
+  (no explicit upstream support)
