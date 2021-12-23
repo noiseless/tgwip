@@ -7,10 +7,9 @@ GH_TAGNAME =		v1.7.0
 PKGNAME =		${DISTNAME:L}
 CATEGORIES =		graphics
 
-# upstream has no shared library versions, keep all in sync
-LIBVER =		0.0
-SHARED_LIBS +=		qrcodegen	${LIBVER}
-SHARED_LIBS +=		qrcodegencpp	${LIBVER}
+# upstream has no shared library versions
+SHARED_LIBS +=		qrcodegen	0.0
+SHARED_LIBS +=		qrcodegencpp	0.0
 
 HOMEPAGE =		https://www.nayuki.io/page/qr-code-generator-library
 
