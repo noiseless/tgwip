@@ -3,5 +3,3 @@ include/qrcodegen.h
 include/qrcodegen.hpp
 @lib lib/libqrcodegen.so.${LIBqrcodegen_VERSION}
 @lib lib/libqrcodegencpp.so.${LIBqrcodegencpp_VERSION}
-share/doc/qr-code-generator/
-share/doc/qr-code-generator/Readme.markdown

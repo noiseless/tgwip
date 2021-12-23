@@ -7,66 +7,37 @@ GH_TAGNAME =		v1.7.0
 PKGNAME =		${DISTNAME:L}
 CATEGORIES =		graphics
 
+# upstream has no shared library versions, keep all in sync
+LIBVER =		0.0
+SHARED_LIBS +=		qrcodegen	${LIBVER}
+SHARED_LIBS +=		qrcodegencpp	${LIBVER}
+
 HOMEPAGE =		https://www.nayuki.io/page/qr-code-generator-library
 
 # MIT
 PERMIT_PACKAGE =	Yes
 
+WANTLIB =		${COMPILER_LIBCXX} m
+
 MAINTAINER =		Klemens Nanni <kn@openbsd.org>
 
-# C++
 COMPILER =		base-clang ports-gcc
 
-# upstream supports c cpp java python rust typescript-javascript
-LANGS 	=		c cpp
+SEPARATE_BUILD =	Yes
 
-MAKE_ENV +=		CPPFLAGS='${CPPFLAGS}' \
-			CXXFLAGS='${CXXFLAGS}'
+do-build:
+	cd ${WRKSRC}/c && ${CC} ${CFLAGS} -shared qrcodegen.c \
+	    -o ${WRKBUILD}/libqrcodegen.so.${LIBqrcodegen_VERSION}
+	cd ${WRKSRC}/cpp && ${CXX} ${CXXFLAGS} -shared -fPIC qrcodegen.cpp \
+	    -o ${WRKBUILD}/libqrcodegencpp.so.${LIBqrcodegencpp_VERSION}
 
-# upstream provides no shared library versions for any language;
-# maintain one version and keep all libraries in sync
-LIBVER =		0.0
-MAKE_FLAGS +=		SHLIB_MAJOR=${LIBVER:R} \
-			SHLIB_MINOR=${LIBVER:E}
-.for _lang in ${LANGS}
-_LIB${_lang} =		qrcodegen${_lang:c=}
-SHARED_LIBS +=		${_LIB${_lang}}	${LIBVER}
-.endfor
-# just shared libraries
-MAKE_FLAGS +=		-DNOLIBSTATIC \
-			-DNOPROFILE
+do-install:
+	${INSTALL_DATA} ${WRKSRC}/{c/*.h,cpp/*.hpp} ${PREFIX}/include/
+	${INSTALL_DATA} ${WRKBUILD}/*.so* ${PREFIX}/lib/
 
-FAKE_FLAGS =		LIBDIR=/usr/local/lib
-
-# XXX on an amd64 snapshot with base-clang 11.1.0:
-# - base-clang builds without this
-# - ports-gcc needs this
-# on an amd64 snapshot with base-clang 13.0.0:
-# - base-clang needs this
-# - ports-gcc needs this
-#
-# qrcodegen.cpp:24:10: fatal error: 'algorithm' file not found
-# include <algorithm>
-CPPFLAGS +=		-I/usr/include/c++/v1
-
-INC_DIR =		${PREFIX}/include
-DOC_DIR =		${PREFIX}/share/doc/qr-code-generator
-
-post-patch:
-	echo 'SUBDIR =	${LANGS}'		>| ${WRKSRC}/${MAKE_FILE}
-	echo '.include <bsd.subdir.mk>'		>> ${WRKSRC}/${MAKE_FILE}
-.for _lang in ${LANGS}
-	echo 'LIB =	${_LIB${_lang}}'	>| ${WRKSRC}/${_lang}/Makefile
-	echo 'SRCS =	qrcodegen.${_lang}'	>> ${WRKSRC}/${_lang}/Makefile
-	echo '.include <bsd.lib.mk>'		>> ${WRKSRC}/${_lang}/Makefile
-.endfor
-
-post-install:
-.for _lang in ${LANGS}
-	${INSTALL_DATA_DIR} ${INC_DIR}
-	${INSTALL_DATA} ${WRKSRC}/${_lang}/qrcodegen.${_lang:S/c/h/} ${INC_DIR}/
-.endfor
-	${INSTALL_DATA_DIR} ${DOC_DIR}
-	${INSTALL_DATA} ${WRKSRC}/Readme.markdown ${DOC_DIR}/
+do-test:
+	cd ${WRKSRC}/c && ${CC} ${CFLAGS} -DQRCODEGEN_TEST qrcodegen{,-test}.c \
+	    -o ${WRKBUILD}/qrcodegen-test
+	${WRKBUILD}/qrcodegen-test
 
 .include <bsd.port.mk>
