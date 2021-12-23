@@ -1,2 +1,4 @@
-SHA256 (tdesktop-3.3.1-full.tar.gz) = NZkwfqoYTbzW58+v1kv1Eyz36ucKt3o2aDvedll5Wvo=
-SIZE (tdesktop-3.3.1-full.tar.gz) = 39458042
+SHA256 (remove-openssl-callbacks-b2fb5424.patch) = HnmJC0OsHnd9o6UpXkF9fGHDqQYqS45yw8eduuXrHvQ=
+SHA256 (tdesktop-3.3.0-full.tar.gz) = csUdDyTHj5NiwzQJH7Lecez+eG6NkHb59PykklgJSJs=
+SIZE (remove-openssl-callbacks-b2fb5424.patch) = 5613
+SIZE (tdesktop-3.3.0-full.tar.gz) = 38662573

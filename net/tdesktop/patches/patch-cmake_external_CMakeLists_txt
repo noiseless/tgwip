@@ -7,7 +7,7 @@ more: https://github.com/telegramdesktop/tdesktop/issues/16084
 Index: cmake/external/CMakeLists.txt
 --- cmake/external/CMakeLists.txt.orig
 +++ cmake/external/CMakeLists.txt
-@@ -40,9 +40,6 @@ if (add_hunspell_library)
+@@ -37,9 +37,6 @@ if (add_hunspell_library)
  	add_checked_subdirectory(hunspell)
  endif()
  add_checked_subdirectory(iconv)
