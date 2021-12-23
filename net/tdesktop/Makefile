@@ -49,7 +49,6 @@ LIB_DEPENDS =		audio/rnnoise \
 			devel/abseil-cpp \
 			devel/libevent2 \
 			graphics/ffmpeg \
-			graphics/jpeg \
 			net/tg_owt \
 			net/usrsctp>=0.9.5.0 \
 			sysutils/xxhash \
