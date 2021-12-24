@@ -44,7 +44,7 @@ do-test:
 	${WRKBUILD}/libyuv_unittest --gtest_also_run_disabled_tests
 
 post-install:
-	${SUBST_CMD} -m 644 -o ${BINOWN} -g ${BINGRP} \
-		-c ${FILESDIR}/libyuv.pc.in ${PREFIX}/lib/pkgconfig/libyuv.pc
+	${SUBST_DATA} ${FILESDIR}/libyuv.pc.in \
+		${PREFIX}/lib/pkgconfig/libyuv.pc
 
 .include <bsd.port.mk>
