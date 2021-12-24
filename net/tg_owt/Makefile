@@ -88,7 +88,7 @@ LIB_DEPENDS =		audio/opus \
 			graphics/ffmpeg \
 			graphics/jpeg \
 			multimedia/libvpx>=1.10.0 \
-			multimedia/openh264 \
+			multimedia/openh264>=2.1.1p0 \
 			net/usrsctp>=0.9.5.0
 
 MODULES =		devel/cmake \
