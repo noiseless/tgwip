@@ -1,6 +1,6 @@
 $OpenBSD$
 
-Use newer net/qr-code-generator header from our port.
+Use newer graphics/qr-code-generator header from our port.
 
 Index: cmake/external/qr_code_generator/CMakeLists.txt
 --- cmake/external/qr_code_generator/CMakeLists.txt.orig
