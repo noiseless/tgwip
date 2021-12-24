@@ -9,7 +9,6 @@
 NOT_FOR_ARCHS =		${BE_ARCHS}
 
 COMMENT =		WebRTC build for Telegram
-REVISION =		0
 
 GH_ACCOUNT =		desktop-app
 GH_PROJECT =		tg_owt
