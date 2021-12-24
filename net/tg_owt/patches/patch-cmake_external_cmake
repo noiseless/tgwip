@@ -6,7 +6,7 @@ http://sisyphus.ru/ru/srpm/Sisyphus/libowt-tg/patches/1
 Index: cmake/external.cmake
 --- cmake/external.cmake.orig
 +++ cmake/external.cmake
-@@ -187,6 +187,14 @@ function(link_libvpx target_name)
+@@ -187,6 +187,15 @@ function(link_libvpx target_name)
      endif()
  endfunction()
  
