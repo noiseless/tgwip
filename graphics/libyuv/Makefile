@@ -23,6 +23,7 @@ PERMIT_PACKAGE =	Yes
 WANTLIB +=		${COMPILER_LIBCXX} c jpeg m
 
 COMPILER =		base-clang ports-gcc
+COMPILER_LANGS =	c++
 
 MODULES =		devel/cmake
 
