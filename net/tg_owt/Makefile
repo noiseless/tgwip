@@ -105,9 +105,11 @@ CONFIGURE_ARGS +=	-DTG_OWT_PACKAGED_BUILD=ON \
 CONFIGURE_ARGS +=	-DTG_OWT_USE_PIPEWIRE=OFF
 
 CONFIGURE_ARGS +=	-DCMAKE_POSITION_INDEPENDENT_CODE:BOOL=ON \
-			-DCMAKE_CXX_FLAGS="-DNDEBUG" \
 			-DCMAKE_CXX_STANDARD=17
 
+# from FreeBSD: "Disable DCHECKs, otherwise video calls will crash."
+# XXX verify and test without
+CXXFLAGS +=		-DNDEBUG
 
 # ${WRKSRC}/src/third_party/ subdirectories
 ALL_BUNDLES =	abseil-cpp libsrtp libvpx libyuv openh264 pffft pipewire rnnoise usrsctp yasm
