@@ -107,9 +107,6 @@ CONFIGURE_ARGS +=	-DTG_OWT_USE_PIPEWIRE=OFF
 CONFIGURE_ARGS +=	-DCMAKE_POSITION_INDEPENDENT_CODE:BOOL=ON \
 			-DCMAKE_CXX_STANDARD=17
 
-# from FreeBSD: "Disable DCHECKs, otherwise video calls will crash."
-# XXX verify and test without
-CXXFLAGS +=		-DNDEBUG
 # devel/abseil-cpp is found but it's include path is not picked up
 CXXFLAGS +=		-I/usr/local/include
 

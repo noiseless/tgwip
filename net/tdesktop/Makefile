@@ -77,9 +77,6 @@ CONFIGURE_ARGS +=	-DLIBTGVOIP_DISABLE_ALSA=ON \
 CONFIGURE_ARGS +=	-DDESKTOP_APP_DISABLE_WAYLAND_INTEGRATION=ON \
 			-DDESKTOP_APP_DISABLE_DBUS_INTEGRATION=ON
 
-CXXFLAGS +=	-DNDEBUG
-LDFLAGS +=	`pkg-config --libs absl_strings libevent usrsctp vpx x11`
-
 # # We're allowed to used the API ID of the Snap package
 CONFIGURE_ARGS +=	-DCMAKE_BUILD_TYPE=Release \
 			-DCMAKE_CXX_STANDARD=17 \
@@ -92,6 +89,7 @@ CONFIGURE_ARGS +=	-DCMAKE_BUILD_TYPE=Release \
 			-DDESKTOP_APP_USE_PACKAGED_FONTS=OFF \
 			-DCMAKE_EXE_LINKER_FLAGS='${LDFLAGS}'
 
+LDFLAGS +=	`pkg-config --libs absl_strings libevent usrsctp vpx x11`
 
 # ${WRKSRC}/Telegram/ThirdParty/ subdirectories
 ALL_BUNDLES =	Catch GSL QR expected fcitx-qt5 fcitx5-qt hime hunspell jemalloc libdbusmenu-qt libtgvoip lz4 minizip nimf range-v3 rlottie statusnotifieritem tgcalls xxHash
