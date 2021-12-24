@@ -1,3 +1,9 @@
+REQUIRED prior to submission:
+
+* starting tdesktop-3.3.0 linked against tg_owt using external libyuv shows
+  this on startup but otherwise runs fine:
+  telegram-desktop:/usr/local/lib/libyuv.so.0.0: undefined symbol 'jpeg_resync_to_restart'
+
 OPTIONAL/nice-to-have later on:
 
 * replace libyuv bundle with new port
