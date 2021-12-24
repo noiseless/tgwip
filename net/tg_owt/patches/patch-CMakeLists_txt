@@ -1,8 +1,8 @@
 $ OpenBSD: $
 
 - ignore bundled abseil-cpp, openh264, usrsctp, vpx to prefer our ports
-- disable unused and unported linux specific pipewire code
 - fixed undefined references to dcsctp by removing dcsctp_transport.*
+- disable unused and unported linux specific pipewire code
 - support build with system libyuv
 
 Index: CMakeLists.txt
@@ -57,37 +57,7 @@ Index: CMakeLists.txt
      modules/desktop_capture/linux/mouse_cursor_monitor_x11.cc
      modules/desktop_capture/linux/mouse_cursor_monitor_x11.h
      modules/desktop_capture/linux/screen_capturer_x11.cc
-@@ -2384,16 +2375,19 @@ if (APPLE)
-     )
- endif()
- 
--set(vpx_export)
--if (is_x86 OR is_x64)
--    set(vpx_export
--        libvpx_mmx
--        libvpx_sse2
--        libvpx_ssse3
--        libvpx_sse4
--        libvpx_avx
--        libvpx_avx2
--    )
-+if (NOT VPX_FOUND)
-+    set(vpx_export libvpx)
-+    if (is_x86 OR is_x64)
-+        set(vpx_export
-+            libvpx
-+            libvpx_mmx
-+            libvpx_sse2
-+            libvpx_ssse3
-+            libvpx_sse4
-+            libvpx_avx
-+            libvpx_avx2
-+        )
-+    endif()
- endif()
- 
- set(tg_owt_export tg_owt)
-@@ -2411,16 +2405,12 @@ set(export_targets
+@@ -2411,7 +2402,6 @@ set(export_targets
      librnnoise
      libsrtp
      libwebrtcbuild
@@ -95,21 +65,11 @@ Index: CMakeLists.txt
      ${platform_export}
  )
  if (TG_OWT_USE_PROTOBUF)
-     list(APPEND export_targets proto)
- endif()
- 
--if (NOT absl_FOUND)
--    list(APPEND export_targets libabsl)
--endif()
- if (NOT LIBOPENH264_FOUND)
-     list(APPEND export_targets libopenh264)
- endif()
-@@ -2429,6 +2419,10 @@ if (NOT LIBUSRSCTP_FOUND)
+@@ -2429,6 +2419,9 @@ if (NOT LIBUSRSCTP_FOUND)
  endif()
  if (NOT LIBVPX_FOUND)
      list(APPEND export_targets libvpx ${vpx_export})
 +endif()
-+
 +if (NOT LIBYUV_FOUND)
 +   list(APPEND export_targets libyuv)
  endif()
