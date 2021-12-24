@@ -1,29 +1,21 @@
 $OpenBSD$
 
-Support build with system libyuv
-Based on work by Vitaly Lipatov <lav@altlinux.ru>
+build with system libyuv;  based on work by Vitaly Lipatov <lav@altlinux.ru>
+http://sisyphus.ru/ru/srpm/Sisyphus/libowt-tg/patches/1
 
 Index: cmake/external.cmake
 --- cmake/external.cmake.orig
 +++ cmake/external.cmake
-@@ -187,6 +187,23 @@ function(link_libvpx target_name)
+@@ -187,6 +187,14 @@ function(link_libvpx target_name)
      endif()
  endfunction()
  
-+# libyuv
 +function(link_libyuv target_name)
 +    if (TG_OWT_PACKAGED_BUILD)
 +        find_package(PkgConfig REQUIRED)
 +        pkg_check_modules(LIBYUV libyuv>=0.0.1767)
-+        set(LIBYUV_FOUND ${LIBYUV_FOUND} PARENT_SCOPE)
-+        if (LIBYUV_FOUND)
-+            target_link_libraries(${target_name} PRIVATE ${LIBYUV_LIBRARIES})
-+            target_include_directories(${target_name} PRIVATE ${LIBYUV_INCLUDE_DIRS})
-+        endif()
-+    endif()
-+    if (NOT LIBYUV_FOUND)
-+        include(cmake/libyuv.cmake)
-+        target_link_libraries(${target_name} PRIVATE tg_owt::libyuv)
++        target_link_libraries(${target_name} PRIVATE ${LIBYUV_LIBRARIES})
++        target_include_directories(${target_name} PRIVATE ${LIBYUV_INCLUDE_DIRS})
 +    endif()
 +endfunction()
 +

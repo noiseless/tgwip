@@ -3,7 +3,8 @@ $ OpenBSD: $
 - ignore bundled abseil-cpp, openh264, usrsctp, vpx to prefer our ports
 - fixed undefined references to dcsctp by removing dcsctp_transport.*
 - disable unused and unported linux specific pipewire code
-- support build with system libyuv
+- build with system libyuv;  based on work by Vitaly Lipatov <lav@altlinux.ru>
+  http://sisyphus.ru/ru/srpm/Sisyphus/libowt-tg/patches/1
 
 Index: CMakeLists.txt
 --- CMakeLists.txt.orig
@@ -65,13 +66,3 @@ Index: CMakeLists.txt
      ${platform_export}
  )
  if (TG_OWT_USE_PROTOBUF)
-@@ -2429,6 +2419,9 @@ if (NOT LIBUSRSCTP_FOUND)
- endif()
- if (NOT LIBVPX_FOUND)
-     list(APPEND export_targets libvpx ${vpx_export})
-+endif()
-+if (NOT LIBYUV_FOUND)
-+   list(APPEND export_targets libyuv)
- endif()
- 
- export(
