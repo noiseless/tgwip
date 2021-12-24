@@ -1,7 +1,6 @@
 $ OpenBSD: $
 
-Temporarily enforce building minizip from bundle
-instead of minizip from ports
+archivers/minizip is too new to be used, force using the older bundle
 
 Index: cmake/external/minizip/CMakeLists.txt
 --- cmake/external/minizip/CMakeLists.txt.orig
