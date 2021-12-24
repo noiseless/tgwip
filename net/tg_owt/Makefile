@@ -19,6 +19,26 @@ CATEGORIES =		net
 
 SHARED_LIBS =		tg_owt	0.0	# 0.0.0
 
+# Fetch required bundles not included in the tarball, see ${WRKSRC}/.gitmodules
+#
+# clone of https://chromium.googlesource.com/libyuv/libyuv which has
+# no releases or tags, main/master/stable/<commit> tarballs are *unstable*;
+# use GitHub fork with stable tarballs;
+# no releases or tags, use latest master
+LIBYUV_COMMIT =		742791f13a8ca9e8a297c323699aff8af30a360b
+LIBYUV_DISTNAME =	libyuv-20210205-${LIBYUV_COMMIT:C/(........).*/\1/}
+# Henry Hy maintains the FreeBSD package, they probably forked/clone precisely
+# to have stable tarballs
+MASTER_SITES0 =		https://github.com/HenryHu/libyuv/archive/
+
+DISTFILES =		${GH_DISTFILE} \
+			${LIBYUV_DISTNAME}{${LIBYUV_COMMIT}}.tar.gz:0
+# XXX can we rely on bsd.port.mk extracting libyuv after/inside of tg_owt?
+EXTRACT_CASES =		${LIBYUV_DISTNAME}.tar.gz) ${TAR} -xz \
+			    -f ${FULLDISTDIR}/$$archive \
+			    -C ${WRKSRC}/src/third_party/libyuv/ \
+			    -s ,libyuv-${LIBYUV_COMMIT}/,, ;;
+
 MASTER_SITES1 =		https://github.com/desktop-app/tg_owt/commit/
 # Pending "video_capture: Use correct V4L2 header on OpenBSD"
 # https://github.com/desktop-app/tg_owt/pull/81
@@ -52,8 +72,8 @@ WANTLIB += absl_raw_logging_internal absl_spinlock_wait absl_stacktrace
 WANTLIB += absl_str_format_internal absl_strings absl_strings_internal
 WANTLIB += absl_symbolize absl_synchronization absl_throw_delegate
 WANTLIB += absl_time absl_time_zone avcodec avformat avutil crypto
-WANTLIB += gio-2.0 glib-2.0 gobject-2.0 intl m openh264 opus protobuf
-WANTLIB += ssl swresample swscale usrsctp vpx yuv
+WANTLIB += gio-2.0 glib-2.0 gobject-2.0 intl jpeg m openh264 opus protobuf
+WANTLIB += ssl swresample swscale usrsctp vpx
 
 # C++17 set below, some components use -std=gnu++20
 COMPILER =		base-clang ports-gcc
@@ -66,7 +86,7 @@ LIB_DEPENDS =		audio/opus \
 			devel/glib2 \
 			devel/protobuf \
 			graphics/ffmpeg \
-			graphics/libyuv \
+			graphics/jpeg \
 			multimedia/libvpx>=1.10.0 \
 			multimedia/openh264>=2.1.1p0 \
 			net/usrsctp>=0.9.5.0
@@ -93,14 +113,11 @@ CXXFLAGS +=		-I/usr/local/include
 # ${WRKSRC}/src/third_party/ subdirectories
 ALL_BUNDLES =	abseil-cpp libsrtp libvpx libyuv openh264 pffft pipewire rnnoise usrsctp yasm
 # these are ported and probed for in ${WRKSRC}/cmake/external.cmake
-PORTED_BUNDLES =abseil-cpp libsrtp libvpx libyuv openh264                rnnoise usrsctp yasm
+PORTED_BUNDLES =abseil-cpp libsrtp libvpx        openh264                rnnoise usrsctp yasm
 # these are unported and/or not probed for and/or contain patches
-NEEDED_BUNDLES =           libsrtp                        pffft          rnnoise
+NEEDED_BUNDLES =           libsrtp        libyuv          pffft          rnnoise
 
 post-extract:
-	# Adjust libyuv header files to our port
-	find ${WRKSRC}/src -type f -name \*.cc -exec \
-	    sed -i s,third_party/libyuv/include/,, {} +
 	# remove unneeded bundles to prevent (accidential) use and packaging
 .for _bundle in ${ALL_BUNDLES}
 .    if !${NEEDED_BUNDLES:M${_bundle}}

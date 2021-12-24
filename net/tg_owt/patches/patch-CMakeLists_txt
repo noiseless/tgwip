@@ -1,15 +1,13 @@
 $ OpenBSD: $
 
 - ignore bundled abseil-cpp, openh264, usrsctp, vpx to prefer our ports
-- fixed undefined references to dcsctp by removing dcsctp_transport.*
+- attempt to fix undefined references to dcsctp by removing dcsctp_transport.*
 - disable unused and unported linux specific pipewire code
-- build with system libyuv;  based on work by Vitaly Lipatov <lav@altlinux.ru>
-  http://sisyphus.ru/ru/srpm/Sisyphus/libowt-tg/patches/1
 
 Index: CMakeLists.txt
 --- CMakeLists.txt.orig
 +++ CMakeLists.txt
-@@ -77,14 +77,9 @@ include(cmake/init_target.cmake)
+@@ -77,13 +77,9 @@ include(cmake/init_target.cmake)
  include(cmake/generate_target.cmake)
  include(cmake/target_yasm_sources.cmake)
  include(cmake/external.cmake)
@@ -20,27 +18,10 @@ Index: CMakeLists.txt
  include(cmake/libsrtp.cmake)
 -include(cmake/libusrsctp.cmake)
 -include(cmake/libvpx.cmake)
--include(cmake/libyuv.cmake)
+ include(cmake/libyuv.cmake)
  if (APPLE)
      include(cmake/libsdkmacos.cmake)
- endif()
-@@ -129,7 +124,6 @@ PRIVATE
-     tg_owt::libpffft
-     tg_owt::librnnoise
-     tg_owt::libsrtp
--    tg_owt::libyuv
- )
- 
- if (is_x86 OR is_x64)
-@@ -164,6 +158,7 @@ link_libabsl(tg_owt)
- link_libopenh264(tg_owt)
- link_libusrsctp(tg_owt)
- link_libvpx(tg_owt)
-+link_libyuv(tg_owt)
- 
- if (TG_OWT_BUILD_AUDIO_BACKENDS AND (UNIX AND NOT APPLE))
-     link_libalsa(tg_owt)
-@@ -813,8 +808,6 @@ PRIVATE
+@@ -813,8 +809,6 @@ PRIVATE
      media/engine/webrtc_media_engine_defaults.cc
      media/engine/webrtc_video_engine.cc
      media/engine/webrtc_voice_engine.cc
@@ -49,7 +30,7 @@ Index: CMakeLists.txt
      media/sctp/sctp_transport_factory.cc
      media/sctp/sctp_transport_factory.h
      media/sctp/usrsctp_transport.cc
-@@ -2091,8 +2084,6 @@ PRIVATE
+@@ -2091,8 +2085,6 @@ PRIVATE
      modules/desktop_capture/window_capturer_null.cc
  
      # linux specific
@@ -58,11 +39,3 @@ Index: CMakeLists.txt
      modules/desktop_capture/linux/mouse_cursor_monitor_x11.cc
      modules/desktop_capture/linux/mouse_cursor_monitor_x11.h
      modules/desktop_capture/linux/screen_capturer_x11.cc
-@@ -2411,7 +2402,6 @@ set(export_targets
-     librnnoise
-     libsrtp
-     libwebrtcbuild
--    libyuv
-     ${platform_export}
- )
- if (TG_OWT_USE_PROTOBUF)
