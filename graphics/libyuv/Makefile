@@ -13,6 +13,9 @@ VERSION =		0.0.1807
 DISTNAME =		${GH_PROJECT}-${VERSION}
 SUBST_VARS +=		VERSION
 
+MAINTAINER +=		Andrew Krasavin <noiseless-ak@yandex.ru>, \
+			Klemens Nanni <kn@openbsd.org>
+
 SHARED_LIBS =		yuv	0.0	# 0.0.0
 
 HOMEPAGE =		https://chromium.googlesource.com/libyuv/libyuv/
