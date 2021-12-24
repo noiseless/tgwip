@@ -98,26 +98,10 @@ PORTED_BUNDLES =abseil-cpp libsrtp libvpx libyuv openh264                rnnoise
 # these are unported and/or not probed for and/or contain patches
 NEEDED_BUNDLES =           libsrtp                        pffft          rnnoise
 
-BAD_HDR_PATH_FILES =	src/api/video/i010_buffer.cc \
-			src/api/video/i420_buffer.cc \
-			src/api/video/nv12_buffer.cc \
-			src/common_video/libyuv/libyuv_unittest.cc \
-			src/common_video/libyuv/webrtc_libyuv.cc \
-			src/common_video/video_frame_buffer.cc \
-			src/modules/desktop_capture/desktop_frame.cc \
-			src/modules/desktop_capture/desktop_frame_rotation.cc \
-			src/modules/video_capture/video_capture_impl.cc \
-			src/modules/video_coding/codecs/av1/libaom_av1_decoder.cc \
-			src/modules/video_coding/codecs/h264/h264_decoder_impl.cc \
-			src/modules/video_coding/codecs/h264/h264_encoder_impl.cc \
-			src/modules/video_coding/codecs/test/videoprocessor.cc \
-			src/modules/video_coding/codecs/vp8/libvpx_vp8_decoder.cc \
-			src/modules/video_coding/codecs/vp8/libvpx_vp8_encoder.cc \
-			src/modules/video_coding/codecs/vp9/libvpx_vp9_decoder.cc \
-			src/modules/video_coding/codecs/vp9/libvpx_vp9_encoder.cc \
-			src/modules/video_processing/video_denoiser.cc
-
 post-extract:
+	# Adjust libyuv header files to our port
+	find ${WRKSRC}/src -type f -name \*.cc -exec \
+	    sed -i s,third_party/libyuv/include/,, {} +
 	# remove unneeded bundles to prevent (accidential) use and packaging
 .for _bundle in ${ALL_BUNDLES}
 .    if !${NEEDED_BUNDLES:M${_bundle}}
@@ -125,8 +109,4 @@ post-extract:
 .    endif
 .endfor
 
-	# Remove wrong paths to the libyuv header files
-.for _file in ${BAD_HDR_PATH_FILES}
-	sed -i "s|third_party/libyuv/include/||g" "${WRKSRC}/${_file}"
-.endfor
 .include <bsd.port.mk>
