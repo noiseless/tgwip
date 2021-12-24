@@ -1,0 +1,16 @@
+$OpenBSD$
+
+Use newer net/qr-code-generator header from our port.
+
+Index: cmake/external/qr_code_generator/CMakeLists.txt
+--- cmake/external/qr_code_generator/CMakeLists.txt.orig
++++ cmake/external/qr_code_generator/CMakeLists.txt
+@@ -9,7 +9,7 @@ add_library(desktop-app::external_qr_code_generator AL
+ 
+ if (DESKTOP_APP_USE_PACKAGED)
+     find_library(QRCODE_LIBRARIES NAMES qrcodegencpp)
+-    find_path(QRCODE_INCLUDE_DIRS QrCode.hpp PATH_SUFFIXES qrcodegencpp qrcodegen)
++    find_path(QRCODE_INCLUDE_DIRS qrcodegen.hpp PATH_SUFFIXES qrcodegencpp qrcodegen)
+ 
+     if (QRCODE_LIBRARIES AND QRCODE_INCLUDE_DIRS)
+         target_include_directories(external_qr_code_generator SYSTEM INTERFACE ${QRCODE_INCLUDE_DIRS})

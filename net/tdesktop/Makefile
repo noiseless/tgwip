@@ -32,8 +32,8 @@ WANTLIB += Qt5Widgets X11 absl_base absl_int128 absl_log_severity
 WANTLIB += absl_raw_logging_internal absl_spinlock_wait absl_strings
 WANTLIB += absl_strings_internal absl_throw_delegate avcodec avformat
 WANTLIB += avutil c crypto event_core event_extra hunspell-1.7
-WANTLIB += lz4 m openal opus rnnoise swresample swscale tg_owt
-WANTLIB += usrsctp vpx xcb xcb-keysyms xcb-record xcb-screensaver
+WANTLIB += lz4 m openal opus qrcodegencpp rnnoise swresample swscale
+WANTLIB += tg_owt usrsctp vpx xcb xcb-keysyms xcb-record xcb-screensaver
 WANTLIB += xxhash z
 
 # C++17 set below
@@ -50,6 +50,7 @@ LIB_DEPENDS =		archivers/lz4 \
 			devel/abseil-cpp \
 			devel/libevent2 \
 			graphics/ffmpeg \
+			graphics/qr-code-generator>=1.7.0p0 \
 			net/tg_owt \
 			net/usrsctp>=0.9.5.0 \
 			sysutils/xxhash \
@@ -97,7 +98,7 @@ ALL_BUNDLES =	Catch GSL QR expected fcitx-qt5 fcitx5-qt hime hunspell jemalloc l
 # these are ported and may or may not be used through ${WRKSRC}/cmake/external/*/CMakeLists.txt
 PORTED_BUNDLES =Catch GSL QR expected fcitx-qt5                hunspell          libdbusmenu-qt           lz4 minizip      range-v3         statusnotifieritem         xxHash
 # these are unported and/or not probed for and/or contain patches
-NEEDED_BUNDLES =          QR                                                                    libtgvoip     minizip               rlottie                    tgcalls
+NEEDED_BUNDLES =                                                                                libtgvoip     minizip               rlottie                    tgcalls
 
 post-extract:
 	# zap unneeded bundles to prevent (accidential) use
