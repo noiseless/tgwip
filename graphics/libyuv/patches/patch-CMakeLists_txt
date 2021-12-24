@@ -1,0 +1,17 @@
+$OpenBSD$
+
+ability to build tests when the modern cmake is used
+
+Index: CMakeLists.txt
+--- CMakeLists.txt.orig
++++ CMakeLists.txt
+@@ -3,7 +3,8 @@
+ # Run with -DTEST=ON to build unit tests
+ 
+ PROJECT ( YUV C CXX )	# "C" is required even for C++ projects
+-CMAKE_MINIMUM_REQUIRED( VERSION 2.8 )
++CMAKE_MINIMUM_REQUIRED( VERSION 2.9 )
++cmake_policy( SET CMP0064 OLD )
+ OPTION( TEST "Built unit tests" OFF )
+ 
+ SET ( ly_base_dir	${PROJECT_SOURCE_DIR} )
