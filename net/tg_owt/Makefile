@@ -96,7 +96,7 @@ ALL_BUNDLES =	abseil-cpp libsrtp libvpx libyuv openh264 pffft pipewire rnnoise u
 # these are ported and probed for in ${WRKSRC}/cmake/external.cmake
 PORTED_BUNDLES =abseil-cpp libsrtp libvpx libyuv openh264                rnnoise usrsctp yasm
 # these are unported and/or not probed for and/or contain patches
-NEEDED_BUNDLES =           libsrtp        pffft          rnnoise
+NEEDED_BUNDLES =           libsrtp                        pffft          rnnoise
 
 BAD_HDR_PATH_FILES =	src/api/video/i010_buffer.cc \
 			src/api/video/i420_buffer.cc \
