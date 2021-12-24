@@ -110,6 +110,8 @@ CONFIGURE_ARGS +=	-DCMAKE_POSITION_INDEPENDENT_CODE:BOOL=ON \
 # from FreeBSD: "Disable DCHECKs, otherwise video calls will crash."
 # XXX verify and test without
 CXXFLAGS +=		-DNDEBUG
+# devel/abseil-cpp is found but it's include path is not picked up
+CXXFLAGS +=		-I/usr/local/include
 
 # ${WRKSRC}/src/third_party/ subdirectories
 ALL_BUNDLES =	abseil-cpp libsrtp libvpx libyuv openh264 pffft pipewire rnnoise usrsctp yasm
