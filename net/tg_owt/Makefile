@@ -23,17 +23,13 @@ SHARED_LIBS =		tg_owt	0.0	# 0.0.0
 #
 # clone of https://chromium.googlesource.com/libyuv/libyuv which has
 # no releases or tags, main/master/stable/<commit> tarballs are *unstable*;
-# use GitHub fork with stable tarballs;
-# no releases or tags, use latest master
-LIBYUV_COMMIT =		742791f13a8ca9e8a297c323699aff8af30a360b
-LIBYUV_DISTNAME =	libyuv-20210205-${LIBYUV_COMMIT:C/(........).*/\1/}
-# Henry Hy maintains the FreeBSD package, they probably forked/clone precisely
-# to have stable tarballs
-MASTER_SITES0 =		https://github.com/HenryHu/libyuv/archive/
-
+# use Andrew's mirror to get stable tarballs for latest master
+MASTER_SITES0 =		https://github.com/noiseless/libyuv/archive/
+LIBYUV_COMMIT =		78625492cb0ff43faebbb6cb6db2209cd4ccb785
+LIBYUV_DISTNAME =	libyuv-20211214-${LIBYUV_COMMIT:C/(........).*/\1/}
 DISTFILES =		${GH_DISTFILE} \
 			${LIBYUV_DISTNAME}{${LIBYUV_COMMIT}}.tar.gz:0
-# XXX can we rely on bsd.port.mk extracting libyuv after/inside of tg_owt?
+# can we *rely* on bsd.port.mk extracting libyuv after/inside of tg_owt?
 EXTRACT_CASES =		${LIBYUV_DISTNAME}.tar.gz) ${TAR} -xz \
 			    -f ${FULLDISTDIR}/$$archive \
 			    -C ${WRKSRC}/src/third_party/libyuv/ \
