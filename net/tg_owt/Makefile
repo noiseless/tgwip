@@ -100,8 +100,7 @@ CONFIGURE_ARGS +=	-DTG_OWT_PACKAGED_BUILD=ON \
 # do not use unported pipewire for desktop capture (or anything else)
 CONFIGURE_ARGS +=	-DTG_OWT_USE_PIPEWIRE=OFF
 
-CONFIGURE_ARGS +=	-DCMAKE_POSITION_INDEPENDENT_CODE:BOOL=ON \
-			-DCMAKE_CXX_STANDARD=17
+CONFIGURE_ARGS +=	-DCMAKE_CXX_STANDARD=17
 
 # devel/abseil-cpp is found but it's include path is not picked up
 CXXFLAGS +=		-I/usr/local/include
