@@ -2683,7 +2683,6 @@ include/tg_owt/third_party/libyuv/include/libyuv/scale_row.h
 include/tg_owt/third_party/libyuv/include/libyuv/scale_uv.h
 include/tg_owt/third_party/libyuv/include/libyuv/version.h
 include/tg_owt/third_party/libyuv/include/libyuv/video_common.h
-include/tg_owt/third_party/libyuv/libyuv-742791f13a8ca9e8a297c323699aff8af30a360b/
 include/tg_owt/third_party/libyuv/source/
 include/tg_owt/third_party/libyuv/tools_libyuv/
 include/tg_owt/third_party/libyuv/tools_libyuv/autoroller/
@@ -2691,8 +2690,6 @@ include/tg_owt/third_party/libyuv/tools_libyuv/autoroller/unittests/
 include/tg_owt/third_party/libyuv/tools_libyuv/autoroller/unittests/testdata/
 include/tg_owt/third_party/libyuv/tools_libyuv/msan/
 include/tg_owt/third_party/libyuv/tools_libyuv/ubsan/
-include/tg_owt/third_party/libyuv/tools_libyuv/valgrind/
-include/tg_owt/third_party/libyuv/tools_libyuv/valgrind/memcheck/
 include/tg_owt/third_party/libyuv/unit_test/
 include/tg_owt/third_party/libyuv/unit_test/testdata/
 include/tg_owt/third_party/libyuv/unit_test/unit_test.h

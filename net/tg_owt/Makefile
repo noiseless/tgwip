@@ -30,8 +30,8 @@ DISTFILES =		${GH_DISTFILE} \
 			${LIBYUV_DISTNAME}{${LIBYUV_COMMIT}}.tar.gz:0
 EXTRACT_CASES =		${LIBYUV_DISTNAME}.tar.gz) ${TAR} -xz \
 			    -f ${FULLDISTDIR}/$$archive \
-			    -C ${WRKSRC}/src/third_party/libyuv/ \
-			    -s ,libyuv-${LIBYUV_COMMIT}/,, ;;
+			    -C ${WRKSRC}/src/third_party/ \
+			    -s ,^libyuv-${LIBYUV_COMMIT},libyuv, ;;
 
 MASTER_SITES1 =		https://github.com/desktop-app/tg_owt/commit/
 # Pending "video_capture: Use correct V4L2 header on OpenBSD"
