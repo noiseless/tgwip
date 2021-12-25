@@ -1,9 +1,10 @@
 # $OpenBSD$
 
-# See https://github.com/telegramdesktop/tdesktop/issues/3167#issuecomment-658308298
+# the MTProto implementation does not support big-endian
+# https://github.com/telegramdesktop/tdesktop/issues/3167#issuecomment-658308298
 NOT_FOR_ARCHS =		${BE_ARCHS}
 
-COMMENT =		Official Telegram Desktop messenger
+COMMENT =		Telegram Desktop messenger
 V =			3.3.0
 DISTNAME =		tdesktop-${V}-full
 PKGNAME =		tdesktop-${V}
@@ -24,7 +25,8 @@ PATCHORIG =		.pat.orig
 MAINTAINER =		Andrew Krasavin <noiseless-ak@yandex.ru>, \
 			Klemens Nanni <kn@openbsd.org>
 
-# GPLv3
+# tdesktop: GPLv3+; libtgvoip: unlicense: (public domain); minizip: zlib
+# rlottie: LGPL 2.1 with freetype, LGPL, MIT, BSD dependencies; tgcalls: LGPL 3
 PERMIT_PACKAGE =	Yes
 
 WANTLIB += ${COMPILER_LIBCXX} Qt5Core Qt5Gui Qt5Network Qt5Svg
