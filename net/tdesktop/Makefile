@@ -41,6 +41,11 @@ WANTLIB += xxhash z
 # C++17 set below
 COMPILER =		base-clang ports-gcc
 
+MODULES =		devel/cmake \
+			lang/python \
+			x11/qt5
+MODPY_RUNDEP =		No
+
 BUILD_DEPENDS =		devel/microsoft-gsl \
 			devel/range-v3>=0.11.0p0 \
 			devel/tl-expected
@@ -63,30 +68,24 @@ RUN_DEPENDS =		devel/desktop-file-utils \
 			x11/gtk+3,-guic \
 			x11/qt5/qtimageformats
 
-MODULES =		devel/cmake \
-			lang/python \
-			x11/qt5
-MODPY_RUNDEP =		No
-
-# XXX we have x11/qt6 but it is too new
-CONFIGURE_ARGS +=	-DDESKTOP_APP_QT6=OFF
-
-# (Open)BSD is detected as Linux;  OpenBSD uses OpenAL
+# (Open)BSD is detected as Linux but uses OpenAL
 CONFIGURE_ARGS +=	-DLIBTGVOIP_DISABLE_ALSA=ON \
 			-DLIBTGVOIP_DISABLE_PULSEAUDIO=ON
 
 # disable unported/unwanted components
 CONFIGURE_ARGS +=	-DDESKTOP_APP_DISABLE_WAYLAND_INTEGRATION=ON \
-			-DDESKTOP_APP_DISABLE_DBUS_INTEGRATION=ON
+			-DDESKTOP_APP_DISABLE_DBUS_INTEGRATION=ON \
+			-DDESKTOP_APP_QT6=OFF
 
 # # We're allowed to used the API ID of the Snap package
-CONFIGURE_ARGS +=	-DCMAKE_CXX_STANDARD=17 \
-			-DTDESKTOP_API_ID=611335 \
+CONFIGURE_ARGS +=	-DTDESKTOP_API_ID=611335 \
 			-DTDESKTOP_API_HASH=d524b414d21f4d37f08684c1df41ac9c \
 			-DDESKTOP_APP_USE_PACKAGED=ON \
-			-DCMAKE_EXE_LINKER_FLAGS='${LDFLAGS}'
 
 LDFLAGS +=	`pkg-config --libs absl_strings libevent usrsctp vpx x11`
+# match standard version with abseil
+CONFIGURE_ARGS +=	-DCMAKE_CXX_STANDARD=17 \
+			-DCMAKE_EXE_LINKER_FLAGS='${LDFLAGS}'
 
 # ${WRKSRC}/Telegram/ThirdParty/ subdirectories
 ALL_BUNDLES =	Catch GSL QR expected fcitx-qt5 fcitx5-qt hime hunspell jemalloc libdbusmenu-qt libtgvoip lz4 minizip nimf range-v3 rlottie statusnotifieritem tgcalls xxHash
@@ -94,6 +93,8 @@ ALL_BUNDLES =	Catch GSL QR expected fcitx-qt5 fcitx5-qt hime hunspell jemalloc l
 PORTED_BUNDLES =Catch GSL QR expected fcitx-qt5                hunspell          libdbusmenu-qt           lz4 minizip      range-v3         statusnotifieritem         xxHash
 # these are unported and/or not probed for and/or contain patches
 NEEDED_BUNDLES =                                                                                libtgvoip     minizip               rlottie                    tgcalls
+
+NO_TEST =		Yes
 
 post-extract:
 	# zap unneeded bundles to prevent (accidential) use
