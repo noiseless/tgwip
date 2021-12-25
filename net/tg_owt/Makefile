@@ -113,6 +113,8 @@ PORTED_BUNDLES =abseil-cpp libsrtp libvpx        openh264                rnnoise
 # these are unported and/or not probed for and/or contain patches
 NEEDED_BUNDLES =           libsrtp        libyuv          pffft          rnnoise
 
+NO_TEST =		Yes
+
 post-extract:
 	# remove unneeded bundles to prevent (accidential) use and packaging
 .for _bundle in ${ALL_BUNDLES}
