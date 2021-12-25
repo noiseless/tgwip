@@ -3,7 +3,6 @@
 # CMake Warning at cmake/arch.cmake:114 (message):
 #   Unsupported CPU architecture.
 # ...
-# [1045/1275]
 # ${WRKSRC}/src/common_audio/wav_header.cc:30:2:
 #   error: #error "Code not working properly for big endian platforms."
 NOT_FOR_ARCHS =		${BE_ARCHS}
@@ -19,17 +18,16 @@ CATEGORIES =		net
 
 SHARED_LIBS =		tg_owt	0.0	# 0.0.0
 
-# Fetch required bundles not included in the tarball, see ${WRKSRC}/.gitmodules
+# Fetch bundles/submodules missing from the tarball, see ${WRKSRC}/.gitmodules
 #
-# clone of https://chromium.googlesource.com/libyuv/libyuv which has
-# no releases or tags, main/master/stable/<commit> tarballs are *unstable*;
+# clone of https://chromium.googlesource.com/libyuv/libyuv which has no releases
+# or tags, main/master/stable/<commit> tarballs are *unstable*;
 # use Andrew's mirror to get stable tarballs for latest master
 MASTER_SITES0 =		https://github.com/noiseless/libyuv/archive/
 LIBYUV_COMMIT =		78625492cb0ff43faebbb6cb6db2209cd4ccb785
 LIBYUV_DISTNAME =	libyuv-20211214-${LIBYUV_COMMIT:C/(........).*/\1/}
 DISTFILES =		${GH_DISTFILE} \
 			${LIBYUV_DISTNAME}{${LIBYUV_COMMIT}}.tar.gz:0
-# can we *rely* on bsd.port.mk extracting libyuv after/inside of tg_owt?
 EXTRACT_CASES =		${LIBYUV_DISTNAME}.tar.gz) ${TAR} -xz \
 			    -f ${FULLDISTDIR}/$$archive \
 			    -C ${WRKSRC}/src/third_party/libyuv/ \
@@ -39,8 +37,7 @@ MASTER_SITES1 =		https://github.com/desktop-app/tg_owt/commit/
 # Pending "video_capture: Use correct V4L2 header on OpenBSD"
 # https://github.com/desktop-app/tg_owt/pull/81
 PATCHFILES +=		v4l2-header-fix-{}5036a7a5.patch:1
-# Pending "Build on OpenBSD"
-# https://github.com/desktop-app/tg_owt/pull/79
+# Pending "Build on OpenBSD" https://github.com/desktop-app/tg_owt/pull/79
 PATCHFILES +=		rtc_base-pthread-{}1f3189db.patch:1
 PATCHFILES +=		rtc_base-endianness-{}442e3386.patch:1
 PATCHFILES +=		libwebrtc-recognise-os-{}843c18ca.patch:1
@@ -74,6 +71,10 @@ WANTLIB += ssl swresample swscale usrsctp vpx
 # C++17 set below, some components use -std=gnu++20
 COMPILER =		base-clang ports-gcc
 
+MODULES =		devel/cmake \
+			lang/python
+MODPY_RUNDEP =		No
+
 BUILD_DEPENDS =		devel/yasm
 
 LIB_DEPENDS =		audio/opus \
@@ -87,21 +88,16 @@ LIB_DEPENDS =		audio/opus \
 			multimedia/openh264>=2.1.1p0 \
 			net/usrsctp>=0.9.5.0
 
-MODULES =		devel/cmake \
-			lang/python
-MODPY_RUNDEP =		No
-
-# build an official package to look for system libraries and explicitly build
-# a shared library, even though upstream officially discourages it as per
-# https://github.com/telegramdesktop/tdesktop/issues/10257#issuecomment-769698680
+# look for system libraries and build a shared library, despite upstream
+# treating it as "community effort" with less support
 CONFIGURE_ARGS +=	-DTG_OWT_PACKAGED_BUILD=ON \
 			-DBUILD_SHARED_LIBS=ON
 
 # do not use unported pipewire for desktop capture (or anything else)
 CONFIGURE_ARGS +=	-DTG_OWT_USE_PIPEWIRE=OFF
 
+# match standard version with abseil
 CONFIGURE_ARGS +=	-DCMAKE_CXX_STANDARD=17
-
 # devel/abseil-cpp is found but it's include path is not picked up
 CXXFLAGS +=		-I/usr/local/include
 
