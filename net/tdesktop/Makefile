@@ -76,7 +76,7 @@ CONFIGURE_ARGS +=	-DTDESKTOP_API_ID=611335 \
 			-DTDESKTOP_API_HASH=d524b414d21f4d37f08684c1df41ac9c \
 			-DDESKTOP_APP_USE_PACKAGED=ON \
 
-LDFLAGS +=	`pkg-config --libs absl_strings libevent usrsctp vpx x11`
+LDFLAGS +=	`pkg-config --libs absl_strings libevent usrsctp vpx libyuv x11`
 # match standard version with abseil
 CONFIGURE_ARGS +=	-DCMAKE_CXX_STANDARD=17 \
 			-DCMAKE_EXE_LINKER_FLAGS='${LDFLAGS}'
