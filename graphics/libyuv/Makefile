@@ -3,7 +3,7 @@
 COMMENT =		library for freeswitch yuv graphics manipulation
 # clone of https://chromium.googlesource.com/libyuv/libyuv which has
 # no releases or tags, main/master/stable/<commit> tarballs are *unstable*;
-# use GitHub fork with stable tarballs;
+# use Andrew's mirror to get stable tarballs for latest master
 GH_ACCOUNT =		noiseless
 GH_PROJECT =		libyuv
 GH_COMMIT =		78625492cb0ff43faebbb6cb6db2209cd4ccb785
