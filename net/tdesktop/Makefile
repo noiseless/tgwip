@@ -29,7 +29,7 @@ WANTLIB += absl_raw_logging_internal absl_spinlock_wait absl_strings
 WANTLIB += absl_strings_internal absl_throw_delegate avcodec avformat
 WANTLIB += avutil c crypto event_core event_extra hunspell-1.7
 WANTLIB += lz4 m openal opus qrcodegencpp rnnoise swresample swscale
-WANTLIB += tg_owt usrsctp vpx xcb xcb-keysyms xcb-record xcb-screensaver
+WANTLIB += tg_owt usrsctp vpx yuv xcb xcb-keysyms xcb-record xcb-screensaver
 WANTLIB += xxhash z
 
 # C++17 set below
@@ -88,6 +88,9 @@ PORTED_BUNDLES =Catch GSL QR expected fcitx-qt5                hunspell         
 # these are unported and/or not probed for and/or contain patches
 NEEDED_BUNDLES =                                                                                libtgvoip     minizip               rlottie                    tgcalls
 
+BAD_HDR_PATH_FILES =	Telegram/ThirdParty/tgcalls/tgcalls/desktop_capturer/DesktopCaptureSourceHelper.cpp \
+			Telegram/ThirdParty/tgcalls/tgcalls/desktop_capturer/DesktopCaptureSourceManager.cpp
+
 NO_TEST =		Yes
 
 post-extract:
@@ -96,6 +99,11 @@ post-extract:
 .    if !${NEEDED_BUNDLES:M${_bundle}}
 	rm -fr -- ${WRKSRC}/Telegram/ThirdParty/${_bundle}
 .    endif
+.endfor
+
+# Remove wrong paths to the libyuv header files
+.for _file in ${BAD_HDR_PATH_FILES}
+        sed -i "s|third_party/libyuv/include/||g" "${WRKSRC}/${_file}"
 .endfor
 
 .include <bsd.port.mk>
