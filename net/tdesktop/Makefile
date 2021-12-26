@@ -81,6 +81,9 @@ LDFLAGS +=	`pkg-config --libs absl_strings libevent usrsctp vpx x11`
 CONFIGURE_ARGS +=	-DCMAKE_CXX_STANDARD=17 \
 			-DCMAKE_EXE_LINKER_FLAGS='${LDFLAGS}'
 
+# disable use of unported dispatch library
+CXXFLAGS +=		-DCRL_FORCE_QT
+
 # ${WRKSRC}/Telegram/ThirdParty/ subdirectories
 ALL_BUNDLES =	Catch GSL QR expected fcitx-qt5 fcitx5-qt hime hunspell jemalloc libdbusmenu-qt libtgvoip lz4 minizip nimf range-v3 rlottie statusnotifieritem tgcalls xxHash
 # these are ported and may or may not be used through ${WRKSRC}/cmake/external/*/CMakeLists.txt
