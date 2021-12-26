@@ -1,4 +1,4 @@
-$ OpenBSD: $
+$OpenBSD$
 
 Include headers that are relevant for the OpenBSD build.
 

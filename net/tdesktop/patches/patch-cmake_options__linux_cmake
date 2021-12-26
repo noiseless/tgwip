@@ -1,4 +1,4 @@
-$ OpenBSD: $
+$OpenBSD$
 
 1) We prefer to use the system malloc instead of jemalloc. The problem
 that is solved with it has never been reproduced with OpenBSD malloc.

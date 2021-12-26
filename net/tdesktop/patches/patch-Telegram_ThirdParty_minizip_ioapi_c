@@ -1,4 +1,4 @@
-$ OpenBSD: $
+$OpenBSD$
 
 In OpenBSD off_t is a 64 bit value, hence no need for
 specific 64 bit functions

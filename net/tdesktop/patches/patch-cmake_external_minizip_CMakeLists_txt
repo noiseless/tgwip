@@ -1,4 +1,4 @@
-$ OpenBSD: $
+$OpenBSD$
 
 archivers/minizip is too new to be used, force using the older bundle
 

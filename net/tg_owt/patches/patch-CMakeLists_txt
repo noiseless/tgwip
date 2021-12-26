@@ -1,4 +1,4 @@
-$ OpenBSD: $
+$OpenBSD$
 
 - ignore bundled abseil-cpp, openh264, usrsctp, vpx to prefer our ports
 - attempt to fix undefined references to dcsctp by removing dcsctp_transport.*

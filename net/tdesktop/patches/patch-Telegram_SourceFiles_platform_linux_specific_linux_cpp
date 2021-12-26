@@ -1,4 +1,4 @@
-$ OpenBSD: $
+$OpenBSD$
 
 Disabling jemalloc-related code on OpenBSD.
 We use our system malloc.
