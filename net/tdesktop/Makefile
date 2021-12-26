@@ -5,16 +5,10 @@
 NOT_FOR_ARCHS =		${BE_ARCHS}
 
 COMMENT =		Telegram Desktop messenger
-V =			3.3.0
+V =			3.3.1
 DISTNAME =		tdesktop-${V}-full
 PKGNAME =		tdesktop-${V}
 CATEGORIES =		net
-
-# Fixes "Incomplete code removal broke LibreSSL build"
-# https://github.com/telegramdesktop/tdesktop/issues/17406
-MASTER_SITES0 =		https://github.com/telegramdesktop/tdesktop/commit/
-PATCHFILES =		remove-openssl-callbacks-{}b2fb5424.patch:0
-PATCH_DIST_STRIP =	-p1
 
 HOMEPAGE =		https://desktop.telegram.org
 MASTER_SITES =		https://github.com/telegramdesktop/tdesktop/releases/download/v${V}/
