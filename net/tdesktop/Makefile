@@ -62,6 +62,15 @@ RUN_DEPENDS =		devel/desktop-file-utils \
 			x11/gtk+3,-guic \
 			x11/qt5/qtimageformats
 
+# look for system libraries and build a shared library, despite upstream
+# treating it as "community effort" with less support
+CONFIGURE_ARGS +=	-DDESKTOP_APP_USE_PACKAGED=ON
+
+# "Yes, I think you can use Snap tokens for this package, they're mine."
+# https://github.com/telegramdesktop/tdesktop/issues/17435#issuecomment-1001597711
+CONFIGURE_ARGS +=	-DTDESKTOP_API_ID=611335 \
+			-DTDESKTOP_API_HASH=d524b414d21f4d37f08684c1df41ac9c
+
 # (Open)BSD is detected as Linux but uses OpenAL
 CONFIGURE_ARGS +=	-DLIBTGVOIP_DISABLE_ALSA=ON \
 			-DLIBTGVOIP_DISABLE_PULSEAUDIO=ON
@@ -71,16 +80,10 @@ CONFIGURE_ARGS +=	-DDESKTOP_APP_DISABLE_WAYLAND_INTEGRATION=ON \
 			-DDESKTOP_APP_DISABLE_DBUS_INTEGRATION=ON \
 			-DDESKTOP_APP_QT6=OFF
 
-# # We're allowed to used the API ID of the Snap package
-CONFIGURE_ARGS +=	-DTDESKTOP_API_ID=611335 \
-			-DTDESKTOP_API_HASH=d524b414d21f4d37f08684c1df41ac9c \
-			-DDESKTOP_APP_USE_PACKAGED=ON \
-
-LDFLAGS +=	`pkg-config --libs absl_strings libevent usrsctp vpx x11`
 # match standard version with abseil
 CONFIGURE_ARGS +=	-DCMAKE_CXX_STANDARD=17 \
 			-DCMAKE_EXE_LINKER_FLAGS='${LDFLAGS}'
-
+LDFLAGS +=	`pkg-config --libs absl_strings libevent usrsctp vpx x11`
 # disable use of unported dispatch library
 CXXFLAGS +=		-DCRL_FORCE_QT
 
