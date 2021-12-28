@@ -80,6 +80,11 @@ CONFIGURE_ARGS +=	-DDESKTOP_APP_DISABLE_WAYLAND_INTEGRATION=ON \
 			-DDESKTOP_APP_DISABLE_DBUS_INTEGRATION=ON \
 			-DDESKTOP_APP_QT6=OFF
 
+# archivers/minizip aka. minizip-ng is incompatible, stick with zlib bundle
+CONFIGURE_ARGS +=	-DFORCE_MINIZIP_BUNDLE=ON
+# fix ${WRKSRC}/Telegram/ThirdParty/minizip/ioapi.c build, off_t is 64 bit
+CXXFLAGS +=		-DIOAPI_NO_64
+
 # match standard version with abseil
 CONFIGURE_ARGS +=	-DCMAKE_CXX_STANDARD=17 \
 			-DCMAKE_EXE_LINKER_FLAGS='${LDFLAGS}'

@@ -10,16 +10,7 @@ Index: cmake/external/minizip/CMakeLists.txt
  add_library(desktop-app::external_minizip ALIAS external_minizip)
  
 -if (DESKTOP_APP_USE_PACKAGED)
-+if (0)
++if (FORCE_MINIZIP_BUNDLE)
      find_package(PkgConfig REQUIRED)
      pkg_check_modules(MINIZIP IMPORTED_TARGET minizip)
  
-@@ -16,7 +16,7 @@ if (DESKTOP_APP_USE_PACKAGED)
-     endif()
- endif()
- 
--if (NOT MINIZIP_FOUND)
-+if (1)
-     if (NOT WIN32)
-         add_library(external_minizip_bundled STATIC)
-         init_target(external_minizip_bundled "(external)")
