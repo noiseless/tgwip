@@ -2,6 +2,8 @@ $OpenBSD$
 
 Use newer graphics/qr-code-generator header from our port.
 
+Fixed upstream, remove this patch upon the next update.
+
 Index: Telegram/lib_qr/qr/qr_generate.cpp
 --- Telegram/lib_qr/qr/qr_generate.cpp.orig
 +++ Telegram/lib_qr/qr/qr_generate.cpp

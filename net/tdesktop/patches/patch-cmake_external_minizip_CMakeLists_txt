@@ -3,6 +3,8 @@ $OpenBSD$
 archivers/minizip is too new to be used, force using the older bundle
 https://github.com/desktop-app/cmake_helpers/pull/156
 
+Fixed upstream, remove this patch upon the next update.
+
 Index: cmake/external/minizip/CMakeLists.txt
 --- cmake/external/minizip/CMakeLists.txt.orig
 +++ cmake/external/minizip/CMakeLists.txt
