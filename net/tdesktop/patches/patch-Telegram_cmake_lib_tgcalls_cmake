@@ -1,0 +1,16 @@
+$OpenBSD$
+
+Disable unneeded libtgvoip, tgcalls provide everything we need; from alt linux
+http://www.sisyphus.ru/cgi-bin/srpm.pl/Sisyphus/telegram-desktop/getpatch/1
+
+Index: Telegram/cmake/lib_tgcalls.cmake
+--- Telegram/cmake/lib_tgcalls.cmake.orig
++++ Telegram/cmake/lib_tgcalls.cmake
+@@ -234,6 +234,7 @@ PRIVATE
+     ${tgcalls_loc}
+ )
+ 
++return()
+ add_library(lib_tgcalls_legacy STATIC)
+ init_target(lib_tgcalls_legacy)
+ 

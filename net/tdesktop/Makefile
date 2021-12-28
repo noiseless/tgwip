@@ -19,8 +19,8 @@ PATCHORIG =		.pat.orig
 MAINTAINER =		Andrew Krasavin <noiseless-ak@yandex.ru>, \
 			Klemens Nanni <kn@openbsd.org>
 
-# tdesktop: GPLv3+; libtgvoip: unlicense: (public domain); minizip: zlib
-# rlottie: LGPL 2.1 with freetype, LGPL, MIT, BSD dependencies; tgcalls: LGPL 3
+# tdesktop: GPLv3+; minizip: zlib; tgcalls: LGPL 3
+# rlottie: LGPL 2.1 with freetype, LGPL, MIT, BSD dependencies
 PERMIT_PACKAGE =	Yes
 
 WANTLIB += ${COMPILER_LIBCXX} Qt5Core Qt5Gui Qt5Network Qt5Svg
@@ -71,10 +71,6 @@ CONFIGURE_ARGS +=	-DDESKTOP_APP_USE_PACKAGED=ON
 CONFIGURE_ARGS +=	-DTDESKTOP_API_ID=611335 \
 			-DTDESKTOP_API_HASH=d524b414d21f4d37f08684c1df41ac9c
 
-# (Open)BSD is detected as Linux but uses OpenAL
-CONFIGURE_ARGS +=	-DLIBTGVOIP_DISABLE_ALSA=ON \
-			-DLIBTGVOIP_DISABLE_PULSEAUDIO=ON
-
 # disable unported/unwanted components
 CONFIGURE_ARGS +=	-DDESKTOP_APP_DISABLE_WAYLAND_INTEGRATION=ON \
 			-DDESKTOP_APP_DISABLE_DBUS_INTEGRATION=ON \
@@ -95,7 +91,7 @@ ALL_BUNDLES =	Catch GSL QR dispatch expected fcitx-qt5 fcitx5-qt hime hunspell j
 # these are ported and may or may not be used through ${WRKSRC}/cmake/external/*/CMakeLists.txt
 PORTED_BUNDLES =Catch GSL QR          expected fcitx-qt5                hunspell          libdbusmenu-qt           lz4 minizip      range-v3         statusnotifieritem         xxHash
 # these are unported and/or not probed for and/or contain patches
-NEEDED_BUNDLES =                                                                                         libtgvoip     minizip               rlottie                    tgcalls
+NEEDED_BUNDLES =                                                                                                       minizip               rlottie                    tgcalls
 
 NO_TEST =		Yes
 
