@@ -1,6 +1,7 @@
 $OpenBSD$
 
 archivers/minizip is too new to be used, force using the older bundle
+https://github.com/desktop-app/cmake_helpers/pull/156
 
 Index: cmake/external/minizip/CMakeLists.txt
 --- cmake/external/minizip/CMakeLists.txt.orig
@@ -10,7 +11,7 @@ Index: cmake/external/minizip/CMakeLists.txt
  add_library(desktop-app::external_minizip ALIAS external_minizip)
  
 -if (DESKTOP_APP_USE_PACKAGED)
-+if (FORCE_MINIZIP_BUNDLE)
++if (DESKTOP_APP_USE_PACKAGED AND DESKTOP_APP_USE_PACKAGED_MINIZIP)
      find_package(PkgConfig REQUIRED)
      pkg_check_modules(MINIZIP IMPORTED_TARGET minizip)
  
