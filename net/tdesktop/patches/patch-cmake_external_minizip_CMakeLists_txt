@@ -6,12 +6,12 @@ https://github.com/desktop-app/cmake_helpers/pull/156
 Index: cmake/external/minizip/CMakeLists.txt
 --- cmake/external/minizip/CMakeLists.txt.orig
 +++ cmake/external/minizip/CMakeLists.txt
-@@ -7,7 +7,7 @@
- add_library(external_minizip INTERFACE IMPORTED GLOBAL)
- add_library(desktop-app::external_minizip ALIAS external_minizip)
+@@ -9,7 +9,7 @@ add_library(desktop-app::external_minizip ALIAS extern
  
--if (DESKTOP_APP_USE_PACKAGED)
-+if (DESKTOP_APP_USE_PACKAGED AND DESKTOP_APP_USE_PACKAGED_MINIZIP)
+ if (DESKTOP_APP_USE_PACKAGED)
      find_package(PkgConfig REQUIRED)
-     pkg_check_modules(MINIZIP IMPORTED_TARGET minizip)
+-    pkg_check_modules(MINIZIP IMPORTED_TARGET minizip)
++    pkg_check_modules(MINIZIP IMPORTED_TARGET minizip<=1.2.11)
  
+     if (MINIZIP_FOUND)
+         target_link_libraries(external_minizip INTERFACE PkgConfig::MINIZIP)
