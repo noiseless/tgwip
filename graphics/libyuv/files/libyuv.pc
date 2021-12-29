@@ -6,5 +6,6 @@ includedir=${exec_prefix}/include
 Name: libyuv
 Description: YUV conversion and scaling functionality library
 Version: ${VERSION}
+Requires: libjpeg
 Cflags: -I${includedir}
-Libs: -L${libdir} -ljpeg -lyuv
+Libs: -L${libdir} -lyuv
