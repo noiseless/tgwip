@@ -28,7 +28,7 @@ WANTLIB += Qt5Widgets X11 absl_base absl_int128 absl_log_severity
 WANTLIB += absl_raw_logging_internal absl_spinlock_wait absl_strings
 WANTLIB += absl_strings_internal absl_throw_delegate avcodec avformat
 WANTLIB += avutil c crypto event_core event_extra hunspell-1.7
-WANTLIB += lz4 m openal opus qrcodegencpp rnnoise swresample swscale
+WANTLIB += lz4 m openal qrcodegencpp rnnoise swresample swscale
 WANTLIB += tg_owt usrsctp vpx xcb xcb-keysyms xcb-record xcb-screensaver
 WANTLIB += xxhash z
 
@@ -47,7 +47,6 @@ BUILD_DEPENDS =		devel/microsoft-gsl \
 LIB_DEPENDS =		archivers/lz4 \
 			audio/rnnoise \
 			audio/openal \
-			audio/opus \
 			devel/abseil-cpp \
 			devel/libevent2 \
 			graphics/ffmpeg \
