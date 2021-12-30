@@ -6,11 +6,11 @@ https://github.com/telegramdesktop/tdesktop/issues/17437#issuecomment-1001160398
 Index: cmake/external/dispatch/CMakeLists.txt
 --- cmake/external/dispatch/CMakeLists.txt.orig
 +++ cmake/external/dispatch/CMakeLists.txt
-@@ -19,6 +19,7 @@ if (DESKTOP_APP_USE_PACKAGED)
+@@ -48,6 +48,7 @@ if (DESKTOP_APP_USE_PACKAGED AND DISPATCH_LIBRARIES AN
  endif()
  
  add_library(external_dispatch_bundled STATIC IMPORTED)
 +return()
  
- set(dispatch_loc ${third_party_loc}/dispatch)
- set(dispatch_prefix ${CMAKE_CURRENT_BINARY_DIR}/dispatch-prefix)
+ set_target_properties(external_dispatch_bundled PROPERTIES
+     IMPORTED_LOCATION "${dispatch_binary_dir}/src/libdispatch.a"

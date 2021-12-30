@@ -5,7 +5,7 @@
 NOT_FOR_ARCHS =		${BE_ARCHS}
 
 COMMENT =		Telegram Desktop messenger
-V =			3.3.1
+V =			3.3.2
 DISTNAME =		tdesktop-${V}-full
 PKGNAME =		tdesktop-${V}
 CATEGORIES =		net
