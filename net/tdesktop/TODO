@@ -10,8 +10,4 @@ OPTIONAL/nice-to-have later on:
 * test audio/video calls in various network setups:
   ipv4 only, ipv6 only, nat64/dns64, 464xlat clat, sock5 proxy set inside tdesktop
 * enable dbus integration (probably brings more control over notification)
-* replace QR bundle with graphics/qr-code-generator
-  (qr_code_generator.cmake does not find the port)
-* replace libtgvoip bundle with new port
-  (moves its patching from tg_owt to its own port, allows for more control)
 * replace rlottie bundle with new port
