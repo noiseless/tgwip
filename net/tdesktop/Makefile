@@ -91,6 +91,9 @@ NEEDED_BUNDLES =                                                                
 
 NO_TEST =		Yes
 
+# reduce executable size from 233M to 103M
+INSTALL_TARGET =	install/strip
+
 post-extract:
 	# zap unneeded bundles to prevent (accidential) use
 .for _bundle in ${ALL_BUNDLES}
