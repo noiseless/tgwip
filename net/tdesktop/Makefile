@@ -50,9 +50,9 @@ LIB_DEPENDS =		archivers/lz4 \
 			devel/abseil-cpp \
 			devel/libevent2 \
 			graphics/ffmpeg \
-			graphics/qr-code-generator>=1.7.0p0 \
+			graphics/qr-code-generator>=1.7.0p1 \
 			net/tg_owt \
-			net/usrsctp>=0.9.5.0p1 \
+			net/usrsctp>=0.9.5.0p2 \
 			sysutils/xxhash \
 			textproc/hunspell \
 			x11/qt5/qtsvg

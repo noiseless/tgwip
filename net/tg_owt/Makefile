@@ -86,7 +86,7 @@ LIB_DEPENDS =		audio/opus \
 			graphics/jpeg \
 			multimedia/libvpx>=1.10.0 \
 			multimedia/openh264>=2.1.1p0 \
-			net/usrsctp>=0.9.5.0p1
+			net/usrsctp>=0.9.5.0p2
 
 # look for system libraries and build a shared library, despite upstream
 # treating it as "community effort" with less support
