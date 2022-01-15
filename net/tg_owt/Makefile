@@ -105,8 +105,10 @@ NO_TEST =		Yes
 
 # audio/rnnoise but using the system's library is not yet supported
 NEEDED_BUNDLES +=	rnnoise
+# net/libsrtp but using the system's library is not yet supported
+NEEDED_BUNDLES +=	libsrtp
 # unported and required
-NEEDED_BUNDLES +=	libsrtp libyuv pffft
+NEEDED_BUNDLES +=	libyuv pffft
 
 post-extract:
 	@echo All bundles:
