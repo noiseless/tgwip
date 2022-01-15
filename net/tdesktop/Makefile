@@ -82,25 +82,22 @@ LDFLAGS +=	`pkg-config --libs absl_strings libevent usrsctp vpx x11`
 # disable use of unported dispatch library
 CXXFLAGS +=		-DCRL_FORCE_QT
 
-# ${WRKSRC}/Telegram/ThirdParty/ subdirectories
-ALL_BUNDLES =	Catch GSL QR dispatch expected fcitx-qt5 fcitx5-qt hime hunspell jemalloc kwayland libdbusmenu-qt libtgvoip lz4 minizip nimf range-v3 rlottie statusnotifieritem tgcalls xxHash
-# these are ported and may or may not be used through ${WRKSRC}/cmake/external/*/CMakeLists.txt
-PORTED_BUNDLES =Catch GSL QR          expected fcitx-qt5                hunspell          kwayland libdbusmenu-qt           lz4 minizip      range-v3         statusnotifieritem         xxHash
-# these are unported and/or not probed for and/or contain patches
-NEEDED_BUNDLES =                                                                                                                minizip               rlottie                    tgcalls
-
 NO_TEST =		Yes
 
 # reduce executable size from 233M to 103M
 INSTALL_TARGET =	install/strip
 
+# archivers/minizip is minizip-ng, telegram requires incompatible original zlib
+NEEDED_BUNDLES +=	minizip
+# unported and required
+NEEDED_BUNDLES +=	rlottie tgcalls
+
 post-extract:
-	# zap unneeded bundles to prevent (accidential) use
-.for _bundle in ${ALL_BUNDLES}
-.    if !${NEEDED_BUNDLES:M${_bundle}}
-	rm -fr -- ${WRKSRC}/Telegram/ThirdParty/${_bundle}
-.    endif
-.endfor
+	@echo All bundles:
+	@cd ${WRKSRC}/Telegram/ThirdParty/ && ls -x
+	@echo 'Needed bundles (others are removed to prevent accidential use):'
+	@cd ${WRKSRC}/Telegram/ThirdParty/ && mkdir .need && \
+	    mv ${NEEDED_BUNDLES} .need/ && rm -rf -- ./* && mv .need/* . && ls -x
 
 .include <bsd.port.mk>
 

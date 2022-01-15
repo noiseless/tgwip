@@ -101,21 +101,18 @@ CONFIGURE_ARGS +=	-DCMAKE_CXX_STANDARD=17
 # devel/abseil-cpp is found but it's include path is not picked up
 CXXFLAGS +=		-I/usr/local/include
 
-# ${WRKSRC}/src/third_party/ subdirectories
-ALL_BUNDLES =	abseil-cpp libsrtp libvpx libyuv openh264 pffft pipewire rnnoise usrsctp yasm
-# these are ported and probed for in ${WRKSRC}/cmake/external.cmake
-PORTED_BUNDLES =abseil-cpp libsrtp libvpx        openh264                rnnoise usrsctp yasm
-# these are unported and/or not probed for and/or contain patches
-NEEDED_BUNDLES =           libsrtp        libyuv          pffft          rnnoise
-
 NO_TEST =		Yes
 
+# audio/rnnoise but using the system's library is not yet supported
+NEEDED_BUNDLES +=	rnnoise
+# unported and required
+NEEDED_BUNDLES +=	libsrtp libyuv pffft
+
 post-extract:
-	# remove unneeded bundles to prevent (accidential) use and packaging
-.for _bundle in ${ALL_BUNDLES}
-.    if !${NEEDED_BUNDLES:M${_bundle}}
-	rm -fr -- ${WRKSRC}/src/third_party/${_bundle}
-.    endif
-.endfor
+	@echo All bundles:
+	@cd ${WRKSRC}/src/third_party/ && ls -x
+	@echo 'Needed bundles (others are removed to prevent accidential use):'
+	@cd ${WRKSRC}/src/third_party/ && mkdir .need && \
+	    mv ${NEEDED_BUNDLES} .need/ && rm -rf -- ./* && mv .need/* . && ls -x
 
 .include <bsd.port.mk>
