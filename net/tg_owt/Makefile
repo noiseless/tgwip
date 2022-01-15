@@ -103,7 +103,7 @@ CXXFLAGS +=		-I/usr/local/include
 
 NO_TEST =		Yes
 
-# audio/rnnoise but but tg_owt does not support it as system library
+# audio/rnnoise but tg_owt ships Google's C++ rewrite (part of libwebrtc)
 NEEDED_BUNDLES +=	rnnoise
 # security/libsrtp is too new and tg_owt does not support it as system library
 NEEDED_BUNDLES +=	libsrtp

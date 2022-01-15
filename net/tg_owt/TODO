@@ -2,5 +2,3 @@ OPTIONAL/nice-to-have later on:
 
 * replace libyuv bundle with new port
   (needs porting, no explicit upstream support, iirc)
-* replace rnnoise bundle with audio/rnnoise
-  (no explicit upstream support)
