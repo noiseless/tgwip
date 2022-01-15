@@ -103,9 +103,9 @@ CXXFLAGS +=		-I/usr/local/include
 
 NO_TEST =		Yes
 
-# audio/rnnoise but using the system's library is not yet supported
+# audio/rnnoise but but tg_owt does not support it as system library
 NEEDED_BUNDLES +=	rnnoise
-# net/libsrtp but using the system's library is not yet supported
+# security/libsrtp is too new and tg_owt does not support it as system library
 NEEDED_BUNDLES +=	libsrtp
 # unported and required
 NEEDED_BUNDLES +=	libyuv pffft
