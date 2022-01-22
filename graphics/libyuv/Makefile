@@ -6,10 +6,11 @@ COMMENT =		library for freeswitch yuv graphics manipulation
 # use mirror to get stable tarballs for latest master
 GH_ACCOUNT =		noiseless
 GH_PROJECT =		libyuv
-GH_COMMIT =		78625492cb0ff43faebbb6cb6db2209cd4ccb785
+
+GH_COMMIT =		cdd62da6703947d29f471d6d0a92d1b4f325df79
 CATEGORIES =		graphics
 # see ${WRKSRC}/CM_linux_packages.cmake and/or configure output
-VERSION =		0.0.1807
+VERSION =		0.0.1808
 DISTNAME =		${GH_PROJECT}-${VERSION}
 SUBST_VARS +=		VERSION
 
