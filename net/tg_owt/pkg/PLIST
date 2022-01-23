@@ -2619,6 +2619,7 @@ include/tg_owt/system_wrappers/include/rtp_to_ntp_estimator.h
 include/tg_owt/system_wrappers/include/sleep.h
 include/tg_owt/system_wrappers/source/
 include/tg_owt/third_party/
+include/tg_owt/third_party/.need/
 include/tg_owt/third_party/libsrtp/
 include/tg_owt/third_party/libsrtp/crypto/
 include/tg_owt/third_party/libsrtp/crypto/cipher/
