@@ -12,8 +12,8 @@ COMMENT =		WebRTC build for Telegram
 GH_ACCOUNT =		desktop-app
 GH_PROJECT =		tg_owt
 # no releases or tags, use latest master
-GH_COMMIT =		6708e0d31a73e64fe12f54829bf4060c41b2658e
-DISTNAME =		${GH_PROJECT}-0.0.0.20211214
+GH_COMMIT =		6372a0848f8dd84013e291b44f9d1427fde3a90e
+DISTNAME =		${GH_PROJECT}-0.0.0.20220123
 CATEGORIES =		net
 
 SHARED_LIBS =		tg_owt	0.0	# 0.0.0
@@ -36,14 +36,15 @@ EXTRACT_CASES =		${LIBYUV_DISTNAME}.tar.gz) ${TAR} -xz \
 MASTER_SITES1 =		https://github.com/desktop-app/tg_owt/commit/
 # Pending "video_capture: Use correct V4L2 header on OpenBSD"
 # https://github.com/desktop-app/tg_owt/pull/81
-PATCHFILES +=		v4l2-header-fix-{}5036a7a5.patch:1
+PATCHFILES +=		v4l2-header-fix-{}00102649.patch:1
 # Pending "Build on OpenBSD" https://github.com/desktop-app/tg_owt/pull/79
-PATCHFILES +=		rtc_base-pthread-{}1f3189db.patch:1
-PATCHFILES +=		rtc_base-endianness-{}442e3386.patch:1
-PATCHFILES +=		libwebrtc-recognise-os-{}843c18ca.patch:1
+PATCHFILES +=		libusrsctp-recognise-os-{}829ddb38.patch:1
+PATCHFILES +=		libwebrtc-recognise-os-{}fca819e7.patch:1
+PATCHFILES +=		rtc_base-endianness-{}79c6ffeb.patch:1
+PATCHFILES +=		rtc_base-pthread-{}8207a87c.patch:1
 # Pending "Defer third-party source handling to when it is needed"
 # https://github.com/desktop-app/tg_owt/pull/85
-PATCHFILES +=		defer-third-party-sources-{}0c076c6.patch:1
+PATCHFILES +=		defer-third-party-sources-{}bf55efe3.patch:1
 PATCH_DIST_STRIP =	-p1
 
 MAINTAINER =		Andrew Krasavin <noiseless-ak@yandex.ru>, \
