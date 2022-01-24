@@ -65,8 +65,9 @@ RUN_DEPENDS =		devel/desktop-file-utils \
 # treating it as "community effort" with less support
 CONFIGURE_ARGS +=	-DDESKTOP_APP_USE_PACKAGED=ON
 
-# "Yes, I think you can use Snap tokens for this package, they're mine."
-# https://github.com/telegramdesktop/tdesktop/issues/17435#issuecomment-1001597711
+# Follow suit with most other distribution packages, i.e. use the token from
+# Telegram's official Snap package
+# https://github.com/telegramdesktop/tdesktop/issues/17435
 CONFIGURE_ARGS +=	-DTDESKTOP_API_ID=611335 \
 			-DTDESKTOP_API_HASH=d524b414d21f4d37f08684c1df41ac9c
 
@@ -83,9 +84,6 @@ LDFLAGS +=	`pkg-config --libs absl_strings libevent usrsctp vpx x11`
 CXXFLAGS +=		-DCRL_FORCE_QT
 
 NO_TEST =		Yes
-
-# reduce executable size from 233M to 103M
-INSTALL_TARGET =	install/strip
 
 # archivers/minizip is minizip-ng, telegram requires incompatible original zlib
 NEEDED_BUNDLES +=	minizip
