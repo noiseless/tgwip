@@ -1,6 +1,8 @@
 $OpenBSD$
 
 Fix bundled libsrtp 2.2.0 build after recent libcrypto bump (from tb@, thanks!)
+https://github.com/desktop-app/tg_owt/issues/84
+https://github.com/cisco/libsrtp/pull/593
 
 Index: src/third_party/libsrtp/crypto/hash/hmac_ossl.c
 --- src/third_party/libsrtp/crypto/hash/hmac_ossl.c.orig
