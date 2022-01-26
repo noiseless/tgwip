@@ -44,6 +44,9 @@ PATCHFILES +=		tg_owt-rtc_base-pthread-{}8207a87c.patch:1
 # Pending "Defer third-party source handling to when it is needed"
 # https://github.com/desktop-app/tg_owt/pull/85
 PATCHFILES +=		tg_owt-defer-third-party-sources-{}bf55efe3.patch:1
+# Pending "Fix TG_OWT_USE_PIPEWIRE=OFF build (on unix systems without Pipewire)"
+# https://github.com/desktop-app/tg_owt/pull/86
+PATCHFILES +=		tg_owt-fix-build-without-pipewire-{}4263c7b7.patch:1
 
 # Pending "Bundled libsrtp 2.2.0 will require LibreSSL fix to build"
 # https://github.com/desktop-app/tg_owt/issues/84

@@ -15,12 +15,3 @@ Index: CMakeLists.txt
      media/sctp/sctp_transport_factory.cc
      media/sctp/sctp_transport_factory.h
      media/sctp/usrsctp_transport.cc
-@@ -2087,8 +2085,6 @@ PRIVATE
-     modules/desktop_capture/window_capturer_null.cc
- 
-     # linux specific
--    modules/desktop_capture/linux/base_capturer_pipewire.cc
--    modules/desktop_capture/linux/base_capturer_pipewire.h
-     modules/desktop_capture/linux/mouse_cursor_monitor_x11.cc
-     modules/desktop_capture/linux/mouse_cursor_monitor_x11.h
-     modules/desktop_capture/linux/screen_capturer_x11.cc
