@@ -88,9 +88,9 @@ NEEDED_BUNDLES +=	minizip
 NEEDED_BUNDLES +=	rlottie tgcalls
 
 post-extract:
-	@echo All bundles:
+	# All bundles
 	@cd ${WRKSRC}/Telegram/ThirdParty/ && ls -x
-	@echo 'Needed bundles (others are removed to prevent accidential use):'
+	# Needed bundles (others are removed to prevent accidential use)
 	@cd ${WRKSRC}/Telegram/ThirdParty/ && mkdir .need && \
 	    mv ${NEEDED_BUNDLES} .need/ && rm -rf -- ./* && mv .need/* . && ls -x
 

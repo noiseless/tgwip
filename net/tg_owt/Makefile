@@ -114,9 +114,9 @@ NEEDED_BUNDLES +=	libsrtp
 NEEDED_BUNDLES +=	libyuv pffft
 
 post-extract:
-	@echo All bundles:
+	# All bundles
 	@cd ${WRKSRC}/src/third_party/ && ls -x
-	@echo 'Needed bundles (others are removed to prevent accidential use):'
+	# Needed bundles (others are removed to prevent accidential use)
 	@cd ${WRKSRC}/src/third_party/ && mkdir .need && \
 	    mv ${NEEDED_BUNDLES} .need/ && rm -rf -- ./* && mv .need/* . && ls -x
 	# all source headers get packaged, so remove those not needed at
