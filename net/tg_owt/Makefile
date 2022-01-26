@@ -57,15 +57,6 @@ PATCH_CASES +=		tg_owt-libsrtp-*.patch) \
 				${PATCH} ${PATCH_DIST_ARGS} < $$patchfile \
 				    -d ${WRKSRC}/src/third_party/libsrtp ;;
 
-# Pending "Bundled libsrtp 2.2.0 will require LibreSSL fix to build"
-# https://github.com/desktop-app/tg_owt/issues/84
-# https://github.com/cisco/libsrtp/pull/593
-MASTER_SITES2 =		https://github.com/cisco/libsrtp/commit/
-PATCHFILES +=		tg_owt-libsrtp-fix-libressl-build-{}16483b1.patch:2
-PATCH_CASES +=		tg_owt-libsrtp-*.patch) \
-				${PATCH} ${PATCH_DIST_ARGS} < $$patchfile \
-				    -d ${WRKSRC}/src/third_party/libsrtp ;;
-
 PATCH_DIST_STRIP =	-p1
 
 MAINTAINER =		Andrew Krasavin <noiseless-ak@yandex.ru>, \
