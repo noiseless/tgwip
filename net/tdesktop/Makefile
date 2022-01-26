@@ -16,7 +16,7 @@ MASTER_SITES =		https://github.com/telegramdesktop/tdesktop/releases/download/v$
 MAINTAINER =		Andrew Krasavin <noiseless-ak@yandex.ru>, \
 			Klemens Nanni <kn@openbsd.org>
 
-# tdesktop: GPLv3+ with OpenSSL exception; minizip: zlib; tgcalls: LGPL 3
+# tdesktop: GPLv3 with OpenSSL exception; minizip: zlib; tgcalls: LGPL 3
 # rlottie: LGPL 2.1 with freetype, LGPL, MIT, BSD dependencies
 PERMIT_PACKAGE =	Yes
 
