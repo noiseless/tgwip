@@ -36,14 +36,14 @@ EXTRACT_CASES =		${LIBYUV_DISTNAME}.tar.gz) ${TAR} -xz \
 MASTER_SITES1 =		https://github.com/desktop-app/tg_owt/commit/
 # Pending "video_capture: Use correct V4L2 header on OpenBSD"
 # https://github.com/desktop-app/tg_owt/pull/81
-PATCHFILES +=		v4l2-header-fix-{}00102649.patch:1
+PATCHFILES +=		tg_owt-v4l2-header-fix-{}00102649.patch:1
 # Pending "Build on OpenBSD" https://github.com/desktop-app/tg_owt/pull/79
-PATCHFILES +=		libwebrtc-recognise-os-{}fca819e7.patch:1
-PATCHFILES +=		rtc_base-endianness-{}79c6ffeb.patch:1
-PATCHFILES +=		rtc_base-pthread-{}8207a87c.patch:1
+PATCHFILES +=		tg_owt-libwebrtc-recognise-os-{}fca819e7.patch:1
+PATCHFILES +=		tg_owt-rtc_base-endianness-{}79c6ffeb.patch:1
+PATCHFILES +=		tg_owt-rtc_base-pthread-{}8207a87c.patch:1
 # Pending "Defer third-party source handling to when it is needed"
 # https://github.com/desktop-app/tg_owt/pull/85
-PATCHFILES +=		defer-third-party-sources-{}bf55efe3.patch:1
+PATCHFILES +=		tg_owt-defer-third-party-sources-{}bf55efe3.patch:1
 PATCH_DIST_STRIP =	-p1
 
 MAINTAINER =		Andrew Krasavin <noiseless-ak@yandex.ru>, \
