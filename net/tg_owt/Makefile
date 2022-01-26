@@ -38,7 +38,6 @@ MASTER_SITES1 =		https://github.com/desktop-app/tg_owt/commit/
 # https://github.com/desktop-app/tg_owt/pull/81
 PATCHFILES +=		v4l2-header-fix-{}00102649.patch:1
 # Pending "Build on OpenBSD" https://github.com/desktop-app/tg_owt/pull/79
-PATCHFILES +=		libusrsctp-recognise-os-{}829ddb38.patch:1
 PATCHFILES +=		libwebrtc-recognise-os-{}fca819e7.patch:1
 PATCHFILES +=		rtc_base-endianness-{}79c6ffeb.patch:1
 PATCHFILES +=		rtc_base-pthread-{}8207a87c.patch:1
