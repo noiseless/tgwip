@@ -7,10 +7,10 @@ COMMENT =		library for freeswitch yuv graphics manipulation
 GH_ACCOUNT =		noiseless
 GH_PROJECT =		libyuv
 
-GH_COMMIT =		e77531f6f149340428d8a1076d0a1473bdec8c09
+GH_COMMIT =		d62ee21e6627888e84466b5a5ed15775582ac67b
 CATEGORIES =		graphics
 # see ${WRKSRC}/CM_linux_packages.cmake and/or configure output
-VERSION =		0.0.1811
+VERSION =		0.0.1822
 DISTNAME =		${GH_PROJECT}-${VERSION}
 SUBST_VARS +=		VERSION
 
