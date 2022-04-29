@@ -1,0 +1,33 @@
+Index: src/plugins/tls/openssl/qtls_openssl.cpp
+--- src/plugins/tls/openssl/qtls_openssl.cpp.orig
++++ src/plugins/tls/openssl/qtls_openssl.cpp
+@@ -307,7 +307,11 @@ static int q_ssl_psk_use_session_callback(SSL *ssl, co
+ 
+     return 1; // need to return 1 or else "the connection setup fails."
+ }
++#endif // TLS1_3_VERSION
+ 
++#endif // !OPENSSL_NO_PSK
++
++#ifdef TLS1_3_VERSION
+ int q_ssl_sess_set_new_cb(SSL *ssl, SSL_SESSION *session)
+ {
+     if (!ssl) {
+@@ -325,8 +329,6 @@ int q_ssl_sess_set_new_cb(SSL *ssl, SSL_SESSION *sessi
+ }
+ #endif // TLS1_3_VERSION
+ 
+-#endif // !OPENSSL_NO_PSK
+-
+ #if QT_CONFIG(ocsp)
+ 
+ int qt_OCSP_status_server_callback(SSL *ssl, void *ocspRequest)
+@@ -1472,7 +1474,7 @@ bool TlsCryptographOpenSSL::initSslContext()
+     else if (mode == QSslSocket::SslServerMode)
+         q_SSL_set_psk_server_callback(ssl, &q_ssl_psk_server_callback);
+ 
+-#if OPENSSL_VERSION_NUMBER >= 0x10101006L
++#if OPENSSL_VERSION_NUMBER >= 0x10101006L && !defined(LIBRESSL_VERSION_NUMBER)
+     // Set the client callback for TLSv1.3 PSK
+     if (mode == QSslSocket::SslClientMode
+         && QSslSocket::sslLibraryBuildVersionNumber() >= 0x10101006L) {

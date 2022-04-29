@@ -1,0 +1,27 @@
+Index: cmake/QtFeature.cmake
+--- cmake/QtFeature.cmake.orig
++++ cmake/QtFeature.cmake
+@@ -1118,7 +1118,23 @@ function(qt_config_compiler_supports_flag_test name)
+     set(TEST_${name} "${TEST_${name}}" CACHE INTERNAL "${label}")
+ endfunction()
+ 
++# function to add libs to an INTERFACE library target if the lib exists,
++# needed because qt_config_compile test only accepts imported targets in its
++# LIBRARIES argument if PROJECT_PATH is not set.
++function(qt_test_lib_target)
++qt_parse_all_arguments(arg "qt_test_lib_target" "" "TARGET" "LIBS" ${ARGN})
+ # gcc expects -fuse-ld=mold (no absolute path can be given) (gcc >= 12.1)
++if(TARGET ${arg_TARGET})
++    return()
++endif()
++    add_library(${arg_TARGET} INTERFACE IMPORTED)
++foreach(_lib ${arg_LIBS})
++    find_library(fl_${_lib} NAMES ${_lib})
++    if(fl_${_lib})
++        target_link_libraries(${arg_TARGET} INTERFACE ${fl_${_lib}})
++    endif()
++endforeach()
++endfunction()
+ #             or an 'ld' symlink to 'mold' in a dir that is passed via -B flag (gcc < 12.1)
+ #
+ # clang expects     -fuse-ld=mold
